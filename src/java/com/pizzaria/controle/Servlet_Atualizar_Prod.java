@@ -8,10 +8,7 @@ package com.pizzaria.controle;
 import com.pizzaria.DAO.Produto_DAO;
 import com.pizzaria.modelo.Produto;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,14 +34,12 @@ public class Servlet_Atualizar_Prod extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //recupera os dados do formulario de atualizacao
-              String id = request.getParameter("id");
+              String cod = request.getParameter("cod");
               String nome = request.getParameter("nome");
-              String sexo = request.getParameter("sexo");
-              String nascimento = request.getParameter("nascimento");
-              String telefone = request.getParameter("telefone");
-              String rg = request.getParameter("rg");
-              String cpf = request.getParameter("cpf");
-
+              String ingredientes = request.getParameter("ingredientes");
+              String valor = request.getParameter("valor");
+             
+              
               //seta os atributos de cliente
               Produto produtos = new Produto();
 
@@ -52,12 +47,12 @@ public class Servlet_Atualizar_Prod extends HttpServlet {
               //executa o metodo atualizar
              Produto_DAO proDAO = new Produto_DAO();
         try {
-            //
+            //teste
             proDAO.atualizar(produtos);
             String mensagem = "Seus Produtos Foram Atulizados com Sucesso!";
             request.setAttribute("mensagem", mensagem);
             
-            request.getRequestDispatcher("MenuCliente.jsp").forward(request, response);
+            request.getRequestDispatcher("MenuGerente.jsp").forward(request, response);
             
         }catch (SQLException ex) {
             System.out.println("erro: "+ex);

@@ -49,7 +49,27 @@ public class Servlet_Buscar_Prod extends HttpServlet {
         Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
     }
         request.setAttribute("produto", produto);
-        request.getRequestDispatcher("Atualizar_Produto.jsp").forward(request, response);
+        request.getRequestDispatcher("Atualizar_Prod.jsp").forward(request, response);
+    }
+        @Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int cod = Integer.parseInt(request.getParameter("cod"));
+
+        PrintWriter out = response.getWriter();
+        Produto_DAO dao = new Produto_DAO();
+        Produto produto = new Produto();
+
+    try {
+        produto = dao.localizarPorCod(cod);
+    } catch (SQLException ex) {
+        Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        request.setAttribute("produto", produto);
+        request.getRequestDispatcher("MenuGerente.jsp").forward(request, response);
     }
 }
 

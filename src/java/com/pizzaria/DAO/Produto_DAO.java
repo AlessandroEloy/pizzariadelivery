@@ -40,17 +40,17 @@ public class Produto_DAO {
     public boolean atualizar(Produto produto) throws SQLException {
         Connection con = null;
 
-        String sql = ("UPDATE produto SET codCat = ?, nome = ?, ingredientes = ?, valor = ?, WHERE id_user =?");
+        String sql = ("UPDATE produto SET nome = ?, ingredientes = ?, valor = ?, WHERE cod = ?");
 
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
 
-        pstmt.setInt(1, produto.getCategoria().getCod());
-        pstmt.setString(2, produto.getNome());
-        pstmt.setString(3, produto.getIngredientes());
-        pstmt.setDouble(4, produto.getValor());
-        pstmt.setInt(5, produto.getCod());
+       // pstmt.setInt(1, produto.getCategoria().getCod());
+        pstmt.setString(1, produto.getNome());
+        pstmt.setString(2, produto.getIngredientes());
+        pstmt.setDouble(3, produto.getValor());
+        pstmt.setInt(4, produto.getCod());
         pstmt.execute();
 
         return true;

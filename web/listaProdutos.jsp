@@ -53,8 +53,8 @@
                             <td><%=produto.getIngredientes()%></td>
                             <td><%=produto.getValor()%></td>
                             <td><%=produto.getFuncionario().getNome()%></td>
-                            <td><a href="Servlet_Excluir?id=<%=produto.getCod()%>"> X </a></td>
-                            <td><a href="Servlet_Buscar_Prod?id=<%=produto.getCod()%>"> Atualizar </a></td>
+                            <td><a href="Servlet_Excluir?cod=<%=produto.getCod()%>"> X </a></td>
+                            <td><a href="Servlet_Buscar_Prod?cod=<%=produto.getCod()%>"> Atualizar </a></td>
                         </tr>
                     <%}%>
                     </table>    
