@@ -43,9 +43,8 @@ public class Servlet_Buscar_Prod extends HttpServlet {
 
     try {
         produto = dao.localizarPorCod(cod);
-    } catch (SQLException ex) {
-        Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (ClassNotFoundException ex) {
+        
+    } catch (SQLException | ClassNotFoundException ex) {
         Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
     }
         request.setAttribute("produto", produto);
@@ -63,9 +62,8 @@ public class Servlet_Buscar_Prod extends HttpServlet {
 
     try {
         produto = dao.localizarPorCod(cod);
-    } catch (SQLException ex) {
-        Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (ClassNotFoundException ex) {
+        
+    } catch (SQLException | ClassNotFoundException ex) {
         Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
     }
         request.setAttribute("produto", produto);

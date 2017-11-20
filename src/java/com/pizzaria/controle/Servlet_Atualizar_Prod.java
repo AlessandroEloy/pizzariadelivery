@@ -42,8 +42,11 @@ public class Servlet_Atualizar_Prod extends HttpServlet {
               
               //seta os atributos de cliente
               Produto produtos = new Produto();
-
-
+              produtos.setCod(Integer.parseInt(cod));
+              produtos.setNome(nome);
+              produtos.setIngredientes(ingredientes);
+              produtos.setValor(Double.parseDouble(valor));
+              
               //executa o metodo atualizar
              Produto_DAO proDAO = new Produto_DAO();
         try {
@@ -52,7 +55,7 @@ public class Servlet_Atualizar_Prod extends HttpServlet {
             String mensagem = "Seus Produtos Foram Atulizados com Sucesso!";
             request.setAttribute("mensagem", mensagem);
             
-            request.getRequestDispatcher("MenuGerente.jsp").forward(request, response);
+            request.getRequestDispatcher("Servlet_Listar_Prod").forward(request, response);
             
         }catch (SQLException ex) {
             System.out.println("erro: "+ex);

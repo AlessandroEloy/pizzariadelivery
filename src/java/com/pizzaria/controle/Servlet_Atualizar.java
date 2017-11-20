@@ -61,7 +61,7 @@ public class Servlet_Atualizar extends HttpServlet {
             String mensagem = "Seus Dados Foram Atulizados com Sucesso!";
             request.setAttribute("mensagem", mensagem);
             
-            request.getRequestDispatcher("MenuCliente.jsp").forward(request, response);
+            request.getRequestDispatcher("Servlet_Listar").forward(request, response);
             
         } catch (SQLException ex) {
             System.out.println("erro: "+ex);

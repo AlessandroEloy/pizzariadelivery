@@ -55,7 +55,7 @@ public class Servlet_Atualizar_Func extends HttpServlet {
             funDAO.localizarPorId(id);
             String mensagem = "Os Dados do Funcionário Foram Atulizados com Sucesso!";
             request.setAttribute("mensagem", mensagem);
-            request.getRequestDispatcher("Atualizar_Funcionario.jsp").forward(request, response);
+            request.getRequestDispatcher("Servlet_Listar_Func").forward(request, response);
 
         } catch (SQLException ex) {
             System.out.println("erro: " + ex);
