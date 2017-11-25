@@ -48,7 +48,7 @@ public class Usuario_DAO {
     public void cadastrarUsuario(Usuario usuario) throws SQLException {
         Connection con = null;
 
-        String sql = "INSERT INTO Usuario (login, senha, perfil) VALUES (?,?,?)";
+        String sql = "INSERT INTO Usuario (login, senha, perfil) VALUES (?,?,?) returning id";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
@@ -57,8 +57,12 @@ public class Usuario_DAO {
         pstmt.setString(1, usuario.getLogin());
         pstmt.setString(2, usuario.getSenha());
         pstmt.setInt(3, usuario.getPerfil());
-        pstmt.execute();
+        ResultSet rs = pstmt.executeQuery();
         
+         if (rs.next()) {
+            usuario.setId(rs.getInt("id"));
+        }
+         
         pstmt.close();
         con.close();
     }

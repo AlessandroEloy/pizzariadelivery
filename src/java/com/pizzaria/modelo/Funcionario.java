@@ -21,6 +21,7 @@ public class Funcionario {
     private String login;
     private String senha;
     private int endereco; 
+    private Usuario usuario;
 
     public int getId() {
         return id;
@@ -110,9 +111,12 @@ public class Funcionario {
         this.rg = rg;
     }
 
-    public void add(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario getUsuario() {
+        return usuario;
     }
-    
-    
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+     
 }

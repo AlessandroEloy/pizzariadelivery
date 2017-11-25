@@ -55,7 +55,7 @@ public class Servlet_Atualizar_Prod extends HttpServlet {
             String mensagem = "Seus Produtos Foram Atulizados com Sucesso!";
             request.setAttribute("mensagem", mensagem);
             
-            request.getRequestDispatcher("Servlet_Listar_Prod").forward(request, response);
+            request.getRequestDispatcher("Servlet_Listar_Produto").forward(request, response);
             
         }catch (SQLException ex) {
             System.out.println("erro: "+ex);

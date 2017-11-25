@@ -20,8 +20,8 @@ public class Funcionario_DAO {
 
     public void cadastrarFunc(Funcionario funcionario) throws SQLException {
         Connection con = null;
-
-        String sql = "INSERT INTO funcionario (funcao, nome, sexo, nascimento, telefone, rg, cpf, login, senha) VALUES (?,?,?,?,?,?,?,?,?)";
+        
+        String sql = "INSERT INTO funcionario (funcao, nome, sexo, nascimento, telefone, rg, cpf, id_user) VALUES (?,?,?,?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
@@ -33,9 +33,9 @@ public class Funcionario_DAO {
         pstmt.setString(5, funcionario.getTelefone());
         pstmt.setString(6, funcionario.getRg());
         pstmt.setString(7, funcionario.getCpf());
-        pstmt.setString(8, funcionario.getLogin());
-        pstmt.setString(9, funcionario.getSenha());
+        pstmt.setInt(8, funcionario.getUsuario().getId());
         pstmt.execute();
+        
     }
 
     public boolean atualizar(Funcionario funcionario) throws SQLException {

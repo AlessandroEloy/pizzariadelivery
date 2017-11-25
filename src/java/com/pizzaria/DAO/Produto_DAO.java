@@ -40,7 +40,7 @@ public class Produto_DAO {
     public boolean atualizar(Produto produto) throws SQLException {
         Connection con = null;
 
-        String sql = ("UPDATE produto SET nome = ?, ingredientes = ?, valor = ?, WHERE cod = ?");
+        String sql = ("UPDATE produto SET nome = ?, ingredientes = ?, valor = ? WHERE cod = ?");
 
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
@@ -59,7 +59,7 @@ public class Produto_DAO {
     public boolean excluir(String id) throws SQLException {
         Connection con = null;
 
-        String sql = ("DELETE FROM produto WHERE id = ?");
+        String sql = ("DELETE FROM produto WHERE cod = ?");
 
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;

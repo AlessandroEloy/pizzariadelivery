@@ -28,24 +28,7 @@ public class Servlet_Excluir_Func extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-         String id = request.getParameter("id");
-        
-        Funcionario_DAO dao = new Funcionario_DAO();
-        
-        
-        try {
-            dao.excluir(id);
-            String mensagem = "Funcionário Excluido com Sucesso";
-            request.setAttribute("mensagem", mensagem);
-            request.getRequestDispatcher("AlterarDadosFuncionario.jsp").forward(request, response);
-            
-        } catch (SQLException ex) {
-            System.out.println("erro"+ex);
-        }
-    }
+ 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,7 +41,7 @@ public class Servlet_Excluir_Func extends HttpServlet {
             dao.excluir(id);
             String mensagem = "Funcionário Excluido com Sucesso";
             request.setAttribute("mensagem", mensagem);
-            request.getRequestDispatcher("AlterarDadosFuncionario.jsp").forward(request, response);
+            request.getRequestDispatcher("MenuGerente.jsp").forward(request, response);
             
         } catch (SQLException ex) {
             System.out.println("erro"+ex);
