@@ -16,16 +16,9 @@ public class Produto {
     private String nome;
     private String ingredientes;
     private double valor;
-    private Funcionario funcionario;
+    private Usuario usuario;
 
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
+    
     public int getCod() {
         return cod;
     }
@@ -66,4 +59,11 @@ public class Produto {
         this.valor = valor;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

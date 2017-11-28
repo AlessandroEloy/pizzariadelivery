@@ -6,7 +6,7 @@
 package com.pizzaria.DAO;
 
 import com.pizzaria.modelo.Categoria;
-import com.pizzaria.modelo.Funcionario;
+import com.pizzaria.modelo.Usuario;
 import com.pizzaria.modelo.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class Produto_DAO {
     public void cadastrarProduto(Produto produto) throws SQLException {
         Connection con = null;
 
-        String sql = "INSERT INTO produto (codCat, nome, ingredientes, valor, id_user) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO produto (codcat, nome, ingredientes, valor, id_user) VALUES (?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
@@ -32,7 +32,8 @@ public class Produto_DAO {
         pstmt.setString(2, produto.getNome());
         pstmt.setString(3, produto.getIngredientes());
         pstmt.setDouble(4, produto.getValor());
-        pstmt.setInt(5, produto.getFuncionario().getId());
+        pstmt.setInt(5, produto.getUsuario().getId());
+        
         pstmt.execute();
 
     }
@@ -93,17 +94,17 @@ public class Produto_DAO {
             //a cada loop
             Produto produtos = new Produto();
             Categoria categoria = new Categoria();
-            Funcionario funcionario = new Funcionario();
+            Usuario user = new Usuario();
 
             //seta os atributos do cliente com as informações do ResultSet
             categoria.setCod(rs.getInt("codcat"));
             categoria.setCategoria(rs.getString("categoria"));
 
-            funcionario.setNome(rs.getString("fnome"));
+            user.setLogin(rs.getString("ulogin"));
 
             produtos.setCod(rs.getInt("pcod"));
             produtos.setCategoria(categoria);
-            produtos.setFuncionario(funcionario);
+            produtos.setUsuario(user);
             produtos.setNome(rs.getString("pnome"));
             produtos.setIngredientes(rs.getString("ingredientes"));
             produtos.setValor(rs.getDouble("valor"));
@@ -117,10 +118,10 @@ public class Produto_DAO {
     public Produto localizarPorCod(int cod) throws SQLException, ClassNotFoundException {
         //Cria conexao com DB
         Connection conexao = Conecta_Banco.getConexao();
-        String sql = "SELECT p.cod AS pcod, c.cod AS ccod, f.nome AS fnome, p.nome AS pnome, * FROM produto p "
+        String sql = "SELECT p.cod AS pcod, c.cod AS ccod, u.login AS ulogin, p.nome AS pnome, * FROM produto p "
                 + "INNER JOIN categoria c "
                 + "ON c.cod = p.codcat "
-                + "INNER JOIN funcionario f "
+                + "INNER JOIN usuario u "
                 + "ON f.id = p.id_user "
                 + "WHERE p.cod = ?";
         PreparedStatement pstmt = conexao.prepareStatement(sql);
@@ -128,16 +129,16 @@ public class Produto_DAO {
         ResultSet rs = pstmt.executeQuery();
         Produto p = new Produto();
         Categoria c = new Categoria();
-        Funcionario f = new Funcionario();
+        Usuario u = new Usuario();
         while (rs.next()) {
             
             c.setCod(rs.getInt("ccod"));
             c.setCategoria(rs.getString("categoria"));
             p.setCategoria(c);
             
-            f.setId(rs.getInt("id"));
-            f.setNome(rs.getString("fnome"));
-            p.setFuncionario(f);
+            u.setId(rs.getInt("id"));
+            u.setLogin(rs.getString("ulogin"));
+            p.setUsuario(u);
             
             p.setCod(rs.getInt("pcod"));
             p.setNome(rs.getString("pnome"));

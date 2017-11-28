@@ -9,8 +9,6 @@ import com.google.gson.Gson;
 import com.pizzaria.DAO.Categoria_DAO;
 import com.pizzaria.DAO.Produto_DAO;
 import com.pizzaria.modelo.Categoria;
-import com.pizzaria.modelo.Cliente;
-import com.pizzaria.modelo.Funcionario;
 import com.pizzaria.modelo.Produto;
 import com.pizzaria.modelo.Usuario;
 import java.io.IOException;
@@ -55,7 +53,7 @@ public class Servlet_Produtos extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String cat = request.getParameter("categoria");
+        String codcat = request.getParameter("categoria");
         String nome = request.getParameter("nome");
         String ingredientes = request.getParameter("ingredientes");
         double valor = (Double.parseDouble(request.getParameter("valor")));
@@ -68,16 +66,16 @@ public class Servlet_Produtos extends HttpServlet {
         HttpSession sessao = request.getSession();
 
         Categoria categoria = new Categoria();
-        int codCat = Integer.parseInt(cat);
+        int codCat = Integer.parseInt(codcat);
         categoria.setCod(codCat);
         produto.setCategoria(categoria);
         produto.setNome(nome);
         produto.setIngredientes(ingredientes);
         produto.setValor(valor);
-        Funcionario funcionario = new Funcionario();
+        Usuario usuario = new Usuario();
         int id_user = Integer.parseInt(user);
-        funcionario.setId(id_user);
-        produto.setFuncionario(funcionario);
+        usuario.setId(id_user);
+        produto.setUsuario(usuario);
 
         try {
 

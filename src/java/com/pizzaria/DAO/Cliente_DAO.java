@@ -21,7 +21,7 @@ public class Cliente_DAO {
     public void cadastrarCliente(Cliente cliente) throws SQLException {
         Connection con = null;
 
-        String sql = "INSERT INTO cliente (nome, sexo, nascimento, telefone, rg, cpf,id_user) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO cliente (nome, sexo, nascimento, telefone, rg, cpf, id_user) VALUES (?,?,?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
