@@ -57,7 +57,8 @@
                             <td><a href="Servlet_Buscar_Prod?cod=<%=produto.getCod()%>"> Atualizar </a></td>
                         </tr>
                     <%}%>
-                    </table>    
+                    </table> 
+                    <input type="submit" value="VOLTAR" href="MenuGerente.jsp"> 
                 </fieldset>
             </form>
          </div>                  

@@ -64,7 +64,8 @@
                             <td><a href="Servlet_Buscar?id=<%=cliente.getId()%>"> Atualizar </a></td>
                         </tr>
                     <%}%>
-                    </table>    
+                    </table> 
+                    <input type="submit" value="VOLTAR" href="MenuGerente.jsp"> 
                 </fieldset>
             </form>
          </div>           

@@ -1,8 +1,9 @@
 <%-- 
-    Document   : CadProdutos
-    Created on : Oct 2, 2017, 7:16:37 PM
+    Document   : CadProdutosFunc
+    Created on : Nov 28, 2017, 12:41:46 AM
     Author     : bruno nakamura
 --%>
+
 <%@page import="com.pizzaria.modelo.Usuario"%>
 <%@page import="com.pizzaria.controle.Servlet_Login"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -81,7 +82,7 @@
                     <div style="color:red; font-size: x-large"><p>${mensagem}</p></div>
 
                     <input type="submit" value="CADASTRAR"> 
-                    <a href="#"> <input type="submit" onclick="window.location.href = 'MenuGerente.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/> 
+                    <a href="#"> <input type="submit" onclick="window.location.href = 'MenuFuncionario.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/> 
                 </fieldset>
             </form>
         </div><!--/ container-->            
@@ -100,3 +101,4 @@
         </script>
     </body>
 </html>
+

@@ -67,7 +67,8 @@
                             <td><a href="Servlet_Buscar_Func?id=<%=funcionario.getId()%>"> Atualizar </a></td>
                         </tr>
                     <%}%>
-                    </table>    
+                    </table>
+                    <input type="submit" value="VOLTAR" href="MenuGerente.jsp"> 
                 </fieldset>
             </form>
          </div>           

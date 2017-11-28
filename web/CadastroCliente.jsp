@@ -32,7 +32,7 @@
         <div id="container">
 
             <form action="Servlet_Cliente" method="post" onsubmit="return checkForm(this);">
-                <h3> CADASTRO DE CLIENTES</h3>
+                <h3> CADASTRO DO CLIENTE</h3>
                 <fieldset>
                     <legend>Dados Pessoais</legend>
                     <table cellspacing="10">
@@ -160,7 +160,8 @@
                 </fieldset>
                 <br /> 
 </div> -->
-                <input type="submit" value="CADASTRAR">    
+                <input type="submit" value="CADASTRAR">  
+                 <a href="#"> <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/>
                   
             </form>
             </table>

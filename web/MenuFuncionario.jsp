@@ -41,10 +41,15 @@
     </div>
         
         <center> 
-                <input type="submit" onclick="window.location.href='CadastroCliente.jsp'" value="CADASTRO" id='funcionario'> 
-
-            <form name ="forml" action="Servlet_Listar" method="post"> 
+               <!-- <input type="submit" onclick="window.location.href='CadastroCliente.jsp'" value="CADASTRO" id='funcionario'> -->
+            <input type="submit" onclick="window.location.href='CadProdutosFunc.jsp'" value="CADASTRO DE PRODUTOS" id='funcionario'> 
+            
+            <form name ="forml" action="Servlet_Listar" method="post">
                 <input type="submit" onclick="window.location.href='AlterarDadosGF.jsp'" value="CONSULTAR DADOS DO CLIENTE" id='funcionario'>  
+            </form>
+            
+            <form name ="forml" action="Servlet_Listar_Produto" method="post"> 
+                <input type="submit" onclick="window.location.href='LISTAR'" value="CONSULTAR PRODUTOS" id='funcionario'> 
             </form>
                 
                 <input type="submit" onclick="window.location.href = 'Login_index.jsp'" value="SAIR" name="SAIR">

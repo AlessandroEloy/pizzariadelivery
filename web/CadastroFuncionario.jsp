@@ -235,6 +235,7 @@
                         </tr> 
 
                     </table> <input type="submit" value="CADASTRAR">
+                            <a href="#"> <input type="submit" onclick="window.location.href = 'MenuGerente.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/>
                 </fieldset> 
 
                 <br />

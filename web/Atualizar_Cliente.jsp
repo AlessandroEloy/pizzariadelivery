@@ -33,7 +33,10 @@
                 <table>
 
 
-                    <h3> ATUALIZAÇÃO DE DADOS</h3>                        
+                    <h3> ATUALIZAÇÃO DE DADOS</h3> 
+                  
+                                        <legend>Dados Pessoais</legend>
+                                        <table cellspacing="10"> 
                     <tr>
                         <td>
                             <input type="hidden" name="id" value="${cliente.getId()}">
@@ -79,8 +82,10 @@
                     <tr>
                         <td>
                             <input type="submit" value="ATUALIZAR">
+                             <a href="#"> <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/>
                         </td>
                     </tr>
+                    </table>
                 </table>
             </form>
         </div>       
