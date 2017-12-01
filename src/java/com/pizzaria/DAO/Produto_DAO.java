@@ -79,11 +79,11 @@ public class Produto_DAO {
         Connection con = Conecta_Banco.getConexao();
         //cria comando SQL
         String sql = "SELECT p.cod AS pcod,p.codcat, p.nome AS pnome,p.ingredientes,p.valor,"
-                + "f.nome AS fnome,"
+                + "u.login AS ulogin,"
                 + "c.categoria "
                 + "from produto p "
-                + "INNER JOIN funcionario f "
-                + "ON f.id = p.id_user "
+                + "INNER JOIN usuario u "
+                + "ON u.id = p.id_user "
                 + "INNER JOIN categoria c "
                 + "ON p.codcat = c.cod";
         PreparedStatement pstmt = con.prepareStatement(sql);

@@ -88,6 +88,10 @@
         <servlet-name>Servlet_Atualizar_Prod</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Atualizar_Prod</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_Carrinho</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Carrinho</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Servlet_Login</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>Servlet_Atualizar_Prod</servlet-name>
         <url-pattern>/Servlet_Atualizar_Prod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Carrinho</servlet-name>
+        <url-pattern>/Servlet_Carrinho</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

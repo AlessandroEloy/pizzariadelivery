@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author bruno nakamura
  */
-@WebServlet(name = "Servlet_Produtos", urlPatterns = {"/Servlet_Produtos"})
+//@WebServlet(name = "Servlet_Produtos", urlPatterns = {"/Servlet_Produtos"})
 public class Servlet_Produtos extends HttpServlet {
 
     @Override

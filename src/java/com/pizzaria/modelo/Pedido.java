@@ -6,6 +6,7 @@
 package com.pizzaria.modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,7 +27,9 @@ public class Pedido {
     private Usuario usuario;
     private List<ItemPedido> itens = new ArrayList<ItemPedido>();
     private double valorTotal;
-
+    
+    
+    
     public double getValorTotal() {
         return valorTotal;
     }
@@ -46,6 +49,7 @@ public class Pedido {
     public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
+    
 
     public int getCod() {
         return cod;
@@ -127,14 +131,20 @@ public class Pedido {
         this.usuario = usuario;
     }
     
-    public double CalcTotal(ArrayList<ItemPedido> itens){
+        public double CalcTotal(ArrayList<ItemPedido> itens){
         for (int i = 0; i<itens.size(); i++) {
          valorTotal += itens.get(i).getValorItem();
         }
         return valorTotal;
     }
    
-    
-    
+    public void removerItem(ItemPedido itemRemove){
+        for(Iterator i = itens.iterator(); i.hasNext();){
+            ItemPedido item = (ItemPedido) i.next();
+            if(item.getProduto().getCod() == itemRemove.getProduto().getCod()){
+                i.remove();
+            }
+        }
+    }
     
 }

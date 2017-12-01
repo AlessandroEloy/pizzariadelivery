@@ -15,7 +15,8 @@ public class ItemPedido {
     private Produto produto;
     private int quantidade;
     private double valorItem;
-
+  
+    
     public int getCod() {
         return cod;
     }
@@ -55,5 +56,4 @@ public class ItemPedido {
     public void setValorItem(double valorItem) {
         this.valorItem = valorItem;
     }
-
 }
