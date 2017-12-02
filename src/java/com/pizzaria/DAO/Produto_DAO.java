@@ -122,7 +122,7 @@ public class Produto_DAO {
                 + "INNER JOIN categoria c "
                 + "ON c.cod = p.codcat "
                 + "INNER JOIN usuario u "
-                + "ON f.id = p.id_user "
+                + "ON u.id = p.id_user "
                 + "WHERE p.cod = ?";
         PreparedStatement pstmt = conexao.prepareStatement(sql);
         pstmt.setInt(1, cod);

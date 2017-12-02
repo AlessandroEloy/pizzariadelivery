@@ -63,8 +63,8 @@
                     }
                 %>
             </table>
-                <strong>Valor Total: <%=carrinho.CalcTotal(itens)%></strong><br/>
-            <a href="index.jsp"> Continue comprando</a><br/>
+                <strong>Valor Total: <%=carrinho.CalcTotal() %></strong><br/>
+            <a href="Pedido.jsp"> Continue comprando</a><br/>
             <a href="ControleCarrinho?acao=cancelaCompra">Cancelar comprar</a>
 
     </body>

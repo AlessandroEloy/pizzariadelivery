@@ -131,7 +131,7 @@ public class Pedido {
         this.usuario = usuario;
     }
     
-        public double CalcTotal(ArrayList<ItemPedido> itens){
+        public double CalcTotal(){
         for (int i = 0; i<itens.size(); i++) {
          valorTotal += itens.get(i).getValorItem();
         }

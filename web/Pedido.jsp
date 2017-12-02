@@ -34,9 +34,9 @@
 
             <%
                 // Recupera os produtos.
-                java.util.List<Produto> produtos = (java.util.List<Produto>) request.getAttribute("listaProdutos");
+                java.util.List<Produto> produtos = (java.util.List<Produto>) request.getAttribute("produtos");
                 if (produtos == null) {
-                    request.getRequestDispatcher("Servet_Pedido?acao=listaPedido").forward(request,
+                    request.getRequestDispatcher("Servlet_Pedido?acao=listaPedido").forward(request,
                             response);
                 }
             %>
@@ -50,7 +50,7 @@
                             out.println("<tr>");
                         }
                 %>
-                <td align="center" valign="bottom"> <img src="imagens/<%=produto.getNome()%>"
+                <td align="center" valign="bottom"> <img src="imagem/Imagem do produto.jpg" class="imglogo" width="60%" height="10%"
                                                          alt="Imagem do produto<%=produto.getNome()%>"/> <br/>
                     <%=produto.getNome()%><br/>
                     <a href="Servlet_Carrinho?acao=addProduto&idProduto=<%=produto.getCod()%>">
