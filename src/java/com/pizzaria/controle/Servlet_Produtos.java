@@ -52,7 +52,8 @@ public class Servlet_Produtos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+             response.setContentType("text/html;charset=UTF-8");
+             
         String codcat = request.getParameter("categoria");
         String nome = request.getParameter("nome");
         String ingredientes = request.getParameter("ingredientes");

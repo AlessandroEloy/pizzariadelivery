@@ -40,7 +40,7 @@ public class Cliente_DAO {
     public boolean atualizar(Cliente cliente) throws SQLException {
         Connection con = null;
 
-        String sql = ("UPDATE cliente SET nome = ?, sexo = ?, nascimento = ?, telefone = ?, rg = ?, cpf = ? WHERE id_user =?");
+        String sql = ("UPDATE cliente SET nome = ?, sexo = ?, nascimento = ?, telefone = ?, rg = ?, cpf = ? WHERE id=?");
 
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;

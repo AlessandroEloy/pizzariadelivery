@@ -132,9 +132,11 @@ public class Pedido {
     }
     
         public double CalcTotal(){
-        for (int i = 0; i<itens.size(); i++) {
-         valorTotal += itens.get(i).getValorItem();
+            double vtotal = 0;
+        for (ItemPedido item : this.itens){ 
+         vtotal += item.getValorItem();
         }
+        this.valorTotal = vtotal;
         return valorTotal;
     }
    

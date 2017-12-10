@@ -30,25 +30,6 @@ public class Servlet_Buscar extends HttpServlet {
      * @throws IOException
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        PrintWriter out = response.getWriter();
-        Cliente_DAO dao = new Cliente_DAO();
-        Cliente cliente = new Cliente();
-
-        try {
-            cliente = dao.localizarPorId(id);
-            request.setAttribute("cliente", cliente);
-            request.getRequestDispatcher("Atualizar_Cliente.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            System.out.println("Erro:" + ex);
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Erro:" + ex);
-        }
-    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -68,4 +49,5 @@ public class Servlet_Buscar extends HttpServlet {
             System.out.println("Erro:" + ex);
         }
     }
+   
 }

@@ -34,80 +34,38 @@ public class Servlet_Atualizar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //recupera os dados do formulario de atualizacao
-              String id = request.getParameter("id");
-              String nome = request.getParameter("nome");
-              String sexo = request.getParameter("sexo");
-              String nascimento = request.getParameter("nascimento");
-              String telefone = request.getParameter("telefone");
-              String rg = request.getParameter("rg");
-              String cpf = request.getParameter("cpf");
+        String id = request.getParameter("id");
+        String nome = request.getParameter("nome");
+        String sexo = request.getParameter("sexo");
+        String nascimento = request.getParameter("nascimento");
+        String telefone = request.getParameter("telefone");
+        String rg = request.getParameter("rg");
+        String cpf = request.getParameter("cpf");
 
-              //seta os atributos de cliente
-              Cliente cliente = new Cliente();
-              cliente.setId(Integer.parseInt(id));
-              cliente.setNome(nome);
-              cliente.setSexo(sexo);
-              cliente.setNascimento(nascimento);
-              cliente.setTelefone(telefone);
-              cliente.setRg(rg);
-              cliente.setCpf(cpf);
+        //seta os atributos de cliente
+        Cliente cliente = new Cliente();
+        cliente.setId(Integer.parseInt(id));
+        cliente.setNome(nome);
+        cliente.setSexo(sexo);
+        cliente.setNascimento(nascimento);
+        cliente.setTelefone(telefone);
+        cliente.setRg(rg);
+        cliente.setCpf(cpf);
 
-
-              //executa o metodo atualizar
-              Cliente_DAO cliDAO = new Cliente_DAO();
+        //executa o metodo atualizar
+        Cliente_DAO cliDAO = new Cliente_DAO();
         try {
             //
             cliDAO.atualizar(cliente);
             String mensagem = "Seus Dados Foram Atulizados com Sucesso!";
             request.setAttribute("mensagem", mensagem);
-            
-            request.getRequestDispatcher("Servlet_Listar").forward(request, response);
-            
+
+            request.getRequestDispatcher("MenuCliente.jsp").forward(request, response);
+
         } catch (SQLException ex) {
-            System.out.println("erro: "+ex);
+            System.out.println("erro: " + ex);
         }
 
-              //Envia mensagem de sucesso
-              
-            }//fim do if atualizar
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //recupera os dados do formulario de atualizacao
-              String id = request.getParameter("id");
-              String nome = request.getParameter("nome");
-              String sexo = request.getParameter("sexo");
-              String nascimento = request.getParameter("nascimento");
-              String telefone = request.getParameter("telefone");
-              String rg = request.getParameter("rg");
-              String cpf = request.getParameter("cpf");
-
-              //seta os atributos de cliente
-              Cliente cliente = new Cliente();
-              cliente.setId(Integer.parseInt(id));
-              cliente.setNome(nome);
-              cliente.setSexo(sexo);
-              cliente.setNascimento(nascimento);
-              cliente.setTelefone(telefone);
-              cliente.setRg(rg);
-              cliente.setCpf(cpf);
-
-
-              //executa o metodo atualizar
-              Cliente_DAO cliDAO = new Cliente_DAO();
-        try {
-            //
-            cliDAO.atualizar(cliente);
-            String mensagem = "Seus Dados Foram Atulizados com Sucesso!";
-            request.setAttribute("mensagem", mensagem);
-            request.getRequestDispatcher("Atualizar_Cliente.jsp").forward(request, response);
-            
-        } catch (SQLException ex) {
-            System.out.println("erro: "+ex);
-        }
-
-              //Envia mensagem de sucesso
-              request.setAttribute("mensagem", "Seus Dados Foram Atulizado com Sucesso!!");
-            }//fim do if atualizar
+        //Envia mensagem de sucesso
+    }//fim do if atualizar
 }
-

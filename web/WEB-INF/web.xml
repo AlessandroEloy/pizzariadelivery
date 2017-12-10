@@ -92,6 +92,10 @@
         <servlet-name>Servlet_Carrinho</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Carrinho</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_Final_Pedido</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Final_Pedido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Servlet_Login</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>Servlet_Carrinho</servlet-name>
         <url-pattern>/Servlet_Carrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Final_Pedido</servlet-name>
+        <url-pattern>/Servlet_Final_Pedido</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

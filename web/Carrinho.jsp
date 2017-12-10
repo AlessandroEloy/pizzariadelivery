@@ -49,12 +49,12 @@
                 %>
                 <tr>
                     <td><a
-                            href="Servlert_Carrinho?acao=removeProduto&idProduto=<%=item.getProduto().getCod()%>">
+                            href="Servlet_Carrinho?acao=removeProduto&idProduto=<%=item.getProduto().getCod()%>">
                             X</td>
                     <td><%=item.getProduto().getNome()%></td>
                     <td><%=item.getQuantidade()%></td>
                     <td><%=item.getProduto().getValor()%></td>
-                    <td><%=item.getValorItem()%></td>
+                    <td><%=item.getProduto().getValor() * item.getQuantidade() %></td>
                     <td><a
                             href="Servlet_Carrinho?acao=addProduto&idProduto=<%=item.getProduto().getCod()%>">+</a
                         ></td>
@@ -65,7 +65,8 @@
             </table>
                 <strong>Valor Total: <%=carrinho.CalcTotal() %></strong><br/>
             <a href="Pedido.jsp"> Continue comprando</a><br/>
-            <a href="ControleCarrinho?acao=cancelaCompra">Cancelar comprar</a>
+            <a href="Servlet_Carrinho?acao=cancelaCompra">Cancelar comprar</a><br/>
+            <a href="Servlet_Carrinho?acao=finalizar">Finalizar Pedido</a>
 
     </body>
 </html>

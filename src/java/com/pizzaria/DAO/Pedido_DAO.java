@@ -20,14 +20,14 @@ import java.util.ArrayList;
  * @author Alessandro
  */
 public class Pedido_DAO {
-    public void cadastrarPedido(Pedido pedido) throws SQLException {
+    public Pedido cadastrarPedido(Pedido pedido) throws SQLException {
         Connection con = null;
         //o ultimo parametro da variavel SQL (valortotal) = 0;
         String sql = "INSERT INTO pedido (cod, status, idFunc, observacao, desconto, entrega, "
                 + "taxaEntrega, troco, endereco, idCli, valortotal) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
-        pstmt = con.prepareStatement(sql);
+        pstmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         
         pstmt.setInt(1, pedido.getCod());
         pstmt.setBoolean(2, pedido.isStatus());
@@ -41,6 +41,16 @@ public class Pedido_DAO {
         pstmt.setInt(10, pedido.getUsuario().getId());
         pstmt.setDouble(11,pedido.getValorTotal());
         pstmt.execute();
+        
+        ResultSet rsCodPedido = pstmt.getGeneratedKeys();
+        
+        rsCodPedido.next();
+        
+       pedido.setCod(rsCodPedido.getInt("cod"));// seta no pedido o id que foi gerado no banco
+       
+       return pedido;
+        
+        
         
     }
 

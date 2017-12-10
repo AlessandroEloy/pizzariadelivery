@@ -52,7 +52,7 @@
                             <td><%=produto.getNome() %></td>
                             <td><%=produto.getIngredientes()%></td>
                             <td><%=produto.getValor()%></td>
-                            <td><%=produto.getUsuario().getId()%></td>
+                            <td><%=produto.getUsuario().getLogin()%></td>
                             <td><a href="Servlet_Excluir?cod=<%=produto.getCod()%>"> X </a></td>
                             <td><a href="Servlet_Buscar_Prod?cod=<%=produto.getCod()%>"> Atualizar </a></td>
                         </tr>

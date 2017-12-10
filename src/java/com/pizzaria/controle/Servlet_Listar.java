@@ -47,10 +47,11 @@ public class Servlet_Listar extends HttpServlet {
         usuario.setLogin(request.getSession().getAttribute("usuarioLog").toString());
         Usuario_DAO dao = new Usuario_DAO();
         PrintWriter out = response.getWriter();
+        
 
         try {
             usuario = dao.buscar_perfil(usuario);
-            if (usuario.equals(1)) {
+            if (usuario.getPerfil() == 1) {
                 //add a lista no objeto request
                 request.setAttribute("usuario", usuario);
                 //encaminha o request para o jsp

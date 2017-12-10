@@ -5,10 +5,13 @@
  */
 package com.pizzaria.controle;
 
+import com.pizzaria.DAO.ItemPedido_DAO;
+import com.pizzaria.DAO.Pedido_DAO;
 import com.pizzaria.DAO.Produto_DAO;
 import com.pizzaria.modelo.ItemPedido;
 import com.pizzaria.modelo.Pedido;
 import com.pizzaria.modelo.Produto;
+import com.pizzaria.modelo.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +42,7 @@ public class Servlet_Carrinho extends HttpServlet {
                 Pedido carrinho = (Pedido) sessao.getAttribute("carrinho");
                 //verifica se já exista um carrinho na sessao
                 if (carrinho == null) {
-                //cria um carrinho
+                    //cria um carrinho
                     carrinho = new Pedido();
                     sessao.setAttribute("carrinho", carrinho);
                 }
@@ -47,7 +50,7 @@ public class Servlet_Carrinho extends HttpServlet {
                 if (carrinho.getItens() != null) {
                     for (ItemPedido item : carrinho.getItens()) {
                         if (item.getProduto().getCod() == idProduto) {
-                //incrementa a quantidade
+                            //incrementa a quantidade
                             item.setQuantidade(item.getQuantidade() + 1);
                             existe = true;
                         }
@@ -55,18 +58,18 @@ public class Servlet_Carrinho extends HttpServlet {
                 }
                 //se não existe o item ou produto, cria um novo
                 if (existe == false) {
-                //encontra o produto no banco
+                    //encontra o produto no banco
                     Produto produto = new Produto_DAO().localizarPorCod(idProduto);
-                //cria um novo item
+                    //cria um novo item
                     ItemPedido novoItem = new ItemPedido();
                     novoItem.setProduto(produto);
                     novoItem.setQuantidade(1);
-                //adiciona novo item
+                    //adiciona novo item
                     carrinho.addItem(novoItem);
                 }
                 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("Carrinho.jsp").forward(request, response);
-            }   //fim addProduto
+            } //fim addProduto
             else if (acao.equals("removeProduto")) {
                 //recupera a sessão pertencente ao request
                 HttpSession sessao = request.getSession();
@@ -88,6 +91,30 @@ public class Servlet_Carrinho extends HttpServlet {
                 sessao.removeAttribute("carrinho");
                 //redireciona para pagina principal
                 response.sendRedirect("Pedido.jsp");
+            } else if (acao.equals("finalizar")) {
+                //recupera a sessão pertencente ao request
+                HttpSession sessao = request.getSession();
+                //recupera um carrinho de produtos da sessão
+                Pedido carrinho = (Pedido) sessao.getAttribute("carrinho");
+                //recupera um usuario de produtos da sessão
+                Usuario usuario = (Usuario) sessao.getAttribute("usuarioLog");
+                carrinho.setUsuario(usuario);
+                
+                Pedido_DAO dao = new Pedido_DAO();
+                dao.cadastrarPedido(carrinho);     
+                
+                ItemPedido_DAO itemDAO = new ItemPedido_DAO();
+                for(ItemPedido itempedido : carrinho.getItens() ){
+                    itemDAO.cadastrar(itempedido);
+                }
+                
+                /*
+                String mensagem = "Seu Pedido foi Realizado com Sucesso!";
+                request.setAttribute("mensagem", mensagem);
+                //carrega a pagina do carrinho de compras
+                request.getRequestDispatcher("Pedido.jsp").forward(request, response); 
+                   */
+
             }
         } catch (Exception erro) {
             request.setAttribute("erro", erro);

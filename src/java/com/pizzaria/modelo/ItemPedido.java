@@ -50,7 +50,7 @@ public class ItemPedido {
     }
 
     public double getValorItem() {
-        return this.quantidade*this.produto.getValor();
+        return this.getQuantidade() * this.produto.getValor();
     }
 
     public void setValorItem(double valorItem) {
