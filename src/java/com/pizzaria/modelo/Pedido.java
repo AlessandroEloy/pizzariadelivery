@@ -24,7 +24,7 @@ public class Pedido {
     private double taxaEntrega;
     private double troco;
     private Endereco endereco;
-    private Usuario usuario;
+    private Cliente cliente;
     private List<ItemPedido> itens = new ArrayList<ItemPedido>();
     private double valorTotal;
     
@@ -39,6 +39,7 @@ public class Pedido {
     }
     
     public void addItem (ItemPedido item){
+        item.setPedido(this);
         this.itens.add(item);
     }
 
@@ -123,14 +124,15 @@ public class Pedido {
         this.endereco = endereco;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
-    
+
+        
         public double CalcTotal(){
             double vtotal = 0;
         for (ItemPedido item : this.itens){ 

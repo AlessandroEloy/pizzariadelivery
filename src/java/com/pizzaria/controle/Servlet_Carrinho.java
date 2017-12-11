@@ -5,9 +5,11 @@
  */
 package com.pizzaria.controle;
 
+import com.pizzaria.DAO.Cliente_DAO;
 import com.pizzaria.DAO.ItemPedido_DAO;
 import com.pizzaria.DAO.Pedido_DAO;
 import com.pizzaria.DAO.Produto_DAO;
+import com.pizzaria.modelo.Cliente;
 import com.pizzaria.modelo.ItemPedido;
 import com.pizzaria.modelo.Pedido;
 import com.pizzaria.modelo.Produto;
@@ -98,7 +100,14 @@ public class Servlet_Carrinho extends HttpServlet {
                 Pedido carrinho = (Pedido) sessao.getAttribute("carrinho");
                 //recupera um usuario de produtos da sessão
                 Usuario usuario = (Usuario) sessao.getAttribute("usuarioLog");
-                carrinho.setUsuario(usuario);
+                Cliente_DAO clidao = new Cliente_DAO();
+                Cliente cliente =  clidao.localizarPorId(usuario.getId());
+                carrinho.setCliente(cliente);
+                
+                String observacao = request.getParameter("observacao");
+                carrinho.setObservacao(observacao);
+                
+                
                 
                 Pedido_DAO dao = new Pedido_DAO();
                 dao.cadastrarPedido(carrinho);     
@@ -108,17 +117,18 @@ public class Servlet_Carrinho extends HttpServlet {
                     itemDAO.cadastrar(itempedido);
                 }
                 
-                /*
+                
                 String mensagem = "Seu Pedido foi Realizado com Sucesso!";
                 request.setAttribute("mensagem", mensagem);
                 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("Pedido.jsp").forward(request, response); 
-                   */
-
+                
+                
             }
         } catch (Exception erro) {
+            erro.printStackTrace();
             request.setAttribute("erro", erro);
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
+            request.getRequestDispatcher("Erro.jsp").forward(request, response);
         }
     }
 

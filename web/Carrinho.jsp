@@ -42,6 +42,7 @@
                     <td bgcolor="#000088"><font color="white">Total Item</font></td>
                     <td bgcolor="#000088"><font color="white">+1</font></td>
                 </tr>
+               
                 <%
                 //recupera os produtos do carrinho da sessao
                     Pedido carrinho = (Pedido) session.getAttribute("carrinho");
@@ -63,10 +64,16 @@
                     }
                 %>
             </table>
+            <h4>Observação</h4>
+            <form action="Servlet_Carrinho?acao=finalizar" method="post">
+             <textarea name="observacao" cols="50" rows="4">
+                    
+             </textarea><br/>
+             
                 <strong>Valor Total: <%=carrinho.CalcTotal() %></strong><br/>
             <a href="Pedido.jsp"> Continue comprando</a><br/>
             <a href="Servlet_Carrinho?acao=cancelaCompra">Cancelar comprar</a><br/>
-            <a href="Servlet_Carrinho?acao=finalizar">Finalizar Pedido</a>
-
+            <input type="submit" value="Finalizar Pedido">
+            </form>
     </body>
 </html>

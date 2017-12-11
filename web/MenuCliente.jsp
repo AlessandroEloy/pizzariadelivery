@@ -52,6 +52,7 @@
             <center> 
                 <input type="submit" onclick="window.location.href = 'CadastroCliente.jsp'" value="CADASTRO" id='func'>              
                 <input type="submit" onclick="window.location.href = 'Servlet_Buscar?id=${usuarioLog.id}'" value="ATUALIZAR DADOS" name ='Buscar'>  
+                <li> <a href="#"> <input type="submit" onclick="window.location.href = 'Pedido.jsp'" value="PEDIDO" name="PEDIDO"> </a> </li> <br/>
                 <input type="submit" onclick="window.location.href = 'Login_index.jsp'" value="SAIR" name="SAIR">
             </center>
 
