@@ -21,6 +21,7 @@ public class Cliente {
     private String cpf;
     private Usuario usuario;
     private List<Endereco> endereco;
+    private boolean disponivel;
 
     public int getId() {
         return id;
@@ -94,6 +95,14 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+    
        
 }
 

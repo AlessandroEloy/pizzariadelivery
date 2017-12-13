@@ -5,6 +5,7 @@
  */
 package com.pizzaria.DAO;
 
+import com.pizzaria.modelo.Cliente;
 import com.pizzaria.modelo.Funcionario;
 import com.pizzaria.modelo.ItemPedido;
 import com.pizzaria.modelo.Pedido;
@@ -92,47 +93,43 @@ public class Pedido_DAO {
         return true;
     }
 
-//    public ArrayList<Pedido> listar() throws SQLException {
-//        //criar uma array de obj Cliente
-//        ArrayList<Pedido> listaPedido = new ArrayList<>();
-//        //Conexao
-//        Connection con = Conecta_Banco.getConexao();
-//        //cria comando SQL
-//        String sql = "SELECT p.cod AS codigop, ip.cod AS codip "
-//                + "FROM pedido p inner join itempedido ip "
-//                + "ON ip.idpedido = p.cod where ip.idpedido = ?;";
-//        PreparedStatement pstmt = con.prepareStatement(sql);
-//            //executa
-//            ResultSet rs = pstmt.executeQuery();
-//
-//        while (rs.next()) {
-//            //a cada loop
-//           Pedido pedidos = new Pedido();
-//           Funcionario funcionario = new Funcionario();
-//           Usuario usuario = new Usuario();
-//           ItemPedido itempedido = new ItemPedido();
-//           
-//            //seta os atributos do cliente com as informações do ResultSet
-//            itempedido.setCod(rs.getInt("cod"));
-//            itempedido.setQuantidade(rs.getInt("quantidade"));
-//            itempedido.setValorItem(rs.getDouble("valorItem"));
+    public ArrayList<Pedido> listar() throws SQLException {
+        //criar uma array de obj Cliente
+        ArrayList<Pedido> listaPedido = new ArrayList<>();
+        //Conexao
+        Connection con = Conecta_Banco.getConexao();
+        //cria comando SQL
+        String sql = "SELECT p.cod AS codigop, ip.cod AS codip "
+                + "FROM pedido p inner join itempedido ip "
+                + "ON ip.idpedido = p.cod where ip.idpedido = ?;";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+            //executa
+            ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            //a cada loop
+           Pedido pedidos = new Pedido();
+           Cliente cliente = new Cliente();
+          ItemPedido itempedido = new ItemPedido();
+           
+            //seta os atributos do cliente com as informações do ResultSet
+            itempedido.setCod(rs.getInt("cod"));
+            itempedido.setQuantidade(rs.getInt("quantidade"));
+            itempedido.setValorItem(rs.getDouble("valorItem"));
 //            
-//            funcionario.setNome(rs.getString("fnome"));
+            cliente.setNome(rs.getString("nome"));
 //            
-//            usuario.setLogin(rs.getString("login"));
-//            
-//           
-//            pedidos.addItem(itempedido);
-//            pedidos.setFuncionario(funcionario);
-//            pedidos.setCliente();
-//            pedidos.setDesconto(rs.getDouble("desconto"));
-//            pedidos.setTaxaEntrega(rs.getDouble("taxaEntrega"));
-//            pedidos.setTroco(rs.getDouble("troco"));
-//            pedidos.setValorTotal(rs.getDouble("valortotal"));      
-//           
-//            //add na lista
-//            listaPedido.add(pedidos);
-//        }
-//        return listaPedido;
-//    } 
+           
+            pedidos.addItem(itempedido);
+            pedidos.setCliente(cliente);
+            pedidos.setDesconto(rs.getDouble("desconto"));
+            pedidos.setTaxaEntrega(rs.getDouble("taxaEntrega"));
+            pedidos.setTroco(rs.getDouble("troco"));
+            pedidos.setValorTotal(rs.getDouble("valortotal"));      
+           
+            //add na lista
+            listaPedido.add(pedidos);
+        }
+        return listaPedido;
+    } 
 }

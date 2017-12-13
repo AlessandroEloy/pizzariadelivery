@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServlet;
  * @author Alessandro
  */
 public class Categoria_DAO extends HttpServlet {
-  
-        public ArrayList<Categoria> listar() throws SQLException {
-            
+
+    public ArrayList<Categoria> listar() throws SQLException {
+
         //criar uma array de obj Cliente
         ArrayList<Categoria> listaCategoria = new ArrayList<Categoria>();
         //Conexao
@@ -28,19 +28,19 @@ public class Categoria_DAO extends HttpServlet {
         con = Conecta_Banco.getConexao();
         //cria comando SQL
         PreparedStatement pstmt = con.prepareStatement("SELECT * FROM categoria");
-            //executa
-            ResultSet rs = pstmt.executeQuery();
+        //executa
+        ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()) {
             //a cada loop
             Categoria categoria = new Categoria();
             //seta os atributos do cliente com as informações do ResultSet
-           categoria.setCod(rs.getInt("cod"));
-           categoria.setCategoria(rs.getString("categoria"));
+            categoria.setCod(rs.getInt("cod"));
+            categoria.setCategoria(rs.getString("categoria"));
             //add na lista
             listaCategoria.add(categoria);
         }
         return listaCategoria;
-    
-    }  
+
+    }
 }

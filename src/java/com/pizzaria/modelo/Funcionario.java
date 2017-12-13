@@ -22,6 +22,7 @@ public class Funcionario {
     private String senha;
     private int endereco; 
     private Usuario usuario;
+    private boolean disponivel;
 
     public int getId() {
         return id;
@@ -118,5 +119,13 @@ public class Funcionario {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-     
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+        
 }

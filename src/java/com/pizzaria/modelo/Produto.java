@@ -17,7 +17,7 @@ public class Produto {
     private String ingredientes;
     private double valor;
     private Usuario usuario;
-
+    private boolean disponivel;
     
     public int getCod() {
         return cod;
@@ -65,5 +65,13 @@ public class Produto {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
     }
 }
