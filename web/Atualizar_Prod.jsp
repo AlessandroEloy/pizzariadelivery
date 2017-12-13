@@ -85,6 +85,7 @@
                     <tr> 
                         <td> 
                             <input type="submit" value="ATUALIZAR">
+                            <input type="submit" onclick="window.location.href = 'MenuGerente.jsp'" value="VOLTAR" name="VOLTAR">
                         </td>
                         </table>
 

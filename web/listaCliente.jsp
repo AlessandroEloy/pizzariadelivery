@@ -65,7 +65,7 @@
                         </tr>
                     <%}%>
                     </table> 
-                    <input type="submit" value="VOLTAR" href="MenuGerente.jsp"> 
+                    <input type="submit" onclick="window.location.href = 'MenuFuncionario.jsp'" value="VOLTAR" name="VOLTAR">
                 </fieldset>
             </form>
          </div>           

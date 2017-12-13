@@ -18,7 +18,7 @@
 
         <!-- CSS -->
 
-        <link rel="stylesheet" href="styles_ConsultarCliente.css">
+        <link rel="stylesheet" href="pedido_tab.css">
 
     </head>
 
@@ -30,7 +30,7 @@
         <div id="container">
 
 
-            <h3> Item Pedidos</h3>
+           
 
             <%
                 // Recupera os produtos.
@@ -40,8 +40,8 @@
                             response);
                 }
             %>
-            <h1>Lista de Produtos</h1>
-            <table border="0" cellpadding="5" align="center">
+            <h1>CARDÁPIO</h1>
+            <table border="1" cellspacing="10px" cellpadding="30px" align="center">
                 <%
                     int contadorColuna = 1;
                     for (Produto produto : produtos) {
@@ -50,11 +50,13 @@
                             out.println("<tr>");
                         }
                 %>
-                <td align="center" valign="bottom"> <img src="imagem/Imagem do produto.jpg" class="imglogo" width="60%" height="10%"
-                                                         alt="Imagem do produto<%=produto.getNome()%>"/> <br/>
-                    <%=produto.getNome()%><br/>
-                    <a href="Servlet_Carrinho?acao=addProduto&idProduto=<%=produto.getCod()%>">
-                        Comprar</a></td>
+                <td align="center"> <img src="imagem/icon5.png" class="imglogo" alt="Imagem do produto<%=produto.getNome()%>"/> 
+                   
+                    <h3> <%=produto.getNome()%></h3>
+                     R$ <%=produto.getValor()%>
+                <form action="Servlet_Carrinho?acao=addProduto&idProduto=<%=produto.getCod()%>" method="post">
+                    <input type="submit" value="Comprar"></input></form>
+                
                         <%
                                 //se é o último produto, exibir o término da linha
                                 if (contadorColuna == 3) {

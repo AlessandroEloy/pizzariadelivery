@@ -66,7 +66,7 @@
             </form>
         </ul>
                 
-                <li> <a href="#"> <input type="submit" onclick="window.location.href = 'Pedido.jsp'" value="PEDIDO" name="PEDIDO"> </a> </li> <br/>
+                <!--<li> <a href="#"> <input type="submit" onclick="window.location.href = 'Pedido.jsp'" value="PEDIDO" name="PEDIDO"> </a> </li> <br/>-->
                 <li> <a href="#"> <input type="submit" onclick="window.location.href = 'Login_index.jsp'" value="SAIR" name="SAIR"> </a> </li> <br/>
                 
     </ul>

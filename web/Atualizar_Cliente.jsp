@@ -82,7 +82,7 @@
                     <tr>
                         <td>
                             <input type="submit" value="ATUALIZAR">
-                             <a href="#"> <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/>
+                            <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR">
                         </td>
                     </tr>
                     </table>

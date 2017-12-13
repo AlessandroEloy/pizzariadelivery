@@ -82,7 +82,7 @@
                     <div style="color:red; font-size: x-large"><p>${mensagem}</p></div>
 
                     <input type="submit" value="CADASTRAR"> 
-                    <a href="#"> <input type="submit" onclick="window.location.href = 'MenuFuncionario.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/> 
+                    <input type="submit" onclick="window.location.href = 'MenuFuncionario.jsp'" value="VOLTAR" name="VOLTAR">
                 </fieldset>
             </form>
         </div><!--/ container-->            

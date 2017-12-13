@@ -93,6 +93,7 @@
                             <input type="text" name="cpf" value="${funcionario.getCpf()}">
                         </td>
                     <tr> <td> <input type="submit" value="ATUALIZAR"></td></table>
+                              <input type="submit" onclick="window.location.href = 'MenuFuncionario.jsp'" value="VOLTAR" name="VOLTAR">
                 </form>
         </div>
     </body>
