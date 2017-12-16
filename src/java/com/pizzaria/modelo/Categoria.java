@@ -12,7 +12,8 @@ package com.pizzaria.modelo;
 public class Categoria {
    private int cod;
    private String categoria;
-
+   private boolean disponivel;
+   
     public int getCod() {
         return cod;
     }
@@ -28,5 +29,13 @@ public class Categoria {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-   
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
 }

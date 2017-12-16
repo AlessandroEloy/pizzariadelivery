@@ -88,5 +88,20 @@ public class Usuario_DAO {
     
         return usuarioLog;
     }
+    
+    public Usuario excluir(Usuario usuario) throws SQLException{
+        
+        Connection con = Conecta_Banco.getConexao();
+        String sql = "UPDATE usuario SET disponivel = ? WHERE id = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setBoolean(1, usuario.isDisponivel());
+        ps.setInt(2, usuario.getId());
+        
+        ps.execute();
+        
+               
+        return usuario;
+    }
 }
 

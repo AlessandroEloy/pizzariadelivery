@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import com.pizzaria.modelo.Cliente;
+import com.pizzaria.modelo.Usuario;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -58,19 +59,17 @@ public class Cliente_DAO {
         return true;
     }
 
-    public boolean excluir(String id) throws SQLException {
-        Connection con = null;
+    public Cliente excluir(Cliente cliente) throws SQLException {
+        Connection con = Conecta_Banco.getConexao();
+        String sql = ("UPDATE cliente SET disponivel = ? WHERE id = ?");
+        PreparedStatement pstmt = con.prepareStatement(sql);
 
-        String sql = ("DELETE FROM cliente WHERE id = ?");
+        pstmt.setBoolean(1, cliente.isDisponivel());
+        pstmt.setInt(2, cliente.getId());
 
-        con = Conecta_Banco.getConexao();
-        PreparedStatement pstmt = null;
-        pstmt = con.prepareStatement(sql);
-
-        pstmt.setInt(1, Integer.parseInt(id));
         pstmt.execute();
 
-        return true;
+        return cliente;
     }
 
     public ArrayList<Cliente> listar() throws SQLException {
@@ -80,9 +79,10 @@ public class Cliente_DAO {
         Connection con = null;
         con = Conecta_Banco.getConexao();
         //cria comando SQL
-        PreparedStatement pstmt = con.prepareStatement("SELECT c.id, c.nome, c.sexo, c.nascimento, c.telefone, c.rg, c.cpf FROM cliente c, usuario u WHERE c.id_user = u.id");
-            //executa
-            ResultSet rs = pstmt.executeQuery();
+        PreparedStatement pstmt = con.prepareStatement("SELECT c.id, c.nome, c.sexo, c.nascimento, c.telefone, c.rg, c.cpf, c.disponivel "
+                + "FROM cliente c, usuario u WHERE c.id_user = u.id");
+        //executa
+        ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()) {
             //a cada loop
@@ -95,27 +95,38 @@ public class Cliente_DAO {
             clientes.setTelefone(rs.getString("telefone"));
             clientes.setRg(rs.getString("rg"));
             clientes.setCpf(rs.getString("cpf"));
+            clientes.setDisponivel(rs.getBoolean("disponivel"));
             //add na lista
             listaCliente.add(clientes);
         }
         return listaCliente;
     }
-    public Cliente localizarPorId(int id) throws SQLException, ClassNotFoundException{
+
+    public Cliente localizarPorId(int id) throws SQLException, ClassNotFoundException {
         //Cria conexao com DB
         Connection conexao = Conecta_Banco.getConexao();
-        String sql = "SELECT * FROM cliente where id_user = ?";
+        String sql = "SELECT u.id AS uid, u.disponivel AS udisponivel, c.id AS cid, c.disponivel AS cdisponivel, * FROM cliente c "
+                + "INNER JOIN usuario u ON c.id_user = u.id WHERE id_user = ?";
         PreparedStatement pstmt = conexao.prepareStatement(sql);
-        pstmt.setInt(1,id);
+        pstmt.setInt(1, id);
         ResultSet resultado = pstmt.executeQuery();
         Cliente cliente = new Cliente();
-        while(resultado.next()){
-            cliente.setId(resultado.getInt("id"));
+        Usuario usuario = new Usuario();
+
+        while (resultado.next()) {
+            cliente.setId(resultado.getInt("cid"));
             cliente.setNome(resultado.getString("nome"));
             cliente.setSexo(resultado.getString("sexo"));
             cliente.setNascimento(resultado.getString("nascimento"));
             cliente.setTelefone(resultado.getString("telefone"));
             cliente.setRg(resultado.getString("rg"));
             cliente.setCpf(resultado.getString("cpf"));
+            cliente.setDisponivel(resultado.getBoolean("cdisponivel"));
+
+            usuario.setId(resultado.getInt("uid"));
+            usuario.setDisponivel(resultado.getBoolean("udisponivel"));
+
+            cliente.setUsuario(usuario);
         }
         return cliente;
     }

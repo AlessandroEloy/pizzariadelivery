@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author bruno nakamura
  */
-public class Cliente {
+public class Cliente{
     private int id;
     private String nome;
     private String sexo;
@@ -19,7 +19,7 @@ public class Cliente {
     private String telefone;
     private String rg;
     private String cpf;
-    private Usuario usuario;
+    public Usuario usuario;
     private List<Endereco> endereco;
     private boolean disponivel;
 

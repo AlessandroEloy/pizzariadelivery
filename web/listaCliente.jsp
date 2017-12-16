@@ -60,14 +60,14 @@
                             <td><%=cliente.getTelefone()%></td>
                             <td><%=cliente.getRg()%></td>
                             <td><%=cliente.getCpf()%></td>
+                            <!--<td><%=cliente.isDisponivel()%></td>-->
                             <td><a href="Servlet_Excluir?id=<%=cliente.getId()%>"> X </a></td>
-                            <td><a href="Servlet_Buscar?id=<%=cliente.getId()%>"> Atualizar </a></td>
                         </tr>
-                    <%}%>
+                        <%}%>
                     </table> 
                     <input type="submit" onclick="window.location.href = 'MenuFuncionario.jsp'" value="VOLTAR" name="VOLTAR">
                 </fieldset>
             </form>
-         </div>           
+        </div>           
     </body>
 </html>

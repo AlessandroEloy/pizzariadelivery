@@ -19,9 +19,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         <title>MenuCliente</title>
-        
- 
-    
+
+
+
         <!-- CSS -->
 
         <link rel="stylesheet" href="styles_TelaPosLoginCli.css">
@@ -31,27 +31,28 @@
     <!-- Main HTML -->
 
     <body> 
-        
+
 
         <section id="rectangle"><div class="css"> <img src="imagem/logo.png" >  </div></section>
         <!-- Begin Page Content -->
-        
+
 
 
         <div id="container">
-            
-    <div id="BemVindo"> 
-        
-        <h4> <center> 
-         <%
-        Usuario usuarioLog = (Usuario)session.getAttribute("usuarioLog");
-        out.print("Seja bem vindo! " +usuarioLog.getLogin());
-        %>
-        </h4></center>
-             </div>
+
+            <div id="BemVindo"> 
+
+                <h4> <center> 
+                        <%
+                            Usuario usuarioLog = (Usuario) session.getAttribute("usuarioLog");
+                            out.print("Seja bem vindo! " + usuarioLog.getLogin());
+                        %>
+                </h4></center>
+            </div>
             <center> 
                 <input type="submit" onclick="window.location.href = 'CadastroCliente.jsp'" value="CADASTRO" id='func'>              
-                <input type="submit" onclick="window.location.href = 'Servlet_Buscar?id=${usuarioLog.id}'" value="ATUALIZAR DADOS" name ='Buscar'>  
+                <input type="submit" onclick="window.location.href = 'Servlet_Buscar?id=${usuarioLog.id}'" value="ATUALIZAR DADOS" name ='Buscar'> 
+                <input type="submit" onclick="window.location.href = 'Servlet_Listar_Pedido?id=${usuarioLog.id}'"value="MEUS PEDIDOS" name ='listaPedido'> 
                 <input type="submit" onclick="window.location.href = 'Pedido.jsp'" value="PEDIDO" name="PEDIDO"> 
                 <input type="submit" onclick="window.location.href = 'Login_index.jsp'" value="SAIR" name="SAIR">
             </center>
@@ -60,7 +61,7 @@
 
         </div><!--/ container-->
 
-            
+
 
         <!--JAVA SCRIPT-->
         <script> src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js";</script>
@@ -72,7 +73,7 @@
 
         <!-- End Page Content -->
     </body> 
-  
+
 </html>
 
 

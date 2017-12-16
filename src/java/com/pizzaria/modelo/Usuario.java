@@ -14,6 +14,7 @@ public class Usuario {
     private String login;
     private String senha;
     private int perfil;
+    private boolean disponivel;
 
     public int getPerfil() {
         return perfil;
@@ -46,5 +47,12 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-  
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
 }

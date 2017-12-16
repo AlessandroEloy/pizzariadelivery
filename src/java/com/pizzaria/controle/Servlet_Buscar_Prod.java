@@ -50,6 +50,8 @@ public class Servlet_Buscar_Prod extends HttpServlet {
         request.setAttribute("produto", produto);
         request.getRequestDispatcher("Atualizar_Prod.jsp").forward(request, response);
     }
+
+
         @Override
         protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

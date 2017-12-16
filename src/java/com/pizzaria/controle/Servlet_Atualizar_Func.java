@@ -25,6 +25,9 @@ public class Servlet_Atualizar_Func extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+
+
         //recupera os dados do formulario de atualizacao
         String id = request.getParameter("id");
         String funcao = request.getParameter("funcao");
@@ -46,21 +49,17 @@ public class Servlet_Atualizar_Func extends HttpServlet {
         funcionario.setTelefone(telefone);
         funcionario.setRg(rg);
         funcionario.setCpf(cpf);
-
         //executa o metodo atualizar
         Funcionario_DAO funDAO = new Funcionario_DAO();
         try {
-            //
+            //          
             funDAO.atualizar(funcionario);
-            funDAO.localizarPorId(id);
             String mensagem = "Os Dados do Funcionário Foram Atulizados com Sucesso!";
             request.setAttribute("mensagem", mensagem);
             request.getRequestDispatcher("Servlet_Listar_Func").forward(request, response);
 
         } catch (SQLException ex) {
-            System.out.println("erro: " + ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servlet_Atualizar_Func.class.getName()).log(Level.SEVERE, null, ex);
+             ex.printStackTrace();
         }
 
         //Envia mensagem de sucesso

@@ -96,6 +96,38 @@
         <servlet-name>Servlet_Final_Pedido</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Final_Pedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_Excluir_Prod</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Excluir_Prod</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Atualizar_Categoria</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Atualizar_Categoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Excluir_Categoria</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Excluir_Categoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Categoria</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Categoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Listar_Cat</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Listar_Cat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Buscar_Categoria</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Buscar_Categoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Listar_Pedidos</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Listar_Pedidos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Listar_Pedido</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Listar_Pedido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Servlet_Login</url-pattern>
@@ -183,6 +215,38 @@
     <servlet-mapping>
         <servlet-name>Servlet_Final_Pedido</servlet-name>
         <url-pattern>/Servlet_Final_Pedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Excluir_Prod</servlet-name>
+        <url-pattern>/Servlet_Excluir_Prod</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Atualizar_Categoria</servlet-name>
+        <url-pattern>/Servlet_Atualizar_Categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Excluir_Categoria</servlet-name>
+        <url-pattern>/Servlet_Excluir_Categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Categoria</servlet-name>
+        <url-pattern>/Servlet_Categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Listar_Cat</servlet-name>
+        <url-pattern>/Servlet_Listar_Cat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Buscar_Categoria</servlet-name>
+        <url-pattern>/Servlet_Buscar_Categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Listar_Pedidos</servlet-name>
+        <url-pattern>/Servlet_Listar_Pedidos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Listar_Pedido</servlet-name>
+        <url-pattern>/Servlet_Listar_Pedido</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

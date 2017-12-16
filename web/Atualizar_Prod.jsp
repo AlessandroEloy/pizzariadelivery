@@ -4,8 +4,9 @@
     Author     : alessandro
 --%>
 
-%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "m"%>
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +17,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-        <title>Atualizar Funcionario</title>
+        <title>Atualizar Produto</title>
 
 
 
@@ -35,18 +36,6 @@
         <div id="container"> 
 
             <table>
-
-                <form method="post" action="Servlet_Buscar_Prod"> 
-                    <tr> 
-                        <td>
-                            <label for="cod">Digite o ID do cadastro que deseja atualizar:</label>
-                            <input type="text" name="cod" required>
-                            <input type="submit" value="BUSCAR"></td>
-                    <div id="msg">
-                        ${mensagem} 
-                    </div>
-
-                </form>
 
                 <form action="Servlet_Atualizar_Prod" method="post"> 
 
@@ -67,7 +56,7 @@
                         </td>
                     <tr>
                         <td>
-                            <label for="ingretientes">Descrição: </label> 
+                            <label for="ingretientes">DescriÃ§Ã£o: </label> 
                             <input type="text" name="ingredientes" value="${produto.getIngredientes()}">
                         </td>
                     <tr>
@@ -78,7 +67,7 @@
                     <tr>
                         <td>
                             <label for="funcionario">Funcionario: </label> 
-                            <input type="text" name="funcionario" value="${produto.getFuncionario().getNome()}"disabled>
+                            <input type="text" name="funcionario" value="${produto.usuario.getlogin()}"disabled>
                         </td>
                     <tr>
 
@@ -87,9 +76,11 @@
                             <input type="submit" value="ATUALIZAR">
                             <input type="submit" onclick="window.location.href = 'MenuGerente.jsp'" value="VOLTAR" name="VOLTAR">
                         </td>
-                        </table>
 
                 </form>
+
+            </table>
+
         </div>
     </body>
 </html>

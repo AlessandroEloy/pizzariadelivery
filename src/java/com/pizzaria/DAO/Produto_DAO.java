@@ -57,19 +57,17 @@ public class Produto_DAO {
         return true;
     }
 
-    public boolean excluir(String id) throws SQLException {
-        Connection con = null;
-
-        String sql = ("DELETE FROM produto WHERE cod = ?");
-
-        con = Conecta_Banco.getConexao();
-        PreparedStatement pstmt = null;
-        pstmt = con.prepareStatement(sql);
-
-        pstmt.setInt(1, Integer.parseInt(id));
+    public Produto excluir(Produto produto) throws SQLException {
+        Connection con = Conecta_Banco.getConexao();
+        String sql = ("UPDATE produto SET disponivel = ? WHERE cod = ?");
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        
+        
+        pstmt.setBoolean(1, produto.isDisponivel());
+        pstmt.setInt(2, produto.getCod());
         pstmt.execute();
 
-        return true;
+        return produto;
     }
 
     public ArrayList<Produto> listar() throws SQLException {
@@ -144,8 +142,51 @@ public class Produto_DAO {
             p.setNome(rs.getString("pnome"));
             p.setIngredientes(rs.getString("ingredientes"));
             p.setValor(rs.getDouble("valor"));
+            p.setDisponivel(rs.getBoolean("disponivel"));
 
         }
         return p;
+    }
+    public ArrayList<Produto> listarProduto() throws SQLException {
+        //criar uma array de obj Cliente
+        ArrayList<Produto> listaProdutos = new ArrayList<>();
+        //Conexao
+        Connection con = Conecta_Banco.getConexao();
+        //cria comando SQL
+        String sql = "SELECT p.cod AS pcod,p.codcat, p.nome AS pnome,p.ingredientes,p.valor,"
+                + "u.login AS ulogin,"
+                + "c.categoria "
+                + "from produto p "
+                + "INNER JOIN usuario u "
+                + "ON u.id = p.id_user "
+                + "INNER JOIN categoria c "
+                + "ON p.codcat = c.cod AND p.disponivel = TRUE";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        //executa
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            //a cada loop
+            Produto produtos = new Produto();
+            Categoria categoria = new Categoria();
+            Usuario user = new Usuario();
+
+            //seta os atributos do cliente com as informações do ResultSet
+            categoria.setCod(rs.getInt("codcat"));
+            categoria.setCategoria(rs.getString("categoria"));
+
+            user.setLogin(rs.getString("ulogin"));
+
+            produtos.setCod(rs.getInt("pcod"));
+            produtos.setCategoria(categoria);
+            produtos.setUsuario(user);
+            produtos.setNome(rs.getString("pnome"));
+            produtos.setIngredientes(rs.getString("ingredientes"));
+            produtos.setValor(rs.getDouble("valor"));
+
+            //add na lista
+            listaProdutos.add(produtos);
+        }
+        return listaProdutos;
     }
 }

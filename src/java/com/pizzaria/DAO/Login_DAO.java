@@ -22,7 +22,7 @@ public class Login_DAO {
         boolean existe = false;
         Connection con = null;
         con = Conecta_Banco.getConexao();
-        String sql = "SELECT (login, senha) FROM cliente WHERE login = ? AND senha = ? ";
+        String sql = "SELECT (login, senha) FROM cliente WHERE login = ? AND senha = ? AND disponivel = 'TRUE' ";
         PreparedStatement stmt;
         
         stmt = con.prepareStatement(sql);
@@ -45,7 +45,7 @@ public class Login_DAO {
         boolean existe = false;
         Connection con = null;
         con = Conecta_Banco.getConexao();
-        String sql = "SELECT (login, senha) FROM funcionario WHERE login = ? AND senha = ? AND funcao = 'balconista'";
+        String sql = "SELECT (login, senha) FROM funcionario WHERE login = ? AND senha = ? AND funcao = 'balconista' AND disponivel = 'TRUE'";
         PreparedStatement stmt;
         
         stmt = con.prepareStatement(sql);
@@ -68,7 +68,7 @@ public class Login_DAO {
         boolean existe = false;
         Connection con = null;
         con = Conecta_Banco.getConexao();
-        String sql = "SELECT (login, senha) FROM funcionario WHERE login = ? AND senha = ? AND funcao = 'gerente'";
+        String sql = "SELECT (login, senha) FROM funcionario WHERE login = ? AND senha = ? AND funcao = 'gerente' AND disponivel = 'TRUE'";
         PreparedStatement stmt;
         
         stmt = con.prepareStatement(sql);

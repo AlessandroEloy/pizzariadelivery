@@ -10,6 +10,8 @@ import com.pizzaria.modelo.Funcionario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +35,7 @@ public class Servlet_Buscar_Func extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String id = request.getParameter("id");
+        int id = Integer.parseInt(request.getParameter("id"));
 
         PrintWriter out = response.getWriter();
         Funcionario_DAO dao = new Funcionario_DAO();
@@ -41,20 +43,20 @@ public class Servlet_Buscar_Func extends HttpServlet {
 
         try {
             funcionario = dao.localizarPorId(id);
-            request.setAttribute("funcionario", funcionario);
-            request.getRequestDispatcher("Atualizar_Funcionario.jsp").forward(request, response);
         } catch (SQLException ex) {
-            System.out.println("Erro:" + ex);
+            Logger.getLogger(Servlet_Buscar_Func.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            System.out.println("Erro:" + ex);
+            Logger.getLogger(Servlet_Buscar_Func.class.getName()).log(Level.SEVERE, null, ex);
         }
+        request.setAttribute("funcionario", funcionario);
+        request.getRequestDispatcher("Atualizar_Funcionario.jsp").forward(request, response);
 
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String id = request.getParameter("id");
+        int id = Integer.parseInt(request.getParameter("id"));
 
         PrintWriter out = response.getWriter();
         Funcionario_DAO dao = new Funcionario_DAO();
@@ -62,13 +64,11 @@ public class Servlet_Buscar_Func extends HttpServlet {
 
         try {
             funcionario = dao.localizarPorId(id);
-            request.setAttribute("funcionario", funcionario);
-            request.getRequestDispatcher("Atualizar_Funcionario.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            System.out.println("Erro:" + ex);
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Erro:" + ex);
+        } catch (SQLException | ClassNotFoundException ex) {
+             ex.printStackTrace();
         }
+        request.setAttribute("funcionario", funcionario);
+        request.getRequestDispatcher("Atualizar_Funcionario.jsp").forward(request, response);
 
     }
 }

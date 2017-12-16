@@ -6,6 +6,7 @@
 package com.pizzaria.modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class Pedido {
     private Cliente cliente;
     private List<ItemPedido> itens = new ArrayList<ItemPedido>();
     private double valorTotal;
+    private Date data;
     
     
     
@@ -150,5 +152,13 @@ public class Pedido {
             }
         }
     }
-    
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+        
 }

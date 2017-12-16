@@ -6,6 +6,7 @@ package com.pizzaria.DAO;
  * and open the template in the editor.
  */
 import com.pizzaria.modelo.Funcionario;
+import com.pizzaria.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ public class Funcionario_DAO {
 
     public void cadastrarFunc(Funcionario funcionario) throws SQLException {
         Connection con = null;
-        
+
         String sql = "INSERT INTO funcionario (funcao, nome, sexo, nascimento, telefone, rg, cpf, id_user) VALUES (?,?,?,?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
@@ -35,7 +36,7 @@ public class Funcionario_DAO {
         pstmt.setString(7, funcionario.getCpf());
         pstmt.setInt(8, funcionario.getUsuario().getId());
         pstmt.execute();
-        
+
     }
 
     public boolean atualizar(Funcionario funcionario) throws SQLException {
@@ -60,19 +61,16 @@ public class Funcionario_DAO {
         return true;
     }
 
-    public boolean excluir(String id) throws SQLException {
-        Connection con = null;
+    public Funcionario excluir(Funcionario funcionario) throws SQLException {
+        Connection con = Conecta_Banco.getConexao();
+        String sql = ("UPDATE funcionario SET disponivel = ? WHERE id = ?");
+        PreparedStatement pstmt = con.prepareStatement(sql);
 
-        String sql = ("DELETE FROM funcionario WHERE id = ?");
-
-        con = Conecta_Banco.getConexao();
-        PreparedStatement pstmt = null;
-        pstmt = con.prepareStatement(sql);
-
-        pstmt.setInt(1, Integer.parseInt(id));
+        pstmt.setBoolean(1, funcionario.isDisponivel());
+        pstmt.setInt(2, funcionario.getId());
         pstmt.execute();
 
-        return true;
+        return funcionario;
     }
 
     public ArrayList<Funcionario> listar() throws SQLException {
@@ -82,7 +80,7 @@ public class Funcionario_DAO {
         Connection con = null;
         con = Conecta_Banco.getConexao();
 
-        PreparedStatement pstmt = con.prepareStatement("SELECT id, funcao, nome, sexo, nascimento, telefone, rg, cpf from funcionario");
+        PreparedStatement pstmt = con.prepareStatement("SELECT id, funcao, nome, sexo, nascimento, telefone, rg, cpf, disponivel from funcionario");
 
         ResultSet rs = pstmt.executeQuery();
 
@@ -98,20 +96,23 @@ public class Funcionario_DAO {
             funcionarios.setTelefone(rs.getString("telefone"));
             funcionarios.setRg(rs.getString("rg"));
             funcionarios.setCpf(rs.getString("cpf"));
+            funcionarios.setDisponivel(rs.getBoolean("disponivel"));
 
             listaFuncionario.add(funcionarios);
         }
         return listaFuncionario;
     }
 
-    public Funcionario localizarPorId(String id) throws SQLException, ClassNotFoundException {
+    public Funcionario localizarPorId(int id) throws SQLException, ClassNotFoundException {
         //Cria conexao com DB
         Connection conexao = Conecta_Banco.getConexao();
-        String sql = "select * from funcionario where id = ?";
+        String sql = "select * from funcionario id where id = ?";
         PreparedStatement pstmt = conexao.prepareStatement(sql);
-        pstmt.setInt(1, Integer.parseInt(id));
+        pstmt.setInt(1, id);
         ResultSet resultado = pstmt.executeQuery();
         Funcionario funcionario = new Funcionario();
+        Usuario usuario = new Usuario();
+
         while (resultado.next()) {
             funcionario.setId(resultado.getInt("id"));
             funcionario.setFuncao(resultado.getString("funcao"));
@@ -121,7 +122,12 @@ public class Funcionario_DAO {
             funcionario.setTelefone(resultado.getString("telefone"));
             funcionario.setRg(resultado.getString("rg"));
             funcionario.setCpf(resultado.getString("cpf"));
+            funcionario.setDisponivel(resultado.getBoolean("disponivel"));
+
+            //usuario.setId(resultado.getInt("uid"));
+            //usuario.setDisponivel(resultado.getBoolean("udisponivel"));
         }
+
         return funcionario;
     }
 }

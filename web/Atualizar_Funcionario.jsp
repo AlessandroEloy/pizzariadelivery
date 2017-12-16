@@ -64,7 +64,7 @@
                         </td>
                     <tr>
                         <td> 
-                            <label for="funcao">Nome: </label> 
+                            <label for="nome">Nome: </label> 
                             <input type="text" name="nome" value="${funcionario.getNome()}">
                         </td>
                     <tr>
@@ -79,17 +79,17 @@
                         </td>
                     <tr>
                         <td> 
-                            <label for="nascimento">Telefone: </label>
+                            <label for="telefone">Telefone: </label>
                             <input type="text" name="telefone" value="${funcionario.getTelefone()}">
                         </td>
                     <tr>
                         <td>
-                            <label for="nascimento">RG: </label> 
+                            <label for="rg">RG: </label> 
                             <input type="text" name="rg" value="${funcionario.getRg()}">
                         </td>
                     <tr>
                         <td> 
-                            <label for="nascimento">CPF: </label>
+                            <label for="cpf">CPF: </label>
                             <input type="text" name="cpf" value="${funcionario.getCpf()}">
                         </td>
                     <tr> <td> <input type="submit" value="ATUALIZAR"></td></table>

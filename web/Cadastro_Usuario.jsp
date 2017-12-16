@@ -93,9 +93,9 @@
                                 return false;
                             }
 
-                            re = /^\w+$/;
+                            re = /[^@#-.&*_!+$]/;
                             if (!re.test(form.senha.value)) {
-                                alert("Erro: Sua senha deve conter caracteres especiais (/^\w+$/)!");
+                                alert("Erro: Sua senha deve conter caracteres especiais (^@#-._!+$)!");
                                 form.senha.focus();
                                 return false;
                             }

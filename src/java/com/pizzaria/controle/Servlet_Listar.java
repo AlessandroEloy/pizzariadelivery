@@ -38,16 +38,10 @@ public class Servlet_Listar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
         Usuario usuario = new Usuario();
         usuario.setLogin(request.getSession().getAttribute("usuarioLog").toString());
         Usuario_DAO dao = new Usuario_DAO();
         PrintWriter out = response.getWriter();
-        
 
         try {
             usuario = dao.buscar_perfil(usuario);

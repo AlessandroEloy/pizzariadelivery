@@ -35,7 +35,7 @@
                     <%
                         //recupera os produtos do carrinho da sessao
                         Pedido carrinho = (Pedido) session.getAttribute("carrinho");
-                        out.print("Pedido Nº "+ carrinho.getCod() +" Realizado com Sucesso!");
+                        out.print("Pedido Nº "+ carrinho.getCod() +"<br>"+" Realizado com Sucesso!"+ "<br>"+ "Valor Total" + carrinho.CalcTotal());
                     %>
                 </center>                   
             </h2>   
