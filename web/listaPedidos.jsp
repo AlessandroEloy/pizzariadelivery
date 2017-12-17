@@ -51,27 +51,29 @@
                             <td>Observação</td>
                         </tr>
                         <% //recupera o objeto resultado
-                            
+
                             ArrayList<ItemPedido> listaPedidos = (ArrayList<ItemPedido>) request.getAttribute("listaPedidos");
                             for (ItemPedido itens : listaPedidos) {
                         %>  
                         <tr>
                             <td><%=itens.getCod()%></td> 
                             <td><%=itens.getPedido().getData()%></td>
-                            <td><%=itens.getPedido().getCliente().getNome() %></td>
-                            <td><%=itens.getProduto().getNome() %></td>
-                            <td><%=itens.getQuantidade() %></td>
-                            <td><%=itens.getValorItem() %></td>
-                            <td><%=itens.getProduto().getValor() %></td>
+                            <td><%=itens.getPedido().getCliente().getNome()%></td>
+                            <td><%=itens.getProduto().getNome()%></td>
+                            <td><%=itens.getQuantidade()%></td>
+                            <td><%=itens.getValorItem()%></td>
+                            <td><%=itens.getProduto().getValor()%></td>
                             <td><%=itens.getPedido().getValorTotal()%></td>
                             <td><%=itens.getPedido().getObservacao()%></td>
-                            
+
                         </tr>
                         <%}%>
                     </table> 
-                    <input type="submit" onclick="window.location.href = 'MenuGarente.jsp'" value="VOLTAR" name="VOLTAR">
                 </fieldset>
             </form>
+            <center>
+                <input type="submit" onclick="window.location.href = 'MenuGerente.jsp'" value="VOLTAR" name="VOLTAR">
+            </center>
         </div>           
     </body>
 </html>

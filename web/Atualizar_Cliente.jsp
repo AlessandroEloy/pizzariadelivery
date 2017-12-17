@@ -34,57 +34,57 @@
 
 
                     <h3> ATUALIZAÇÃO DE DADOS</h3> 
-                  
-                                        <legend>Dados Pessoais</legend>
-                                        <table cellspacing="10"> 
-                    <tr>
-                        <td>
-                            <input type="hidden" name="id" value="${cliente.getId()}">
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td> 
-                            <label for="funcao">Nome: </label> 
-                            <input type="text" name="nome" value="${cliente.getNome()}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> 
-                            <label for="funcao">Sexo: </label> 
-                            <input type="text" name="sexo" value="${cliente.getSexo()}">
-                        </td>
-                    </tr>    
-                    <tr>
-                        <td> 
-                            <label for="funcao">Nascimento: </label> 
-                            <input type="text" name="nascimento" value="${cliente.getNascimento()}">
-                        </td>
-                    </tr>    
-                    <tr>
-                        <td>
-                            <label for="funcao">Telefone: </label>
-                            <input type="text" name="telefone" value="${cliente.getTelefone()}">
-                        </td>
-                    </tr>    
-                    <tr>
-                        <td>
-                            <label for="funcao">RG: </label>
-                            <input type="text" name="rg" value="${cliente.getRg()}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="funcao">CPF: </label>
-                            <input type="text" name="cpf" value="${cliente.getCpf()}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" value="ATUALIZAR">
-                            <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR">
-                        </td>
-                    </tr>
+                    <legend>Dados Pessoais</legend>
+                    <table cellspacing="10"> 
+                        <tr>
+                            <td>
+                                <input type="hidden" name="id" value="${cliente.getId()}">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td> 
+                                <label for="funcao">Nome: </label> 
+                                <input type="text" name="nome" value="${cliente.getNome()}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 
+                                <label for="funcao">Sexo: </label> 
+                                <input type="text" name="sexo" value="${cliente.getSexo()}">
+                            </td>
+                        </tr>    
+                        <tr>
+                            <td> 
+                                <label for="funcao">Nascimento: </label> 
+                                <input type="text" name="nascimento" value="${cliente.getNascimento()}">
+                            </td>
+                        </tr>    
+                        <tr>
+                            <td>
+                                <label for="funcao">Telefone: </label>
+                                <input type="text" name="telefone" value="${cliente.getTelefone()}">
+                            </td>
+                        </tr>    
+                        <tr>
+                            <td>
+                                <label for="funcao">RG: </label>
+                                <input type="text" name="rg" value="${cliente.getRg()}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="funcao">CPF: </label>
+                                <input type="text" name="cpf" value="${cliente.getCpf()}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" value="ATUALIZAR">
+                                <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR">
+                            </td>
+                        </tr>
                     </table>
                 </table>
             </form>

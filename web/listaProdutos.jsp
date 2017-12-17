@@ -17,7 +17,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         <!-- CSS -->
-        
+
         <link rel="stylesheet" href="styles_Cliente.css">
 
     </head>
@@ -30,7 +30,7 @@
 
         <div id="container">
 
-            <form name="forml" action="Servlet_Listar_Produto" method="post"> 
+            <form name="forml" action="Servlet_Listar_Produto" method="get"> 
                 <br>
                 <h3> LISTA DE PRODUTOS</h3>
                 <fieldset>
@@ -49,18 +49,20 @@
                         %>  
                         <tr>
                             <td><%=produto.getCategoria().getCategoria()%></td>
-                            <td><%=produto.getNome() %></td>
+                            <td><%=produto.getNome()%></td>
                             <td><%=produto.getIngredientes()%></td>
                             <td><%=produto.getValor()%></td>
                             <td><%=produto.getUsuario().getLogin()%></td>
                             <td><a href="Servlet_Excluir_Prod?cod=<%=produto.getCod()%>"> X </a></td>
                             <td><a href="Servlet_Buscar_Prod?cod=<%=produto.getCod()%>"> Atualizar </a></td>
                         </tr>
-                    <%}%>
+                        <%}%>
                     </table> 
-                    <input type="submit" onclick="window.location.href = 'MenuFuncionario.jsp'" value="VOLTAR" name="VOLTAR"> 
                 </fieldset>
             </form>
-         </div>                  
+            <center>
+                <input type="submit" onclick="window.location.href = 'MenuGerente.jsp'" value="VOLTAR" name="VOLTAR"> 
+            </center>
+        </div>                  
     </body>
 </html>

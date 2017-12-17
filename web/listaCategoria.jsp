@@ -49,15 +49,17 @@
                         <tr>
                             <td><%=cat.getCategoria()%></td>
                             <td><%=cat.isDisponivel()%></td>
-                            
+
                             <td><a href="Servlet_Excluir_Categoria?cod=<%=cat.getCod()%>"> X </a></td>
                             <td><a href="Servlet_Buscar_Categoria?cod=<%=cat.getCod()%>">atualizar</a></td> 
                         </tr>
                         <%}%>
                     </table> 
-                    <input type="submit" onclick="window.location.href = 'MenuGarente.jsp'" value="VOLTAR" name="VOLTAR">
                 </fieldset>
             </form>
+            <center>
+                <input type="submit" onclick="window.location.href = 'MenuGerente.jsp'" value="VOLTAR" name="VOLTAR">
+            </center>
         </div>           
     </body>
 </html>

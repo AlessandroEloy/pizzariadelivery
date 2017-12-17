@@ -31,8 +31,8 @@ public class Servlet_Buscar_Prod extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         int cod = Integer.parseInt(request.getParameter("cod"));
@@ -41,19 +41,18 @@ public class Servlet_Buscar_Prod extends HttpServlet {
         Produto_DAO dao = new Produto_DAO();
         Produto produto = new Produto();
 
-    try {
-        produto = dao.localizarPorCod(cod);
-        
-    } catch (SQLException | ClassNotFoundException ex) {
-        Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            produto = dao.localizarPorCod(cod);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.setAttribute("produto", produto);
         request.getRequestDispatcher("Atualizar_Prod.jsp").forward(request, response);
     }
 
-
-        @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         int cod = Integer.parseInt(request.getParameter("cod"));
@@ -62,14 +61,13 @@ public class Servlet_Buscar_Prod extends HttpServlet {
         Produto_DAO dao = new Produto_DAO();
         Produto produto = new Produto();
 
-    try {
-        produto = dao.localizarPorCod(cod);
-        
-    } catch (SQLException | ClassNotFoundException ex) {
-        Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            produto = dao.localizarPorCod(cod);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Servlet_Buscar_Prod.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.setAttribute("produto", produto);
-        request.getRequestDispatcher("MenuGerente.jsp").forward(request, response);
+        request.getRequestDispatcher("Atualizar_Prod.jsp").forward(request, response);
     }
 }
-

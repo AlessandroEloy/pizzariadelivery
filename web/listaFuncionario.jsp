@@ -66,11 +66,13 @@
                             <td><a href="Servlet_Excluir_Func?id=<%=funcionario.getId()%>"> X </a></td>
                             <td><a href="Servlet_Buscar_Func?id=<%=funcionario.getId()%>"> Atualizar </a></td>
                         </tr>
-                    <%}%>
+                        <%}%>
                     </table>
-                    <input type="submit" value="VOLTAR" href="MenuGerente.jsp"> 
                 </fieldset>
             </form>
-         </div>           
+            <center>
+                <input type="submit" onclick="window.location.href = 'MenuGerente.jsp'" value="VOLTAR" name="VOLTAR">
+            </center>
+        </div>           
     </body>
 </html>

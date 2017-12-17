@@ -51,9 +51,10 @@ public class Servlet_Atualizar_Categoria extends HttpServlet {
         //Envia mensagem de sucesso
         request.setAttribute("mensagem", "Os Dados da Categotia Foram Atulizados com Sucesso!!");
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 }

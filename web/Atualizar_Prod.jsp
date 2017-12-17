@@ -4,8 +4,6 @@
     Author     : alessandro
 --%>
 
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,16 +17,12 @@
 
         <title>Atualizar Produto</title>
 
-
-
         <!-- CSS -->
 
         <link rel="stylesheet" href="styles_Cliente.css">
 
-
     </head>
     <body>
-
 
         <section id="rectangle"><div class="css"> <img src="imagem/logo.png" class="imglogo" >  </div></section>
         <!-- Begin Page Content -->
@@ -66,8 +60,8 @@
                         </td>
                     <tr>
                         <td>
-                            <label for="funcionario">Funcionario: </label> 
-                            <input type="text" name="funcionario" value="${produto.usuario.getlogin()}"disabled>
+                            <label for="usuario">Funcionario: </label> 
+                            <input type="text" name="usuario" value="${produto.getUsuario().getLogin() }"disabled>
                         </td>
                     <tr>
 

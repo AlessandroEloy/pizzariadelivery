@@ -30,7 +30,7 @@
         <div id="container">
 
 
-           
+
 
             <%
                 // Recupera os produtos.
@@ -51,23 +51,26 @@
                         }
                 %>
                 <td align="center"> <img src="imagem/icon5.png" class="imglogo" alt="Imagem do produto<%=produto.getNome()%>"/> 
-                   
+
                     <h3> <%=produto.getNome()%></h3>
-                     R$ <%=produto.getValor()%>
-                <form action="Servlet_Carrinho?acao=addProduto&idProduto=<%=produto.getCod()%>" method="post">
-                    <input type="submit" value="Comprar"></input></form>
-                
-                        <%
-                                //se é o último produto, exibir o término da linha
-                                if (contadorColuna == 3) {
-                                    out.println("</tr>");
-                                    contadorColuna = 0;
-                                }
-                                //atualiza o contador de colulas
-                                contadorColuna++;
-                            }//fim do for
-%>
+                    R$ <%=produto.getValor()%>
+                    <form action="Servlet_Carrinho?acao=addProduto&idProduto=<%=produto.getCod()%>" method="post">
+                        <input type="submit" value="Comprar"></input></form>
+
+                    <%
+                            //se é o último produto, exibir o término da linha
+                            if (contadorColuna == 3) {
+                                out.println("</tr>");
+                                contadorColuna = 0;
+                            }
+                            //atualiza o contador de colulas
+                            contadorColuna++;
+                        }//fim do for
+                    %>
             </table>
+            <center>
+                <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR">
+            </center>
         </div>
     </body>
 </html>
