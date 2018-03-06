@@ -35,7 +35,7 @@ nav.vertical a{
   /*background:#ed2125;*/
   transition:0.2s;
   width:300;
-  height:20px;
+  height:30px;
 }
 /* ALL A HOVER */
   /*nav.vertical li:hover > a{
@@ -46,8 +46,8 @@ nav.vertical a{
 nav.vertical ul ul{
   position:absolute;
   left:0%;
-  top:0;
-  width:100%;
+  top:-60%;
+  width:90%;
   visibility:hidden;
   opacity:0;
   transition: transform 0.2s;

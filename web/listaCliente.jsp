@@ -40,14 +40,17 @@
                 <h3> LISTA DE CLIENTE</h3>
                 <fieldset>
                     <legend>Dados Pessoais</legend>
-                    <table>
+                    <table  cellpadding="10" class="comBordaSimples" align="center">
                         <tr>
-                            <td>NOME</td>
-                            <td>SEXO</td>
-                            <td>NASCIMENTO</td>
-                            <td>TELEFONE</td>
-                            <td>RG</td>
-                            <td>CPF</td>
+                           <td bgcolor="#DCDCDC">NOME</td>
+                            <td bgcolor="#DCDCDC">SEXO</td>
+                            <td bgcolor="#DCDCDC">NASCIMENTO</td>
+                            <td bgcolor="#DCDCDC">TELEFONE</td>
+                            <td bgcolor="#DCDCDC">RG</td>
+                            <td bgcolor="#DCDCDC">CPF</td>
+                            <td bgcolor="#DCDCDC">EXCLUIR</td>
+                           
+                            
                         </tr>
                         <% //recupera o objeto resultado
                             ArrayList<Cliente> listaCliente = (ArrayList<Cliente>) request.getAttribute("listaCliente");

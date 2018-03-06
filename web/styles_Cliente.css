@@ -9,6 +9,7 @@ and open the template in the editor.
 */
 
 /* Basics */
+
  
 html, body {
  width: 100%;
@@ -34,13 +35,15 @@ html, body {
 } 
 
 
-
+table.comBordaSimples td {
+    border-bottom: 1px solid black;
+}
 
 
 #container {
  position: relative;
- width: 700px;
- height: 637px;
+ width: 750px;
+ height: auto;
  top: 35%;
  left: 38%;
  margin-top: -140px;

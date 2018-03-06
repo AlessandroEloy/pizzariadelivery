@@ -43,7 +43,7 @@
                                 <label for="categoria">Categoria:</label>
                             </td>
                             <td align="left">
-                                <select name="categoria" id="categoria" class="select_box" > 
+                                <select name="categoria" id="categoria"  > 
                                     <option value=""></option>
                                 </select>
                             </td>

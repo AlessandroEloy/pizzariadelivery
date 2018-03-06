@@ -42,5 +42,4 @@ public class Servlet_Listar_Pedidos extends HttpServlet {
         //encaminha o request para o jsp
         request.getRequestDispatcher("listaPedidos.jsp").forward(request, response);
     }
-
 }

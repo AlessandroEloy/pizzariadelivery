@@ -118,8 +118,7 @@ public class Servlet_Carrinho extends HttpServlet {
                 }
                 
                 
-                String mensagem = "Seu Pedido foi Realizado com Sucesso!";
-                request.setAttribute("mensagem", mensagem);
+         
                 //carrega a pagina do carrinho de compras
                 request.getRequestDispatcher("Pedido_Finalizado.jsp").forward(request, response); 
                 

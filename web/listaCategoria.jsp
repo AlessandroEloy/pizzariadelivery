@@ -36,10 +36,13 @@
                 <br>
                 <h3> CATEGORIA</h3>
                 <fieldset>
-                    <legend>Dados Pessoais</legend>
-                    <table>
+                    
+                    <table  cellpadding="10" class="comBordaSimples" align="center">
                         <tr>
-                            <td>CATEGORIA</td>
+                             <td bgcolor="#DCDCDC">CATEGORIA</td>
+                             <td bgcolor="#DCDCDC">DISPONIBILIDADE</td>
+                             <td bgcolor="#DCDCDC">EXCLUIR</td>
+                             <td bgcolor="#DCDCDC">ATUALIZAR</td>
 
                         </tr>
                         <% //recupera o objeto resultado

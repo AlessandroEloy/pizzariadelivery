@@ -35,13 +35,15 @@
                 <h3> LISTA DE PRODUTOS</h3>
                 <fieldset>
                     <legend>PRODUTOS</legend>
-                    <table>
+                    <table  cellpadding="10" class="comBordaSimples" align="center">
                         <tr>
-                            <td>CATEGORIA</td>
-                            <td>NOME</td>
-                            <td>DESCRIÇÃO</td>
-                            <td>VALOR</td>
-                            <td>USUARIO</td>
+                             <td bgcolor="#DCDCDC">CATEGORIA</td>
+                             <td bgcolor="#DCDCDC">NOME</td>
+                             <td bgcolor="#DCDCDC">DESCRIÇÃO</td>
+                             <td bgcolor="#DCDCDC">VALOR</td>
+                            <td bgcolor="#DCDCDC">USUARIO</td>
+                            <td bgcolor="#DCDCDC">EXCLUIR</td>
+                            <td bgcolor="#DCDCDC">ATUALIZAR</td>
                         </tr>
                         <% //recupera o objeto resultado
                             ArrayList<Produto> listaProdutos = (ArrayList<Produto>) request.getAttribute("listaProdutos");

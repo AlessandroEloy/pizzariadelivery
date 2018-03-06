@@ -41,15 +41,17 @@
                 <h3> LISTA DE FUNCIONARIOS</h3>
                 <fieldset>
                     <legend>Dados Pessoais</legend>
-                    <table>
+                   <table  cellpadding="10" class="comBordaSimples" align="center">
                         <tr>
-                            <td>FUNCAO</td>
-                            <td>NOME</td>
-                            <td>SEXO</td>
-                            <td>NASCIMENTO</td>
-                            <td>TELEFONE</td>
-                            <td>RG</td>
-                            <td>CPF</td>
+                            <td bgcolor="#DCDCDC">FUNCAO</td>
+                            <td bgcolor="#DCDCDC">NOME</td>
+                            <td bgcolor="#DCDCDC">SEXO</td>
+                            <td bgcolor="#DCDCDC">NASCIMENTO</td>
+                            <td bgcolor="#DCDCDC">TELEFONE</td>
+                            <td bgcolor="#DCDCDC">RG</td>
+                            <td bgcolor="#DCDCDC">CPF</td>
+                            <td bgcolor="#DCDCDC">EXCLUIR</td>
+                            <td bgcolor="#DCDCDC">ATUALIZAR</td>
                         </tr>
                         <% //recupera o objeto resultado
                             ArrayList<Funcionario> listaFuncionario = (ArrayList<Funcionario>) request.getAttribute("listaFuncionario");

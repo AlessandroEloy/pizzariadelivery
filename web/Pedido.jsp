@@ -57,6 +57,16 @@
                     <form action="Servlet_Carrinho?acao=addProduto&idProduto=<%=produto.getCod()%>" method="post">
                         <input type="submit" value="Comprar"></input></form>
 
+
+                    <script>
+                        $(document).ready(function () {
+                                $('[data-toggle="tooltip"]').tooltip();
+                        });
+                    </script>
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="<%=produto.getIngredientes()%>">
+                        Ingredientes
+                    </button>
+
                     <%
                             //se é o último produto, exibir o término da linha
                             if (contadorColuna == 3) {
@@ -66,7 +76,7 @@
                             //atualiza o contador de colulas
                             contadorColuna++;
                         }//fim do for
-                    %>
+%>
             </table>
             <center>
                 <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR">

@@ -36,17 +36,17 @@
             <h3> LISTAR </h3>
             <fieldset>
                 <legend>Lista Pedidos</legend>
-                <table>
+                <table  cellpadding="10" class="comBordaSimples">
                     <tr>
-                        <td>Codigo</td>
-                        <td>Data</td>
-                        <td>Nome</td>
-                        <td>Produto</td>
-                        <td>Quantidade</td>
-                        <td>Valor Item</td>
-                        <td>Valor Unitario</td>
-                        <td>Valor Total</td>
-                        <td>Observação</td>
+                        <td bgcolor="#DCDCDC">Codigo</td>
+                       <td bgcolor="#DCDCDC">Data</td>
+                        <td bgcolor="#DCDCDC">Nome</td>
+                        <td bgcolor="#DCDCDC">Produto</td>
+                        <td bgcolor="#DCDCDC">Qtd</td>
+                        <td bgcolor="#DCDCDC">Valor Item</td>
+                        <td bgcolor="#DCDCDC">Valor Unitario</td>
+                        <td bgcolor="#DCDCDC">Valor Total</td>
+                        <td bgcolor="#DCDCDC">Observação</td>
                     </tr>
                     <% //recupera o objeto resultado
 
@@ -54,7 +54,7 @@
                         for (ItemPedido itens : listaPedido) {
                     %>  
                     <tr>
-                        <td><%=itens.getCod()%></td> 
+                        <td><%=itens.getPedido().getCod()%></td> 
                         <td><%=itens.getPedido().getData()%></td>
                         <td><%=itens.getPedido().getCliente().getNome()%></td>
                         <td><%=itens.getProduto().getNome()%></td>

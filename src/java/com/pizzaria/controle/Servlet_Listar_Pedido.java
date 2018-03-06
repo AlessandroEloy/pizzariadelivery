@@ -32,6 +32,7 @@ public class Servlet_Listar_Pedido extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         //cria lista
         Pedido_DAO pedDAO = new Pedido_DAO();
+        
         //executa o método listar
         ArrayList<ItemPedido> pedidos = new ArrayList<>();
         PrintWriter out = response.getWriter();
