@@ -20,6 +20,30 @@ import java.util.ArrayList;
  */
 public class Produto_DAO {
 
+    public Produto buscar(int id) throws SQLException {
+        Produto produto = new Produto();
+
+        try (Connection con = Conecta_Banco.getConexao()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM produto p WHERE p.cod = ?");
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                //sets do pedido
+                produto.setCod(id);
+                produto.setCod(rs.getInt("cod"));
+                produto.setNome(rs.getString("nome"));
+                produto.setIngredientes(rs.getString("ingredientes"));
+                produto.setValor(rs.getDouble("valor"));
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return produto;
+    }
+
     public void cadastrarProduto(Produto produto) throws SQLException {
         Connection con = null;
 
@@ -33,7 +57,7 @@ public class Produto_DAO {
         pstmt.setString(3, produto.getIngredientes());
         pstmt.setDouble(4, produto.getValor());
         pstmt.setInt(5, produto.getUsuario().getId());
-        
+
         pstmt.execute();
 
     }
@@ -47,7 +71,7 @@ public class Produto_DAO {
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
 
-       // pstmt.setInt(1, produto.getCategoria().getCod());
+        // pstmt.setInt(1, produto.getCategoria().getCod());
         pstmt.setString(1, produto.getNome());
         pstmt.setString(2, produto.getIngredientes());
         pstmt.setDouble(3, produto.getValor());
@@ -61,8 +85,7 @@ public class Produto_DAO {
         Connection con = Conecta_Banco.getConexao();
         String sql = ("UPDATE produto SET disponivel = ? WHERE cod = ?");
         PreparedStatement pstmt = con.prepareStatement(sql);
-        
-        
+
         pstmt.setBoolean(1, produto.isDisponivel());
         pstmt.setInt(2, produto.getCod());
         pstmt.execute();
@@ -129,15 +152,15 @@ public class Produto_DAO {
         Categoria c = new Categoria();
         Usuario u = new Usuario();
         while (rs.next()) {
-            
+
             c.setCod(rs.getInt("ccod"));
             c.setCategoria(rs.getString("categoria"));
             p.setCategoria(c);
-            
+
             u.setId(rs.getInt("id"));
             u.setLogin(rs.getString("ulogin"));
             p.setUsuario(u);
-            
+
             p.setCod(rs.getInt("pcod"));
             p.setNome(rs.getString("pnome"));
             p.setIngredientes(rs.getString("ingredientes"));
@@ -147,6 +170,7 @@ public class Produto_DAO {
         }
         return p;
     }
+
     public ArrayList<Produto> listarProduto() throws SQLException {
         //criar uma array de obj Cliente
         ArrayList<Produto> listaProdutos = new ArrayList<>();

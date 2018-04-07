@@ -49,10 +49,9 @@
                         %>
                 </h4></center>
             </div>
-            <center> 
-                <input type="submit" onclick="window.location.href = 'CadastroCliente.jsp'" value="CADASTRO" id='func'>              
+            <center>           
                 <input type="submit" onclick="window.location.href = 'Servlet_Buscar?id=${usuarioLog.id}'" value="ATUALIZAR DADOS" name ='Buscar'> 
-                <input type="submit" onclick="window.location.href = 'Servlet_Listar_Pedido?id=${usuarioLog.id}'"value="MEUS PEDIDOS" name ='listaPedido'> 
+                <input type="submit" onclick="window.location.href = 'Servlet_Listar_Pedido?id_user=${usuarioLog.id}'"value="MEUS PEDIDOS" name ='listaPedido'> 
                 <input type="submit" onclick="window.location.href = 'Pedido.jsp'" value="PEDIDO" name="PEDIDO"> 
                 <input type="submit" onclick="window.location.href = 'Login_index.jsp'" value="SAIR" name="SAIR">
             </center>

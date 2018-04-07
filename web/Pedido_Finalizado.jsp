@@ -40,7 +40,7 @@
                 </center>                   
             </h2>   
                 <center>
-                    <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR">  <br/> 
+                    <input type="submit" onclick="window.location.href = 'Pedido.jsp'" value="VOLTAR" name="VOLTAR">  <br/> 
                 </center>
         </div>
                 

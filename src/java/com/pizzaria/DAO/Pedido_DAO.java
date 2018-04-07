@@ -27,7 +27,7 @@ public class Pedido_DAO {
     public Pedido cadastrarPedido(Pedido pedido) throws SQLException {
         Connection con = null;
         //o ultimo parametro da variavel SQL (valortotal) = 0;
-        String sql = "INSERT INTO pedido (observacao, idCli, valortotal, data) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO pedido (observacao, idCli, valortotal, data, status) VALUES (?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -36,6 +36,7 @@ public class Pedido_DAO {
         pstmt.setInt(2, pedido.getCliente().getId());
         pstmt.setDouble(3, pedido.getValorTotal());
         pstmt.setDate(4, new java.sql.Date(new Date().getTime()));
+        pstmt.setString(5, pedido.getStatus().toString());
         pstmt.execute();
 
         ResultSet rsCodPedido = pstmt.getGeneratedKeys();
@@ -64,7 +65,7 @@ public class Pedido_DAO {
         pstmt = con.prepareStatement(sql);
 
         pstmt.setInt(1, pedido.getCod());
-        pstmt.setBoolean(2, pedido.isStatus());
+        pstmt.setString(2,pedido.getStatus().toString()); ;
         pstmt.setInt(3, pedido.getFuncionario().getId());
         pstmt.setString(4, pedido.getObservacao());
         pstmt.setDouble(5, pedido.getDesconto());
@@ -99,9 +100,10 @@ public class Pedido_DAO {
         //Conexao
         Connection con = Conecta_Banco.getConexao();
         //cria comando SQL
-        String sql = "SELECT p.cod AS pcod, ip.cod AS ipcod, pr.cod AS prcod, ip.quantidade, ip.valoritem, c.nome AS cnome , pr.nome AS prnome, "
+        String sql = "SELECT p.cod AS pcod, ip.cod AS ipcod, pr.cod AS prcod, ip.quantidade, ip.valoritem, "
+                + "c.nome AS cnome , pr.nome AS prnome, "
                 + "pr.valor, p.observacao, p.valortotal, p.* FROM pedido p INNER JOIN itempedido ip ON p.cod = ip.idpedido "
-                + "INNER JOIN produto pr ON pr.cod = ip.codproduto INNER JOIN cliente c ON p.idcli = c.id;";
+                + "INNER JOIN produto pr ON pr.cod = ip.codproduto INNER JOIN cliente c ON p.idcli = c.id";
         PreparedStatement pstmt = con.prepareStatement(sql);
         //executa
         ResultSet rs = pstmt.executeQuery();
@@ -120,13 +122,12 @@ public class Pedido_DAO {
             itempedidos.setPedido(pedidos);
             itempedidos.setProduto(produto);
             itempedidos.getPedido().setCliente(cliente);
-            
+
             cliente.setNome(rs.getString("cnome"));
-           
+
             produto.setCod(rs.getInt("prcod"));
             produto.setNome(rs.getString("prnome"));
             produto.setValor(rs.getDouble("valor"));
-            
 
             pedidos.setCod(rs.getInt("pcod"));
             pedidos.setObservacao(rs.getString("observacao"));
@@ -140,16 +141,40 @@ public class Pedido_DAO {
         }
         return listaPedidos;
     }
-    
-    public ArrayList<ItemPedido> listarPedido(int id) throws SQLException {
+
+    public Pedido buscar(int id) throws SQLException {
+        Pedido pedido = new Pedido();
+
+        try (Connection con = Conecta_Banco.getConexao()) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM pedido p WHERE p.cod = ?");
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                //sets do pedido
+                pedido.setCod(id);
+                pedido.setData(rs.getDate("data"));
+                pedido.setObservacao(rs.getString("observacao"));
+                //pedido.setDesconto(rs.getDouble("desconto"));
+                //pedido.setTaxaEntrega(rs.getDouble("taxaEntrega"));
+                //pedido.setTroco(rs.getDouble("troco"));
+                pedido.setValorTotal(rs.getDouble("valortotal"));
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pedido;
+    }
+
+    public ArrayList<Pedido> listarPedido(int id) throws SQLException {
         //criar uma array de obj Cliente
-        ArrayList<ItemPedido> listaPedido = new ArrayList<>();
+        ArrayList<Pedido> listaPedido = new ArrayList<>();
         //Conexao
         Connection con = Conecta_Banco.getConexao();
         //cria comando SQL
-        String sql = "SELECT p.cod AS pcod, ip.cod AS ipcod, pr.cod AS prcod, ip.quantidade, ip.valoritem, c.nome AS cnome , pr.nome AS prnome, "
-                + "pr.valor, p.observacao, p.valortotal, p.* FROM pedido p INNER JOIN itempedido ip ON p.cod = ip.idpedido "
-                + "INNER JOIN produto pr ON pr.cod = ip.codproduto INNER JOIN cliente c ON p.idcli = c.id WHERE c.id_user = ?; ";
+        String sql = "SELECT p.* ,c.nome AS cnome FROM pedido p, cliente c WHERE c.id = p.idcli and c.id_user = ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setInt(1, id);
         //executa
@@ -159,33 +184,19 @@ public class Pedido_DAO {
             //a cada loop
             Pedido pedidos = new Pedido();
             Cliente cliente = new Cliente();
-            ItemPedido itempedidos = new ItemPedido();
-            Produto produto = new Produto();
 
-            //seta os atributos do cliente com as informações do ResultSet
-            itempedidos.setCod(rs.getInt("ipcod"));
-            itempedidos.setQuantidade(rs.getInt("quantidade"));
-            itempedidos.setValorItem(rs.getDouble("valoritem"));
-            itempedidos.setPedido(pedidos);
-            itempedidos.setProduto(produto);
-            itempedidos.getPedido().setCliente(cliente);
-            
             cliente.setNome(rs.getString("cnome"));
-           
-            produto.setCod(rs.getInt("prcod"));
-            produto.setNome(rs.getString("prnome"));
-            produto.setValor(rs.getDouble("valor"));
-            
 
-            pedidos.setCod(rs.getInt("pcod"));
+            pedidos.setCod(rs.getInt("cod"));
             pedidos.setObservacao(rs.getString("observacao"));
             //pedidos.setDesconto(rs.getDouble("desconto"));
             //pedidos.setTaxaEntrega(rs.getDouble("taxaEntrega"));
             //pedidos.setTroco(rs.getDouble("troco"));
             pedidos.setValorTotal(rs.getDouble("valortotal"));
             pedidos.setData(rs.getDate("data"));
-            
-            listaPedido.add(itempedidos);
+            pedidos.setCliente(cliente);
+
+            listaPedido.add(pedidos);
         }
         return listaPedido;
     }

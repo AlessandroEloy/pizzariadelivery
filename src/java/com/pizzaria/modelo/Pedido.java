@@ -17,7 +17,7 @@ import java.util.List;
 public class Pedido {
  
     private int cod;
-    private boolean status;
+    private StatusPedido status;
     private Funcionario funcionario;
     private String observacao;
     private double desconto;
@@ -62,11 +62,11 @@ public class Pedido {
         this.cod = cod;
     }
 
-    public boolean isStatus() {
+    public StatusPedido getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(StatusPedido status) {
         this.status = status;
     }
 

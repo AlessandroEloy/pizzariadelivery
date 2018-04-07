@@ -6,8 +6,7 @@
 package com.pizzaria.controle;
 
 import com.pizzaria.DAO.Pedido_DAO;
-import com.pizzaria.modelo.ItemPedido;
-import com.pizzaria.modelo.Usuario;
+import com.pizzaria.modelo.Pedido;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -34,7 +33,7 @@ public class Servlet_Listar_Pedido extends HttpServlet {
         Pedido_DAO pedDAO = new Pedido_DAO();
         
         //executa o método listar
-        ArrayList<ItemPedido> pedidos = new ArrayList<>();
+        ArrayList<Pedido> pedidos = new ArrayList<>();
         PrintWriter out = response.getWriter();
         try {
             pedidos = pedDAO.listarPedido(id);
@@ -51,11 +50,11 @@ public class Servlet_Listar_Pedido extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id_user"));
         //cria lista
         Pedido_DAO pedDAO = new Pedido_DAO();
         //executa o método listar
-        ArrayList<ItemPedido> pedidos = new ArrayList<>();
+        ArrayList<Pedido> pedidos = new ArrayList<>();
         PrintWriter out = response.getWriter();
         try {
             pedidos = pedDAO.listarPedido(id);

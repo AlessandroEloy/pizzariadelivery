@@ -41,7 +41,7 @@ public class Servlet_Login extends HttpServlet {
             usuario = dao.logar(usuario);
           if (usuario.getPerfil() ==1)  {
               request.getSession().setAttribute("usuarioLog", usuario);
-              response.sendRedirect("MenuCliente.jsp");
+              response.sendRedirect("Pedido.jsp");
           }
           else if (usuario.getPerfil() ==2) {
               request.getSession().setAttribute("usuarioLog", usuario);

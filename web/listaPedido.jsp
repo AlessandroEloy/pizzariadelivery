@@ -4,12 +4,17 @@
     Author     : alessandro
 --%>
 
+<%@page import="com.pizzaria.modelo.Usuario"%>
+<%@page import="com.pizzaria.modelo.Pedido"%>
 <%@page import="com.pizzaria.modelo.ItemPedido"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <head>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="JS/exibePedido.js"></script>
+    <script src="JS/bootstrap.min.js"></script>
     <!-- Basics -->
 
     <meta charset="utf-8">
@@ -20,6 +25,7 @@
     <!-- CSS -->
 
     <link rel="stylesheet" href="styles_Cliente.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
 
 </head>
 
@@ -31,7 +37,11 @@
 
     <div id="container">
 
-        <form name="forml" action="Servlet_Listar_Pedidos" method="post"> 
+        <%
+            Usuario usuarioLog = (Usuario) session.getAttribute("usuarioLog");
+        %>
+
+        <form name="forml" action="Servlet_Listar_Pedido" method="post"> 
             <br>
             <h3> LISTAR </h3>
             <fieldset>
@@ -39,33 +49,27 @@
                 <table  cellpadding="10" class="comBordaSimples">
                     <tr>
                         <td bgcolor="#DCDCDC">Codigo</td>
-                       <td bgcolor="#DCDCDC">Data</td>
+                        <td bgcolor="#DCDCDC">Data</td>
                         <td bgcolor="#DCDCDC">Nome</td>
-                        <td bgcolor="#DCDCDC">Produto</td>
-                        <td bgcolor="#DCDCDC">Qtd</td>
-                        <td bgcolor="#DCDCDC">Valor Item</td>
-                        <td bgcolor="#DCDCDC">Valor Unitario</td>
                         <td bgcolor="#DCDCDC">Valor Total</td>
                         <td bgcolor="#DCDCDC">Observação</td>
+                        <td bgcolor="#DCDCDC">Detalhes</td>
                     </tr>
                     <% //recupera o objeto resultado
 
-                        ArrayList<ItemPedido> listaPedido = (ArrayList<ItemPedido>) request.getAttribute("listaPedido");
-                        for (ItemPedido itens : listaPedido) {
+                        ArrayList<Pedido> listaPedido = (ArrayList<Pedido>) request.getAttribute("listaPedido");
+                        for (Pedido pedido : listaPedido) {
                     %>  
                     <tr>
-                        <td><%=itens.getPedido().getCod()%></td> 
-                        <td><%=itens.getPedido().getData()%></td>
-                        <td><%=itens.getPedido().getCliente().getNome()%></td>
-                        <td><%=itens.getProduto().getNome()%></td>
-                        <td><%=itens.getQuantidade()%></td>
-                        <td><%=itens.getValorItem()%></td>
-                        <td><%=itens.getProduto().getValor()%></td>
-                        <td><%=itens.getPedido().getValorTotal()%></td>
-                        <td><%=itens.getPedido().getObservacao()%></td>
-
+                        <td><%=pedido.getCod()%></td> 
+                        <td><%=pedido.getData()%></td>
+                        <td><%=pedido.getCliente().getNome()%></td>
+                        <td><%=pedido.getValorTotal()%></td>
+                        <td><%=pedido.getObservacao()%></td>
+                        <td><a href="#myModalDetalhes" data-toggle="modal" data-target="#myModalDetalhes"><img id="detalhe" class="detalhes" data-cod="<%=pedido.getCod()%>" src="imagem/add.png"  width="25px"></a></td>
                     </tr>
                     <%}%>
+
                 </table> 
 
             </fieldset>
@@ -73,7 +77,31 @@
         <center>
             <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR">
         </center>
-    </div>        
+    </div>  
+    <!-- Div Modal para Detalhes do Pedido-->
+    <div class="modal fade" id="myModalDetalhes" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Detalhes do Pedidos</h4>
+                </div>
+                <div class="modal-body">
+                    <tr>
+                        <td> Valor Total <span id="ValorTotal"></span></td></br>
+                        <td> Nome <span id="nome"></span></td></br>
+                        <td> Quantidade <span id="qtd" ></span></td></br>
+                        <td> Valor Unitario <span id="valor"></span></td></br>
+                        <td> Ingredientes <span id="ingredientes"></span></td></br>
+
+                    </tr>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 

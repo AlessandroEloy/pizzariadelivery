@@ -128,6 +128,10 @@
         <servlet-name>Servlet_Listar_Pedido</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Listar_Pedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_Listar_Itens_Pedidos</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Listar_Itens_Pedidos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Servlet_Login</url-pattern>
@@ -247,6 +251,10 @@
     <servlet-mapping>
         <servlet-name>Servlet_Listar_Pedido</servlet-name>
         <url-pattern>/Servlet_Listar_Pedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Listar_Itens_Pedidos</servlet-name>
+        <url-pattern>/Servlet_Listar_Itens_Pedidos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
