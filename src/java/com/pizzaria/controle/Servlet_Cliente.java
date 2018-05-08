@@ -6,7 +6,9 @@
 package com.pizzaria.controle;
 
 import com.pizzaria.DAO.Cliente_DAO;
+import com.pizzaria.DAO.Endereco_DAO;
 import com.pizzaria.modelo.Cliente;
+import com.pizzaria.modelo.Endereco;
 import com.pizzaria.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,8 +26,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "Servlet_Cliete", urlPatterns = {"/Servlet_Cliete"})
 public class Servlet_Cliente extends HttpServlet {
-    
-     /**
+
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -34,12 +36,10 @@ public class Servlet_Cliente extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-            
-@Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         String nome = request.getParameter("nome");
         String sexo = request.getParameter("sexo");
         String nascimento = request.getParameter("nascimento");
@@ -48,13 +48,14 @@ public class Servlet_Cliente extends HttpServlet {
         String cpf = request.getParameter("cpf");
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
-        
+
         PrintWriter out = response.getWriter();
-        
+
         Cliente cliente = new Cliente();
         Cliente_DAO dao = new Cliente_DAO();
-        HttpSession sessao = request .getSession();
-        
+        Endereco_DAO endao = new Endereco_DAO();
+        HttpSession sessao = request.getSession();
+
         cliente.setNome(nome);
         cliente.setSexo(sexo);
         cliente.setNascimento(nascimento);
@@ -62,18 +63,20 @@ public class Servlet_Cliente extends HttpServlet {
         cliente.setRg(rg);
         cliente.setCpf(cpf);
         cliente.setUsuario((Usuario) sessao.getAttribute("usuarioLog"));
- 
+        Endereco endereco = new Endereco();
+        endereco.setId(Integer.parseInt(request.getParameter("idendereco")));
+        cliente.setEndereco(endereco);
+
         try {
+
+            dao.cadastrarCliente(cliente);
             
-                dao.cadastrarCliente(cliente);
-                String mensagem = "Cadastro Realizado Com Sucesso";
-                request.setAttribute("mensagem",mensagem);
-                request.getRequestDispatcher("MenuCliente.jsp").forward(request, response);
- 
+
+            request.getRequestDispatcher("Servlet_Carrinho&acao=finalizar").forward(request, response);
+
         } catch (SQLException ex) {
-            out.println("Erro: "+ex);
-        
-        }   
+            out.println("Erro: " + ex);
+
+        }
     }
 }
-    

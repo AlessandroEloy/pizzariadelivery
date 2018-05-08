@@ -4,6 +4,7 @@
     Author     : bruno nakamura
 --%>
 
+<%@page import="com.pizzaria.modelo.Endereco"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!Doctype html>
 
@@ -89,6 +90,15 @@
                                 
                             </td>
                         </tr>  
+                        <%
+                            Endereco end = (Endereco) request.getAttribute("endereco");
+                        %>
+                        
+                        <tr>
+                            <td>
+                                <input type="hidden" name="idendereco" value="<%= end.getId()%>">
+                            </td>
+                        </tr>
                       
                     </table>
                 
@@ -160,9 +170,12 @@
                 </fieldset>
                 <br /> 
 </div> -->
-                <input type="submit" value="CADASTRAR">  
-                 <a href="#"> <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/>
-                  
+               <!-- <input type="submit" value="CADASTRAR">  
+                 <a href="#"> <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/>-->
+
+               <form action="Servlet_Cliente" method="post">
+                   <input class="finalizar" type="submit" value="CADASTRAR">
+               
             </form>
             </table>
         </div><!--/ container-->

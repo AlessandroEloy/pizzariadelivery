@@ -93,10 +93,6 @@
         <servlet-class>com.pizzaria.controle.Servlet_Carrinho</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Servlet_Final_Pedido</servlet-name>
-        <servlet-class>com.pizzaria.controle.Servlet_Final_Pedido</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Servlet_Excluir_Prod</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Excluir_Prod</servlet-class>
     </servlet>
@@ -131,6 +127,10 @@
     <servlet>
         <servlet-name>Servlet_Listar_Itens_Pedidos</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Listar_Itens_Pedidos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Endereco</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Endereco</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
@@ -217,10 +217,6 @@
         <url-pattern>/Servlet_Carrinho</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Servlet_Final_Pedido</servlet-name>
-        <url-pattern>/Servlet_Final_Pedido</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Servlet_Excluir_Prod</servlet-name>
         <url-pattern>/Servlet_Excluir_Prod</url-pattern>
     </servlet-mapping>
@@ -255,6 +251,10 @@
     <servlet-mapping>
         <servlet-name>Servlet_Listar_Itens_Pedidos</servlet-name>
         <url-pattern>/Servlet_Listar_Itens_Pedidos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Endereco</servlet-name>
+        <url-pattern>/Servlet_Endereco</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

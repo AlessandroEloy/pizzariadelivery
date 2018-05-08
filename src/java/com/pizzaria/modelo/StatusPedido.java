@@ -12,6 +12,6 @@ package com.pizzaria.modelo;
 public enum StatusPedido {
     APROVADO,
     PREPARANDO,
-    ENVIADO,
-    ENTREGUE
+    ENVIANDO,
+    ENTREGUE;
 }

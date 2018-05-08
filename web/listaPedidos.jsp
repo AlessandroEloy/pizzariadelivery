@@ -42,6 +42,7 @@
                         <tr>
                             <td bgcolor="#DCDCDC">Codigo</td>
                             <td bgcolor="#DCDCDC">Data</td>
+                            <td bgcolor="#DCDCDC">STATUS</td>
                             <td bgcolor="#DCDCDC">Nome</td>
                             <td bgcolor="#DCDCDC">Produto</td>
                             <td bgcolor="#DCDCDC">Qtd</td>
@@ -58,6 +59,7 @@
                         <tr>
                             <td><%=itens.getPedido().getCod()%></td> 
                             <td><%=itens.getPedido().getData()%></td>
+                            <td><%=itens.getPedido().getStatus()%></td>
                             <td><%=itens.getPedido().getCliente().getNome()%></td>
                             <td><%=itens.getProduto().getNome()%></td>
                             <td><%=itens.getQuantidade()%></td>

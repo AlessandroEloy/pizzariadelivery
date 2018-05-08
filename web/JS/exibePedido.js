@@ -20,8 +20,7 @@ $(document).ready(function () {
 
     function exibePedido(id) {
 
-        var parametro = {id};
-        $.get("\Servlet_Listar_Itens_Pedidos", $.param(parametro), function (responseJson) {
+        $.get("\Servlet_Listar_Itens_Pedidos?id="+id, function (responseJson) {
             console.log(responseJson);
             $("#ValorTotal").html(responseJson[0].pedido.valorTotal);
             $("#nome").html(responseJson[1].produto.nome);

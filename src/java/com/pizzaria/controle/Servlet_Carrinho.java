@@ -13,6 +13,7 @@ import com.pizzaria.modelo.Cliente;
 import com.pizzaria.modelo.ItemPedido;
 import com.pizzaria.modelo.Pedido;
 import com.pizzaria.modelo.Produto;
+import com.pizzaria.modelo.StatusPedido;
 import com.pizzaria.modelo.Usuario;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -98,11 +99,20 @@ public class Servlet_Carrinho extends HttpServlet {
                 HttpSession sessao = request.getSession();
                 //recupera um carrinho de produtos da sessão
                 Pedido carrinho = (Pedido) sessao.getAttribute("carrinho");
-                //recupera um usuario de produtos da sessão
+                //muda o status do pedido
+                carrinho.setStatus(StatusPedido.APROVADO);
+              
+                //recupera um usuario da sessão
                 Usuario usuario = (Usuario) sessao.getAttribute("usuarioLog");
                 Cliente_DAO clidao = new Cliente_DAO();
                 Cliente cliente =  clidao.localizarPorId(usuario.getId());
+                    if(cliente.getEndereco()== null){
+                        request.getRequestDispatcher("CadEndereco.jsp").forward(request, response);
+                    }                
                 carrinho.setCliente(cliente);
+                
+                
+                
                 
                 String observacao = request.getParameter("observacao");
                 carrinho.setObservacao(observacao);

@@ -16,7 +16,7 @@ public class Endereco {
     private int numero;
     private String estado;
     private String cidade;
-    private long cep;
+    private String cep;
     private String referencias;
 
     public int getId() {
@@ -67,14 +67,15 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public long getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(long cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
+    
     public String getReferencias() {
         return referencias;
     }

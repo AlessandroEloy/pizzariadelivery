@@ -8,7 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ViaCEP Webservice</title>
+        <title>Cadastro de Endereço</title>
+        <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
         <!-- Adicionando JQuery -->
@@ -55,7 +56,7 @@
                             $("#uf").val("...");
 
                             //Consulta o webservice viacep.com.br/
-                            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+                            $.getJSON("https://viacep.com.br/ws/" + cep + "/json", function (dados) {
 
                                 if (!("erro" in dados)) {
                                     //Atualiza os campos com os valores da consulta.
@@ -93,24 +94,28 @@
         <div id="container">
 
             <!-- Inicio do formulario -->
-            <form method="get" action=".">
+            <form action="Servlet_Endereco" method="post">
                 <label>Cep:
                     <input name="cep" type="text" id="cep" value="" size="10" maxlength="9" /></label><br />
                 <label>Rua:
-                    <input name="rua" type="text" id="rua" size="60" disabled /></label><br />
+                    <input name="rua" type="text" id="rua" size="60" /></label><br />
+                <label>Referência:
+                    <input name="referencia" type="text" id="referencia" size="60" /></label><br />
                 <label>Bairro:
-                    <input name="bairro" type="text" id="bairro" size="40" disabled="" /></label><br />
+                    <input name="bairro" type="text" id="bairro" size="40" /></label><br />
                 <label>Numero:
                     <input name="numero" type="text" id="numero" size="4" /></label><br />
                 <label>Cidade:
-                    <input name="cidade" type="text" id="cidade" size="40" disabled="" /></label><br />
+                    <input name="cidade" type="text" id="cidade" size="40" /></label><br />
                 <label>Estado:
-                    <input name="uf" type="text" id="uf" size="2" disabled="" /></label><br />
+                    <input name="uf" type="text" id="uf" size="2" /></label><br />
+
+
+                <center>
+                    <input class="finalizar" type="submit" value="CADASTRAR">
+                </center>
             </form>
-            <center>
-                 <input type="submit" value="CADASTRA"> 
-                <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR">
-            </center>
+
         </div>
     </body>
 

@@ -10,6 +10,7 @@ import com.pizzaria.modelo.Funcionario;
 import com.pizzaria.modelo.ItemPedido;
 import com.pizzaria.modelo.Pedido;
 import com.pizzaria.modelo.Produto;
+import com.pizzaria.modelo.StatusPedido;
 import com.pizzaria.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -136,7 +137,8 @@ public class Pedido_DAO {
             //pedidos.setTroco(rs.getDouble("troco"));
             pedidos.setValorTotal(rs.getDouble("valortotal"));
             pedidos.setData(rs.getDate("data"));
-            
+            pedidos.setStatus(StatusPedido.valueOf(rs.getString("status")));
+                    
             listaPedidos.add(itempedidos);
         }
         return listaPedidos;
@@ -195,7 +197,7 @@ public class Pedido_DAO {
             pedidos.setValorTotal(rs.getDouble("valortotal"));
             pedidos.setData(rs.getDate("data"));
             pedidos.setCliente(cliente);
-
+            pedidos.setStatus(StatusPedido.valueOf(rs.getString("status").trim()));
             listaPedido.add(pedidos);
         }
         return listaPedido;

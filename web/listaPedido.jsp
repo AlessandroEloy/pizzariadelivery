@@ -49,6 +49,7 @@
                 <table  cellpadding="10" class="comBordaSimples">
                     <tr>
                         <td bgcolor="#DCDCDC">Codigo</td>
+                        <td bgcolor="#DCDCDC">STATUS</td>
                         <td bgcolor="#DCDCDC">Data</td>
                         <td bgcolor="#DCDCDC">Nome</td>
                         <td bgcolor="#DCDCDC">Valor Total</td>
@@ -61,7 +62,8 @@
                         for (Pedido pedido : listaPedido) {
                     %>  
                     <tr>
-                        <td><%=pedido.getCod()%></td> 
+                        <td><%=pedido.getCod()%></td>
+                        <td><%=pedido.getStatus()%></td>
                         <td><%=pedido.getData()%></td>
                         <td><%=pedido.getCliente().getNome()%></td>
                         <td><%=pedido.getValorTotal()%></td>

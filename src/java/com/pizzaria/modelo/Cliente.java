@@ -11,7 +11,8 @@ import java.util.List;
  *
  * @author bruno nakamura
  */
-public class Cliente{
+public class Cliente {
+
     private int id;
     private String nome;
     private String sexo;
@@ -20,7 +21,7 @@ public class Cliente{
     private String rg;
     private String cpf;
     public Usuario usuario;
-    private List<Endereco> endereco;
+    private Endereco endereco;
     private boolean disponivel;
 
     public int getId() {
@@ -87,11 +88,11 @@ public class Cliente{
         this.cpf = cpf;
     }
 
-    public List<Endereco> getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(List<Endereco> endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
@@ -102,7 +103,5 @@ public class Cliente{
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
-    
-       
-}
 
+}
