@@ -36,7 +36,7 @@ public class Servlet_Listar_Pedido extends HttpServlet {
         ArrayList<Pedido> pedidos = new ArrayList<>();
         PrintWriter out = response.getWriter();
         try {
-            pedidos = pedDAO.listarPedido(id);
+            pedidos = pedDAO.listarPedidoPorIdCliente(id);
         } catch (SQLException ex) {
             Logger.getLogger(Servlet_Listar_Pedido.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,7 +57,7 @@ public class Servlet_Listar_Pedido extends HttpServlet {
         ArrayList<Pedido> pedidos = new ArrayList<>();
         PrintWriter out = response.getWriter();
         try {
-            pedidos = pedDAO.listarPedido(id);
+            pedidos = pedDAO.listarPedidoPorIdCliente(id);
         } catch (SQLException ex) {
             Logger.getLogger(Servlet_Listar_Pedido.class.getName()).log(Level.SEVERE, null, ex);
         }

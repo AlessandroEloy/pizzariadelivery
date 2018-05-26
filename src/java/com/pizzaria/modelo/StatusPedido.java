@@ -10,8 +10,29 @@ package com.pizzaria.modelo;
  * @author alessandro
  */
 public enum StatusPedido {
-    APROVADO,
-    PREPARANDO,
-    ENVIANDO,
-    ENTREGUE;
+    APROVADO {
+        public String toString(){
+          return "APROVADO";  
+        }
+    },
+    PREPARANDO {
+        public String toString(){
+          return "preparando";  
+        }
+    },
+    ENVIANDO {
+        public String toString(){
+          return "enviando";  
+        }
+    },
+    CANCELADO {
+        public String toString(){
+          return "CANCELADO";  
+        }
+    },
+    ENTREGUE {
+        public String toString(){
+          return "entregue";  
+        }
+    };
 }

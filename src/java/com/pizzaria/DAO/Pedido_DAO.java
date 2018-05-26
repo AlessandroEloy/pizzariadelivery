@@ -6,6 +6,7 @@
 package com.pizzaria.DAO;
 
 import com.pizzaria.modelo.Cliente;
+import com.pizzaria.modelo.Endereco;
 import com.pizzaria.modelo.Funcionario;
 import com.pizzaria.modelo.ItemPedido;
 import com.pizzaria.modelo.Pedido;
@@ -18,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -170,7 +172,7 @@ public class Pedido_DAO {
         return pedido;
     }
 
-    public ArrayList<Pedido> listarPedido(int id) throws SQLException {
+    public ArrayList<Pedido> listarPedidoPorIdCliente(int id) throws SQLException {
         //criar uma array de obj Cliente
         ArrayList<Pedido> listaPedido = new ArrayList<>();
         //Conexao
@@ -201,5 +203,40 @@ public class Pedido_DAO {
             listaPedido.add(pedidos);
         }
         return listaPedido;
+    }
+    
+    public List<Pedido> listarPedidoPorStatus(String status) throws Exception{
+        String sql = "SELECT * FROM pedido WHERE status = ?";
+        
+        Connection con = Conecta_Banco.getConexao();
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        
+        pstmt.setString(1, status);
+        
+        ResultSet rs = pstmt.executeQuery();
+        
+        List<Pedido> pedidos = new ArrayList<>();
+        
+        while(rs.next()){
+            Pedido pedido = new Pedido();
+            
+            pedido.setCod(rs.getInt("cod"));
+            
+            Cliente cliente = new Cliente();
+            cliente.setId(rs.getInt("idcli"));
+            
+            pedido.setCliente(cliente);
+            
+            Endereco endereco = new Endereco();
+            endereco.setId(rs.getInt("endereco"));
+            
+            pedido.setEndereco(endereco);
+            
+            pedido.setData(rs.getDate("data"));
+            
+            pedidos.add(pedido);
+        }
+        
+        return pedidos;
     }
 }
