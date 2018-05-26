@@ -1,38 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.pizzaria.modelo;
 
-/**
- *
- * @author alessandro
- */
-public enum StatusPedido {
+public enum StatusPedido {    
     APROVADO {
+        @Override
         public String toString(){
           return "APROVADO";  
         }
     },
     PREPARANDO {
+        @Override
         public String toString(){
-          return "preparando";  
+          return "PREPARANDO";  
         }
     },
     ENVIANDO {
+        @Override
         public String toString(){
-          return "enviando";  
+          return "ENVIADO";  
         }
     },
     CANCELADO {
+        @Override
         public String toString(){
           return "CANCELADO";  
         }
     },
     ENTREGUE {
+        @Override
         public String toString(){
-          return "entregue";  
+          return "ENTREGUE";  
         }
     };
 }

@@ -140,6 +140,10 @@
         <servlet-name>Servlet_Valida_Login</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Valida_Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletListarPedidoStatus</servlet-name>
+        <servlet-class>com.pizzaria.controle.ServletListarPedidoStatus</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Servlet_Login</url-pattern>
@@ -271,6 +275,10 @@
     <servlet-mapping>
         <servlet-name>Servlet_Valida_Login</servlet-name>
         <url-pattern>/Servlet_Valida_Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListarPedidoStatus</servlet-name>
+        <url-pattern>/ServletListarPedidoStatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -17,19 +17,6 @@ public class Teste {
    
     public static void main(String[] args) {
         
-        Pedido_DAO dao = new Pedido_DAO();
-        
-        try{
-        List<Pedido> lista = dao.listarPedidoPorStatus(StatusPedido.CANCELADO.toString());
-        
-        System.out.println(lista.size());
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-//            System.out.println(p.);
-//        });
-//        lista.forEach((p) -> {
-//            System.out.println(p.);
-//        });
+        System.out.println(String.valueOf(StatusPedido.APROVADO));
     }
 }
