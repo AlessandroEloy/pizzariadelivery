@@ -132,6 +132,14 @@
         <servlet-name>Servlet_Endereco</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Endereco</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_Valida_CPF</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Valida_CPF</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Valida_Login</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Valida_Login</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Servlet_Login</url-pattern>
@@ -255,6 +263,14 @@
     <servlet-mapping>
         <servlet-name>Servlet_Endereco</servlet-name>
         <url-pattern>/Servlet_Endereco</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Valida_CPF</servlet-name>
+        <url-pattern>/Servlet_Valida_CPF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Valida_Login</servlet-name>
+        <url-pattern>/Servlet_Valida_Login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

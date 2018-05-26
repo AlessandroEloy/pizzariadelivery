@@ -50,7 +50,7 @@
                             <td bgcolor="#DCDCDC">TELEFONE</td>
                             <td bgcolor="#DCDCDC">RG</td>
                             <td bgcolor="#DCDCDC">CPF</td>
-                            <td bgcolor="#DCDCDC">EXCLUIR</td>
+                            <td bgcolor="#DCDCDC">DESATIVAR</td>
                             <td bgcolor="#DCDCDC">ATUALIZAR</td>
                         </tr>
                         <% //recupera o objeto resultado

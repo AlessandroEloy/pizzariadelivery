@@ -70,9 +70,7 @@ public class Servlet_Cliente extends HttpServlet {
         try {
 
             dao.cadastrarCliente(cliente);
-            
-
-            request.getRequestDispatcher("Servlet_Carrinho&acao=finalizar").forward(request, response);
+            request.getRequestDispatcher("Servlet_Pedido?acao=finalizar").forward(request, response);
 
         } catch (SQLException ex) {
             out.println("Erro: " + ex);

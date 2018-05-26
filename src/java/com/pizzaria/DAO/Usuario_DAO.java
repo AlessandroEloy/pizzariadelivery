@@ -103,5 +103,20 @@ public class Usuario_DAO {
                
         return usuario;
     }
+    public String validar_login(String login)throws SQLException{
+        
+        Connection con = Conecta_Banco.getConexao();
+        String sql = "SELECT login FROM usuario WHERE login = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, login);
+        ResultSet rs = ps.executeQuery();
+        String valor = null;
+        
+        if(rs.next()){
+            valor = rs.getString("login");
+        }
+        return valor;
+    }
+    
 }
 

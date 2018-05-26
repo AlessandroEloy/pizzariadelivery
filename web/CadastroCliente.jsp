@@ -10,26 +10,26 @@
 
 <html>
     <head>
+        <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+
+        <script src="JS/valida_CPF.js" type="text/javascript"></script>
 
         <!-- Basics -->
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         <title>Cadastro de Cliente</title>
 
         <!-- CSS -->
-
         <link rel="stylesheet" href="styles_Cliente.css">
 
     </head>
 
     <!-- Main HTML -->
-
     <body> 
         <section id="rectangle"><div class="css"> <img src="imagem/logo.png" class="imglogo" >  </div></section>
-        <!-- Begin Page Content -->
 
+        <!-- Begin Page Content -->
         <div id="container">
 
             <form action="Servlet_Cliente" method="post" onsubmit="return checkForm(this);">
@@ -37,7 +37,7 @@
                 <fieldset>
                     <legend>Dados Pessoais</legend>
                     <table cellspacing="10">
-                
+
 
                         <tr>
                             <td>
@@ -74,6 +74,15 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>
+                                <label>CPF:</label>
+                            </td>
+                            <td align="left">
+                                <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00"> 
+                            </td>
+                        </tr>  
+
                         <td>
                             <label>RG:</label>
                         </td>
@@ -81,105 +90,28 @@
                             <input type="text" name="rg" id="rg" placeholder="000000000" required> 
                         </td>
 
-                        <tr>
-                            <td>
-                                <label>CPF:</label>
-                            </td>
-                            <td align="left">
-                                <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" required> 
-                                
-                            </td>
-                        </tr>  
+
                         <%
                             Endereco end = (Endereco) request.getAttribute("endereco");
                         %>
-                        
+
                         <tr>
                             <td>
                                 <input type="hidden" name="idendereco" value="<%= end.getId()%>">
                             </td>
                         </tr>
-                      
+
                     </table>
-                
 
-                <br />
-                <!-- ENDEREÇO -->
-                <!--<fieldset>
-                    <legend>Dados de Endereço</legend>
-                    <table cellspacing="10">
 
-                        <tr>
-                            <td>
-                                <label for="rua">Rua:</label>
-                            </td>
-                            <td align="left">
-                                <input type="text" name="rua" id="rua" placeholder="rua">
-                            </td>
-                        <tr>
-                            <td>
-                                <label for="bairro">Bairro: </label>
-                            </td>
-                            <td align="left">
-                                <input type="text" name="bairro" id="bairro" placeholder="bairro">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="numero">Número: </label>
-                            </td>
-                            <td align="left">
-                                <input type="text" name="numero" id="numero"  placeholder="00">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="estado">Estado:</label>
-                            </td>
-                            <td align="left">
-                                <select name="estado" class="select_box"> 
-                                    <option value="ac">São Paulo</option> 
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="cidade">Cidade: </label>
-                            </td>
-                            <td align="left">
-                                <input type="text" name="cidade"  placeholder="cidade">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="cep">CEP: </label>
-                            </td>
-                            <td align="left">
-                                <input type="text" name="cep"  placeholder="cep">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="referencia">Referencias: </label>
-                            </td>
-                            <td align="left">
-                                <input type="text" name="referencias"  placeholder="referencias">
-                            </td>
-                        </tr>
+                    <br />
+
+                    <form action="Servlet_Cliente" method="post">
+                        <input class="finalizar" type="submit" value="CADASTRAR">
+                    </form>
                     </table>
-                </fieldset>
-                <br /> 
-</div> -->
-               <!-- <input type="submit" value="CADASTRAR">  
-                 <a href="#"> <input type="submit" onclick="window.location.href = 'MenuCliente.jsp'" value="VOLTAR" name="VOLTAR"> </a> <br/>-->
-
-               <form action="Servlet_Cliente" method="post">
-                   <input class="finalizar" type="submit" value="CADASTRAR">
-               
-            </form>
-            </table>
-        </div><!--/ container-->
-
-    </body>
-    <!-- End Page Content -->
-</html>
+                    </div>
+                    <!--/ container-->
+                    </body>
+                    <!-- End Page Content -->
+                    </html>

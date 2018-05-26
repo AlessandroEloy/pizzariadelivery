@@ -9,7 +9,9 @@
 
 <html>
     <head>
+        <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
 
+        <script src="JS/valida_Usuario.js" type="text/javascript"></script>
         <!-- Basics -->
 
         <meta charset="utf-8">
@@ -44,7 +46,7 @@
                                 <label for="login">Login de usuário: </label>
                             </td>
                             <td align="left">
-                                <input type="text" name="login" required>
+                                <input type="text" id="login" name="login" required>
                             </td>
                         </tr>
                         <tr>

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import com.pizzaria.modelo.Cliente;
+import com.pizzaria.modelo.Endereco;
 import com.pizzaria.modelo.Usuario;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -113,6 +114,7 @@ public class Cliente_DAO {
         ResultSet resultado = pstmt.executeQuery();
         Cliente cliente = new Cliente();
         Usuario usuario = new Usuario();
+        Endereco endereco = new Endereco();
 
         while (resultado.next()) {
             cliente.setId(resultado.getInt("cid"));
@@ -122,8 +124,10 @@ public class Cliente_DAO {
             cliente.setTelefone(resultado.getString("telefone"));
             cliente.setRg(resultado.getString("rg"));
             cliente.setCpf(resultado.getString("cpf"));
+            endereco.setId(resultado.getInt("id"));
+            cliente.setEndereco(endereco);
             cliente.setDisponivel(resultado.getBoolean("cdisponivel"));
-
+            
             usuario.setId(resultado.getInt("uid"));
             usuario.setDisponivel(resultado.getBoolean("udisponivel"));
 
@@ -131,4 +135,24 @@ public class Cliente_DAO {
         }
         return cliente;
     }
+
+    public String localizarClientePorCPF(String cpf) throws SQLException {
+
+        //Conexao
+        Connection con = null;
+        con = Conecta_Banco.getConexao();
+        //cria comando SQL
+        PreparedStatement pstmt = con.prepareStatement("SELECT cpf FROM cliente WHERE cpf = ?");
+        //executa
+        pstmt.setString(1, cpf);
+        ResultSet rs = pstmt.executeQuery();
+        String valor = null;
+        
+        if (rs.next()) {
+            //seta os atributos do cliente com as informações do ResultSet
+            valor = rs.getString("cpf");
+        }
+        return valor;
+    }
+
 }
