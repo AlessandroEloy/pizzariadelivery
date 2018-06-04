@@ -31,7 +31,9 @@
             request.open("GET", url, false);
             request.send();
             
-            alert(request.response.);
+            alert(request.response);
+            document.getElementById("tabelaPedidos").innerHTML = request.response;
         }
     </script>
+    <div id="tabelaPedidos"></div>
 </html>
