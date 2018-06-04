@@ -5,13 +5,19 @@
  */
 package com.pizzaria.controle;
 
+import com.google.gson.Gson;
 import com.pizzaria.DAO.Funcionario_DAO;
+import com.pizzaria.DAO.PerfilFunc_DAO;
 import com.pizzaria.DAO.Usuario_DAO;
 import com.pizzaria.modelo.Funcionario;
+import com.pizzaria.modelo.PerfilFunc;
 import com.pizzaria.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,10 +29,31 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Servlet_Func extends HttpServlet {
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        ArrayList<PerfilFunc> listaPerfil = new ArrayList<>();
+        PerfilFunc_DAO dao = new PerfilFunc_DAO();
+        try {
+            listaPerfil = dao.Listar();
+            Gson gson = new Gson();
+            String lista = gson.toJson(listaPerfil);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(lista);
+        } catch (Exception ex) {
+            response.getWriter().println(ex);
+        }
+
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String funcao = request.getParameter("funcao");
+        String perfil = request.getParameter("perfil");
         String nome = request.getParameter("nome");
         String sexo = request.getParameter("sexo");
         String nascimento = request.getParameter("nascimento");
@@ -42,8 +69,8 @@ public class Servlet_Func extends HttpServlet {
         Usuario_DAO usudao = new Usuario_DAO();
         Funcionario funcionario = new Funcionario();
         Funcionario_DAO dao = new Funcionario_DAO();
+        PerfilFunc_DAO perdao = new PerfilFunc_DAO();
 
-        funcionario.setFuncao(funcao);
         funcionario.setNome(nome);
         funcionario.setSexo(sexo);
         funcionario.setNascimento(nascimento);
@@ -53,13 +80,27 @@ public class Servlet_Func extends HttpServlet {
         usu.setLogin(login);
         usu.setSenha(senha);
         funcionario.setUsuario(usu);
+        PerfilFunc perfilFunc = new PerfilFunc();
+        int id = Integer.parseInt(perfil);
+        perfilFunc.setId(id);
+        funcionario.setPerfil(perfilFunc);
 
-        if (funcionario.getFuncao().equals("gerente")) {
-            
-            usu.setPerfil(3);
+        if (funcionario.getPerfil().equals(1)) {
+            try {
+                perdao.LocalizarPorCod(funcionario.getId());
+                funcionario.setFuncao(perfilFunc.getAcesso());
+                usu.setPerfil(2);
+            } catch (SQLException ex) {
+                Logger.getLogger(Servlet_Func.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Servlet_Func.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
+        } else if (funcionario.getPerfil().equals(2)) {
+            funcionario.setFuncao(perfilFunc.getAcesso());
+            usu.setPerfil(2);
         } else {
-            
+            funcionario.setFuncao(perfilFunc.getAcesso());
             usu.setPerfil(2);
         }
         try {
@@ -73,12 +114,5 @@ public class Servlet_Func extends HttpServlet {
             out.println("Erro: " + ex);
         }
 
-//        out.println(login);
-//        out.println(senha);
-//        out.println(nome);
-//        out.println(cpf);
-//        out.println(sexo);
-//        out.println(telefone);
-//        out.println(funcao);
     }
 }

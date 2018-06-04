@@ -41,12 +41,8 @@
                                 <label for="funcao">Função:</label>
                             </td>
                             <td align="left">
-                                <select name="funcao" class="select_box" > 
-                                    <option value="balconista">Balconista</option> 
-                                    <option value="pizzaiolo">Pizzaiolo</option> 
-                                    <option value="gerente">Gerente</option> 
-                                    <option value="auxiliar">Auxiliar Administrativo</option>
-
+                                <select name="funcao" id="funcao" class="select_box" > 
+                                    <option value=""></option> 
                                 </select>
                             </td>
                         </tr>
@@ -105,98 +101,7 @@
                 </fieldset>
 
                 <br />
-                <!-- ENDEREÇO -->
-                <!--     <fieldset>
-                         <legend>Dados de Endereço</legend>
-                         <table cellspacing="10">
-     
-                             <tr>
-                                 <td>
-                                     <label for="rua">Rua:</label>
-                                 </td>
-                                 <td align="left">
-                                     <input type="text" name="rua" id="rua" placeholder="rua" >
-                                 </td>
-                             <tr>
-                                 <td>
-                                     <label for="bairro">Bairro: </label>
-                                 </td>
-                                 <td align="left">
-                                     <input type="text" name="bairro" id="bairro" placeholder="bairro">
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>
-                                     <label for="numero">Número: </label>
-                                 </td>
-                                 <td align="left">
-                                     <input type="text" name="numero" id="numero" placeholder="00">
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>
-                                     <label for="estado">Estado:</label>
-                                 </td>
-                                 <td align="left">
-                                     <select name="estado" class="select_box"> 
-                                         <option value="ac">Acre</option> 
-                                         <option value="al">Alagoas</option> 
-                                         <option value="am">Amazonas</option> 
-                                         <option value="ap">Amapá</option> 
-                                         <option value="ba">Bahia</option> 
-                                         <option value="ce">Ceará</option> 
-                                         <option value="df">Distrito Federal</option> 
-                                         <option value="es">Espírito Santo</option> 
-                                         <option value="go">Goiás</option> 
-                                         <option value="ma">Maranhão</option> 
-                                         <option value="mt">Mato Grosso</option> 
-                                         <option value="ms">Mato Grosso do Sul</option> 
-                                         <option value="mg">Minas Gerais</option> 
-                                         <option value="pa">Pará</option> 
-                                         <option value="pb">Paraíba</option> 
-                                         <option value="pr">Paraná</option> 
-                                         <option value="pe">Pernambuco</option> 
-                                         <option value="pi">Piauí</option> 
-                                         <option value="rj">Rio de Janeiro</option> 
-                                         <option value="rn">Rio Grande do Norte</option> 
-                                         <option value="ro">Rondônia</option> 
-                                         <option value="rs">Rio Grande do Sul</option> 
-                                         <option value="rr">Roraima</option> 
-                                         <option value="sc">Santa Catarina</option> 
-                                         <option value="se">Sergipe</option> 
-                                         <option value="sp">São Paulo</option> 
-                                         <option value="to">Tocantins</option> 
-                                     </select>
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>
-                                     <label for="cidade">Cidade: </label>
-                                 </td>
-                                 <td align="left">
-                                     <input type="text" name="cidade" placeholder="cidade">
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>
-                                     <label for="cep">CEP: </label>
-                                 </td>
-                                 <td align="left">
-                                     <input type="text" name="cep" placeholder="cep">
-                                 </td>
-                             </tr>
-                             <tr>
-                                 <td>
-                                     <label for="referencia">Referencias: </label>
-                                 </td>
-                                 <td align="left">
-                                     <input type="text" name="referencias" placeholder="referencias">
-                                 </td>
-                             </tr>
-                         </table>
-                     </fieldset>
-                     <br />           -->
-
+               
                 <!-- DADOS DE LOGIN -->
                 <fieldset>
                     <legend>Dados de Login</legend>
@@ -242,6 +147,17 @@
 
                 <!--JAVA SCRIPT -->
                 <script>
+                    $(document).ready(function () {
+                $.get("Servlet_Func", function (responsejson) {
+                    console.log(responsejson);
+                    var $select = $("#funcao");
+                    $select.find("option").remove();
+                    $.each(responsejson, function (index, value) {
+                        $("<option value='" + value.id + "'>").appendTo($("#funcao"))
+                                .text(value.acesso);
+                    });
+                });
+            });
                     function checkForm(form)
                     {
                         if (form.login.value == "") {

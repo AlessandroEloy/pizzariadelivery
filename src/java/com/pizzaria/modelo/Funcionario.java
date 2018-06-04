@@ -10,6 +10,7 @@ package com.pizzaria.modelo;
  * @author bruno nakamura
  */
 public class Funcionario {
+
     private int id;
     private String funcao;
     private String nome;
@@ -20,8 +21,9 @@ public class Funcionario {
     private String cpf;
     private String login;
     private String senha;
-    private int endereco; 
+    private int endereco;
     private Usuario usuario;
+    private PerfilFunc perfil;
     private boolean disponivel;
 
     public int getId() {
@@ -120,6 +122,14 @@ public class Funcionario {
         this.usuario = usuario;
     }
 
+    public PerfilFunc getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(PerfilFunc perfil) {
+        this.perfil = perfil;
+    }
+
     public boolean isDisponivel() {
         return disponivel;
     }
@@ -127,5 +137,5 @@ public class Funcionario {
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
-        
+
 }
