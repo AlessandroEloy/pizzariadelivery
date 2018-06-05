@@ -28,12 +28,35 @@
             
             var request = new XMLHttpRequest();
             
-            request.open("GET", url, false);
+            request.open("GET", url, true);
             request.send();
+            request.onreadystatechange = function(){
+                console.log(request.response);
+                if (request.status === 200){
+                    if (request.readyState === 4){
+                        if (request.response !== ""){
+                            
+                            var html = "<tr> <th>COD</th> <th>DESCONTO</th> </tr>";
+                            
+                            var objetos = JSON.parse(request.response);                          
+                            for (i=0; i < objetos.length; i++){
+                                html += "<tr>" + 
+                                        "<td>" + objetos[i].cod + "</td>" +
+                                        "<td>" + objetos[i].desconto + "</td>" +
+                                        "</tr>";
+                            }
+                            
+                            document.getElementById("tabelaPedidos").innerHTML = html;
+                        }
+                    }
+                }
+            }
             
-            alert(request.response);
-            document.getElementById("tabelaPedidos").innerHTML = request.response;
         }
     </script>
-    <div id="tabelaPedidos"></div>
+    
+    <table id="tabelaPedidos">
+        
+    </table>
+    
 </html>
