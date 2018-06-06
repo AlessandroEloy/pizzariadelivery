@@ -206,7 +206,7 @@ public class Pedido_DAO {
     }
     
     public List<Pedido> listarPedidoPorStatus(String status) throws Exception{
-        String sql = "SELECT * FROM pedido WHERE status = ?";
+        String sql = "SELECT p.*, c.*, e.* FROM pedido p, cliente c, endereco e WHERE p.idcli = c.id AND p.endereco = e.id AND status = ?";
         
         Connection con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -224,15 +224,17 @@ public class Pedido_DAO {
             
             Cliente cliente = new Cliente();
             cliente.setId(rs.getInt("idcli"));
-            
+            cliente.setNome(rs.getString("nome"));
             pedido.setCliente(cliente);
             
             Endereco endereco = new Endereco();
             endereco.setId(rs.getInt("endereco"));
-            
             pedido.setEndereco(endereco);
-            
+  
             pedido.setData(rs.getDate("data"));
+            pedido.setValorTotal(rs.getDouble("valorTotal"));
+            pedido.setDesconto(rs.getDouble("desconto"));
+            
             
             pedidos.add(pedido);
         }

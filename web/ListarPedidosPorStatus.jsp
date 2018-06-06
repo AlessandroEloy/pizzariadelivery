@@ -8,6 +8,7 @@
     <body>
         <div>
             <select name="status" id="status" onchange="buscar()">
+                <option value=" "> </option>
                 <option value="APROVADO">aprovado</option>
                 <option value="CANCELADO">cancelado</option>
                 <option value="PREPARANDO">preparando</option>
@@ -36,13 +37,16 @@
                     if (request.readyState === 4){
                         if (request.response !== ""){
                             
-                            var html = "<tr> <th>COD</th> <th>DESCONTO</th> </tr>";
+                            var html = "<tr> <th>COD</th> <th>DATA</th> <th>CLIENTE</th> <th>DESCONTO</th> <th>TOTAL</th> </tr>"; 
                             
                             var objetos = JSON.parse(request.response);                          
                             for (i=0; i < objetos.length; i++){
                                 html += "<tr>" + 
                                         "<td>" + objetos[i].cod + "</td>" +
+                                        "<td>" + objetos[i].data + "</td>" +
+                                        "<td>" + objetos[i].cliente.nome + "</td>" +
                                         "<td>" + objetos[i].desconto + "</td>" +
+                                        "<td>" + objetos[i].valorTotal + "</td>" + 
                                         "</tr>";
                             }
                             
