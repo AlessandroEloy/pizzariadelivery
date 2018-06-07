@@ -54,10 +54,10 @@
                             <td align="left">
                                 <input type="text" name="nome" id="nome" placeholder="nome" required>
                             </td>
-
                         <tr>                
-
-
+                            <td align="left">
+                                <input type="text" name="disponivel" id="disponivel" placeholder="disponivel" value="TRUE" required>
+                            </td>
                         <tr>
                             <td>
                                 <label for="ingredientes">Descrição: </label>

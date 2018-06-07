@@ -77,6 +77,7 @@ public class Servlet_Produtos extends HttpServlet {
         int id_user = Integer.parseInt(user);
         usuario.setId(id_user);
         produto.setUsuario(usuario);
+        produto.setDisponivel(true);
 
         try {
 

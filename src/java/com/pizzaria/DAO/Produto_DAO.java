@@ -47,7 +47,7 @@ public class Produto_DAO {
     public void cadastrarProduto(Produto produto) throws SQLException {
         Connection con = null;
 
-        String sql = "INSERT INTO produto (codcat, nome, ingredientes, valor, id_user) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO produto (codcat, nome, ingredientes, valor, disponivel, id_user) VALUES (?,?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
@@ -56,7 +56,8 @@ public class Produto_DAO {
         pstmt.setString(2, produto.getNome());
         pstmt.setString(3, produto.getIngredientes());
         pstmt.setDouble(4, produto.getValor());
-        pstmt.setInt(5, produto.getUsuario().getId());
+        pstmt.setBoolean(5, produto.isDisponivel());
+        pstmt.setInt(6, produto.getUsuario().getId());
 
         pstmt.execute();
 
