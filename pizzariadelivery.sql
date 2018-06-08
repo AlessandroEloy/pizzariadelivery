@@ -109,6 +109,22 @@ constraint fk_pedido foreign key (idpedido) references Pedido(cod),
 constraint fk_codPro foreign key (codProduto) references Produto(cod)
 );
 
+create table Combo(
+id serial primary key,
+pedido int not null,
+
+constraint pedido_fk foreign key (pedido) references Pedido (cod)
+);
+
+create table ItemCombo(
+id serial primary key,
+produto int not null,
+combo int not null,
+
+constraint combo_fk foreign key (combo) references Combo (id),
+constraint produto_fk foreign key (produto) references Produto (cod)
+);
+
 INSERT INTO categoria VALUES (1, 'Pizza',TRUE);
 INSERT INTO categoria VALUES (2, 'Esfirra',TRUE);
 INSERT INTO categoria VALUES (3, 'Bebida',TRUE);

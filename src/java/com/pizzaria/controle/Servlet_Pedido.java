@@ -27,7 +27,7 @@ public class Servlet_Pedido extends HttpServlet {
             String acao = request.getParameter("acao");
             if (acao.equals("listaPedido")) {
                 //monta uma lista para exibição na pagina principal
-                ArrayList<Produto> produtos = new Produto_DAO().listarProduto();
+                ArrayList<Produto> produtos = new Produto_DAO().listarProdutosDisponiveis();
                 //armazena os produto na requisição
                 request.setAttribute("produtos", produtos);
                 //invia para index.jsp

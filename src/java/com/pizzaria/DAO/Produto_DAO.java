@@ -94,7 +94,7 @@ public class Produto_DAO {
         return produto;
     }
 
-    public ArrayList<Produto> listar() throws SQLException {
+    public ArrayList<Produto> listarTodosProdutos() throws SQLException {
         //criar uma array de obj Cliente
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         //Conexao
@@ -172,12 +172,12 @@ public class Produto_DAO {
         return p;
     }
 
-    public ArrayList<Produto> listarProduto() throws SQLException {
+    public ArrayList<Produto> listarProdutosDisponiveis() throws SQLException {
         //criar uma array de obj Cliente
         ArrayList<Produto> listaProdutos = new ArrayList<>();
         //Conexao
         Connection con = Conecta_Banco.getConexao();
-        //cria comando SQL
+//        cria comando SQL
         String sql = "SELECT p.cod AS pcod,p.codcat, p.nome AS pnome,p.ingredientes,p.valor,"
                 + "u.login AS ulogin,"
                 + "c.categoria "
