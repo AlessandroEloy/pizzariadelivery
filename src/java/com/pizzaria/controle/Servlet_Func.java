@@ -7,10 +7,10 @@ package com.pizzaria.controle;
 
 import com.google.gson.Gson;
 import com.pizzaria.DAO.Funcionario_DAO;
-import com.pizzaria.DAO.PerfilFunc_DAO;
+import com.pizzaria.DAO.Perfil_DAO;
 import com.pizzaria.DAO.Usuario_DAO;
 import com.pizzaria.modelo.Funcionario;
-import com.pizzaria.modelo.PerfilFunc;
+import com.pizzaria.modelo.Perfil;
 import com.pizzaria.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,8 +33,8 @@ public class Servlet_Func extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        ArrayList<PerfilFunc> listaPerfil = new ArrayList<>();
-        PerfilFunc_DAO dao = new PerfilFunc_DAO();
+        ArrayList<Perfil> listaPerfil = new ArrayList<>();
+        Perfil_DAO dao = new Perfil_DAO();
         try {
             listaPerfil = dao.Listar();
             Gson gson = new Gson();
@@ -46,7 +46,9 @@ public class Servlet_Func extends HttpServlet {
         } catch (Exception ex) {
             response.getWriter().println(ex);
         }
-
+         request.setAttribute("listaPerfil",listaPerfil );  
+         
+         request.getRequestDispatcher("CadastroFuncionario.jsp").forward(request, response);
     }
 
     @Override
@@ -69,7 +71,7 @@ public class Servlet_Func extends HttpServlet {
         Usuario_DAO usudao = new Usuario_DAO();
         Funcionario funcionario = new Funcionario();
         Funcionario_DAO dao = new Funcionario_DAO();
-        PerfilFunc_DAO perdao = new PerfilFunc_DAO();
+        Perfil_DAO perdao = new Perfil_DAO();
 
         funcionario.setNome(nome);
         funcionario.setSexo(sexo);
@@ -80,7 +82,7 @@ public class Servlet_Func extends HttpServlet {
         usu.setLogin(login);
         usu.setSenha(senha);
         funcionario.setUsuario(usu);
-        PerfilFunc perfilFunc = new PerfilFunc();
+        Perfil perfilFunc = new Perfil();
         int id = Integer.parseInt(perfil);
         perfilFunc.setId(id);
         funcionario.setPerfil(perfilFunc);

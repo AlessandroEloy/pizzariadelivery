@@ -23,7 +23,7 @@ public class Funcionario {
     private String senha;
     private int endereco;
     private Usuario usuario;
-    private PerfilFunc perfil;
+    private Perfil perfil;
     private boolean disponivel;
 
     public int getId() {
@@ -122,11 +122,11 @@ public class Funcionario {
         this.usuario = usuario;
     }
 
-    public PerfilFunc getPerfil() {
+    public Perfil getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(PerfilFunc perfil) {
+    public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
 

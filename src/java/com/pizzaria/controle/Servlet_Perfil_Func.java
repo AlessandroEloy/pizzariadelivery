@@ -5,8 +5,8 @@
  */
 package com.pizzaria.controle;
 
-import com.pizzaria.DAO.PerfilFunc_DAO;
-import com.pizzaria.modelo.PerfilFunc;
+import com.pizzaria.DAO.Perfil_DAO;
+import com.pizzaria.modelo.Perfil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -29,14 +29,14 @@ public class Servlet_Perfil_Func extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        PerfilFunc perfil = new PerfilFunc();
-        PerfilFunc_DAO dao = new PerfilFunc_DAO();
+        Perfil perfil = new Perfil();
+        Perfil_DAO dao = new Perfil_DAO();
 
         perfil.setAcesso(acesso);
 
         try {
 
-            dao.CadastrarPerfilFunc(perfil);
+            dao.CadastrarPerfil(perfil);
             String mensagem = "Cadastro Realizado Com Sucesso";
             request.setAttribute("mensagem", mensagem);
             request.getRequestDispatcher("MenuGerente.jsp").forward(request, response);
