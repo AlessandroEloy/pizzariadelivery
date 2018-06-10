@@ -11,10 +11,10 @@ package com.pizzaria.modelo;
  */
 public class Perfil {
 
-   private int id;
-   private String acesso;
-   private Nivel_Acesso nivel_acesso;
-   
+    private int id;
+    private String acesso;
+    private Nivel_Acesso nivel_acesso;
+
     public int getId() {
         return id;
     }
@@ -39,24 +39,15 @@ public class Perfil {
         this.nivel_acesso = nivel_acesso;
     }
 
-    public enum Nivel_Acesso{
-        GERENTE{
-            @Override
-        public String toString(){
-          return "GERENTE";
+    public enum Nivel_Acesso {
+        
+        GERENTE  ("GERENTE"), BALCONISTA ("BALCONISTA"), PIZZAIOLO ("PIZZAIOLO"), CLIENTE ("CLIENTE");
+       
+        private String nome;
+        
+        private Nivel_Acesso(String nome){
+            this.nome = nome;
         }
-        },
-        BALCONISTA{
-            @Override
-        public String toString(){
-          return "BALCONISTA";
-        }
-        },
-        PIZZAIOLO{
-            @Override
-        public String toString(){
-          return "PIZZAIOLO";
-        }
-        }
-    }   
+ 
+    }
 }

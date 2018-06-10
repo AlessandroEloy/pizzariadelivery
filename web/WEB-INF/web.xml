@@ -146,7 +146,7 @@
     </servlet>
     <servlet>
         <servlet-name>Servlet_Perfil_Func</servlet-name>
-        <servlet-class>com.pizzaria.controle.Servlet_Perfil_Func</servlet-class>
+        <servlet-class>com.pizzaria.controle.Servlet_Perfil</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Servlet_Listar_Perfil</servlet-name>

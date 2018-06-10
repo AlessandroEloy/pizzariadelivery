@@ -29,32 +29,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Servlet_Func extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        ArrayList<Perfil> listaPerfil = new ArrayList<>();
-        Perfil_DAO dao = new Perfil_DAO();
-        try {
-            listaPerfil = dao.Listar();
-            Gson gson = new Gson();
-            String lista = gson.toJson(listaPerfil);
-
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(lista);
-        } catch (Exception ex) {
-            response.getWriter().println(ex);
-        }
-         request.setAttribute("listaPerfil",listaPerfil );  
-         
-         request.getRequestDispatcher("CadastroFuncionario.jsp").forward(request, response);
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String funcao = request.getParameter("funcao");
         String perfil = request.getParameter("perfil");
         String nome = request.getParameter("nome");
         String sexo = request.getParameter("sexo");
@@ -82,28 +62,21 @@ public class Servlet_Func extends HttpServlet {
         usu.setLogin(login);
         usu.setSenha(senha);
         funcionario.setUsuario(usu);
-        Perfil perfilFunc = new Perfil();
+        Perfil perfilf = new Perfil();
         int id = Integer.parseInt(perfil);
-        perfilFunc.setId(id);
-        funcionario.setPerfil(perfilFunc);
+        perfilf.setId(id);
+        funcionario.setPerfil(perfilf);
 
-        if (funcionario.getPerfil().equals(1)) {
-            try {
-                perdao.LocalizarPorCod(funcionario.getId());
-                funcionario.setFuncao(perfilFunc.getAcesso());
+        if (funcionario.getPerfil().equals(2)) {
+                funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
                 usu.setPerfil(2);
-            } catch (SQLException ex) {
-                Logger.getLogger(Servlet_Func.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Servlet_Func.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else if (funcionario.getPerfil().equals(2)) {
-            funcionario.setFuncao(perfilFunc.getAcesso());
-            usu.setPerfil(2);
-        } else {
-            funcionario.setFuncao(perfilFunc.getAcesso());
-            usu.setPerfil(2);
+            
+        } else if (funcionario.getPerfil().equals(3)) {
+            funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
+                usu.setPerfil(2);
+        } else if (funcionario.getPerfil().equals(4)) {
+            funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
+                usu.setPerfil(2);
         }
         try {
             usudao.cadastrarUsuario(usu);

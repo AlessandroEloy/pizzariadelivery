@@ -46,12 +46,12 @@
                             </td>
                             <td align="left">
                                 <select name="funcao" id="funcao" class="select_box" > 
-                                    <% //recupera o objeto resultado
+                                    <% // //recupera o objeto resultado
 
                                         ArrayList<Perfil> listaPerfil = (ArrayList<Perfil>) request.getAttribute("listaPerfil");
                                         for (Perfil perfil : listaPerfil) {
                                     %>  
-                                    <option value=<%=perfil.getNivel_acesso().name() %>></option>
+                                    <option value="<%=perfil.getNivel_acesso().name() %>"> teste </option>
                                     <%}%>       
                                 </select>
                             </td>
@@ -157,18 +157,7 @@
 
                 <!--JAVA SCRIPT -->
                 <script>
-//                    $(document).ready(function () {
-//                $.get("Servlet_Func", function (responsejson) {
-//                    console.log(responsejson);
-//                    var $select = $("#funcao");
-//                    $select.find("option").remove();
-//                    $.each(responsejson, function (index, value) {
-//                        $("<option value='" + value.id + "'>").appendTo($("#funcao"))
-//                                .text(value.nivel_acesso);
-//                    });
-//                });
-//            });
-//                    function checkForm(form)
+                    function checkForm(form)
                     {
                     if (form.login.value == "") {
                     alert("Erro: O nome do usuario deve ser preenchido!");
