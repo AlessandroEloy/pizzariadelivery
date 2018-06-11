@@ -66,6 +66,10 @@
                                 <input type="password" name="passconfirm" required>
                             </td>
                         </tr> 
+                        <td align="left">
+                                <input type="hidden" name="perfil" id="perfil" value="1" >
+
+                        </td>
 
                     </table> <input type="submit" value="CADASTRAR">
                 </fieldset> 

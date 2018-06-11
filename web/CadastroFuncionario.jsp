@@ -47,11 +47,12 @@
                             <td align="left">
                                 <select name="funcao" id="funcao" class="select_box" > 
                                     <% // //recupera o objeto resultado
-
+                                        
                                         ArrayList<Perfil> listaPerfil = (ArrayList<Perfil>) request.getAttribute("listaPerfil");
                                         for (Perfil perfil : listaPerfil) {
                                     %>  
-                                    <option value="<%=perfil.getNivel_acesso().name() %>"> teste </option>
+                                    <option value="<%=perfil.getNivel_acesso().name() %>"> <%=perfil.getNivel_acesso().name()%> </option>
+                 
                                     <%}%>       
                                 </select>
                             </td>

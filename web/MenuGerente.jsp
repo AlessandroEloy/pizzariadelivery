@@ -44,7 +44,7 @@
 
                     <li><a href="#"> <input type="submit" onclick="window.location.href = '#'" value="CADASTRO" id='func'> </a> <br/> 
                         <ul>
-                            <li><a href="#"> <input type="submit" onclick="window.location.href = 'CadastroFuncionario.jsp'" value="CADASTRO DE FUNCIONARIO" id='func'> </a> </li><br/> 
+                            <li><a href="#"> <input type="submit" onclick="window.location.href = 'Servlet_Func'" value="CADASTRO DE FUNCIONARIO" id='func'> </a> </li><br/> 
                             <li><a href="#"> <input type="submit" onclick="window.location.href = 'Cadastro_Categoria.jsp'" value="CADASTRO DE CATEGORIA" id='func'> </a></li> <br/>
                             <li><a href="#"> <input type="submit" onclick="window.location.href = 'CadProdutos.jsp'" value="CADASTRO DE PRODUTOS" id='func'> </a></li> <br/> 
 

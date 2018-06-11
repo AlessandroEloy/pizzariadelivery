@@ -3,6 +3,7 @@ package com.pizzaria.controle;
 
 import com.pizzaria.DAO.Usuario_DAO;
 import com.pizzaria.modelo.Usuario;
+import com.pizzaria.modelo.Perfil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -39,19 +40,23 @@ public class Servlet_Login extends HttpServlet {
         usuario.setSenha(senha);
         try {
             usuario = dao.logar(usuario);
-          if (usuario.getPerfil() ==1)  {
+          if (usuario.getPerfil().getId() == 1)  {
               request.getSession().setAttribute("usuarioLog", usuario);
               response.sendRedirect("Pedido.jsp");
           }
-          else if (usuario.getPerfil() ==2) {
+          else if (usuario.getPerfil().getId() ==2 ) {
+              request.getSession().setAttribute("usuarioLog", usuario);
+              response.sendRedirect("MenuGerente.jsp");
+          }
+          else if (usuario.getPerfil().getId() ==3) {
+              request.getSession().setAttribute("usuarioLog", usuario);
+              response.sendRedirect("MenuFuncionario.jsp");              
+          }
+          else if (usuario.getPerfil().getId() ==4){
               request.getSession().setAttribute("usuarioLog", usuario);
               response.sendRedirect("MenuFuncionario.jsp");
           }
-          else if (usuario.getPerfil() ==3) {
-              request.getSession().setAttribute("usuarioLog", usuario);
-              response.sendRedirect("MenuGerente.jsp");              
-          }
-          else {
+           else   {
                 String mensagem = "Usuário ou Senha incorretos, Tente Novamente...";
                 request.setAttribute("mensagem",mensagem);
                 request.getRequestDispatcher("Login_index.jsp").forward(request, response);

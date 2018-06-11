@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +26,27 @@ import javax.servlet.http.HttpServletResponse;
  * @author bruno nakamura
  */
 public class Servlet_Func extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        ArrayList<Perfil> listaPerfil = new ArrayList<>();
+        Perfil_DAO dao = new Perfil_DAO();
+        try {
+            listaPerfil = dao.Listar();
+            Gson gson = new Gson();
+            String lista = gson.toJson(listaPerfil);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+           response.getWriter().write(lista);
+        } catch (Exception ex) {
+            response.getWriter().println(ex);
+        }
+         request.setAttribute("listaPerfil",listaPerfil);  
+         request.getRequestDispatcher("CadastroFuncionario.jsp").forward(request, response);
+    }
 
 
     @Override
@@ -66,17 +85,18 @@ public class Servlet_Func extends HttpServlet {
         int id = Integer.parseInt(perfil);
         perfilf.setId(id);
         funcionario.setPerfil(perfilf);
+        funcionario.setDisponivel(true);
 
-        if (funcionario.getPerfil().equals(2)) {
+        if (funcionario.getPerfil().getId() == 2) {
                 funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
-                usu.setPerfil(2);
+                usu.setPerfil(perfilf);
             
-        } else if (funcionario.getPerfil().equals(3)) {
+        } else if (funcionario.getPerfil().getId() == 3) {
             funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
-                usu.setPerfil(2);
-        } else if (funcionario.getPerfil().equals(4)) {
+                usu.setPerfil(perfilf);
+        } else if (funcionario.getPerfil().getId() == 4) {
             funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
-                usu.setPerfil(2);
+                usu.setPerfil(perfilf);
         }
         try {
             usudao.cadastrarUsuario(usu);

@@ -22,11 +22,12 @@ public class Funcionario_DAO {
     public void cadastrarFunc(Funcionario funcionario) throws SQLException {
         Connection con = null;
 
-        String sql = "INSERT INTO funcionario (funcao, nome, sexo, nascimento, telefone, rg, cpf, id_user) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO funcionario (funcao, nome, sexo, nascimento, telefone, rg, cpf, id_user, perfil, disponivel) VALUES (?,?,?,?,?,?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
 
+        
         pstmt.setString(1, funcionario.getFuncao());
         pstmt.setString(2, funcionario.getNome());
         pstmt.setString(3, funcionario.getSexo());
@@ -35,6 +36,8 @@ public class Funcionario_DAO {
         pstmt.setString(6, funcionario.getRg());
         pstmt.setString(7, funcionario.getCpf());
         pstmt.setInt(8, funcionario.getUsuario().getId());
+        pstmt.setInt(9, funcionario.getPerfil().getId());
+        pstmt.setBoolean(10, funcionario.isDisponivel());
         pstmt.execute();
 
     }

@@ -13,16 +13,18 @@ public class Usuario {
     private int id;
     private String login;
     private String senha;
-    private int perfil;
+    private Perfil perfil;
     private boolean disponivel;
 
-    public int getPerfil() {
+    public Perfil getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(int perfil) {
+    public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
+
+    
     
     public int getId() {
         return id;

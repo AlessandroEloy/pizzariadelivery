@@ -7,7 +7,9 @@ package com.pizzaria.controle;
 
 import com.google.gson.Gson;
 import com.pizzaria.DAO.Produto_DAO;
+import com.pizzaria.DAO.Usuario_DAO;
 import com.pizzaria.modelo.Produto;
+import com.pizzaria.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -29,7 +31,7 @@ public class Servlet_Listar_Produto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         Produto_DAO daoProduto = new Produto_DAO();
         List<Produto> produtos = new ArrayList<>();
         try {
@@ -37,13 +39,17 @@ public class Servlet_Listar_Produto extends HttpServlet {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
         response.getWriter().write(new Gson().toJson(produtos));
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        Usuario usuario = new Usuario();
+        Usuario_DAO dao = new Usuario_DAO();
+        usuario.setLogin(request.getSession().getAttribute("usuarioLog").toString());
 
         //cria lista
         Produto_DAO DAO = new Produto_DAO();
@@ -51,13 +57,21 @@ public class Servlet_Listar_Produto extends HttpServlet {
         ArrayList<Produto> produtos = new ArrayList<>();
         PrintWriter out = response.getWriter();
         try {
+            usuario = dao.buscar_perfil(usuario);
+            if (usuario.getPerfil().getId() == 2) {
+                //add a lista no objeto request
+                request.setAttribute("listaProdutos", produtos);
+                //encaminha o request para o jsp
+                request.getRequestDispatcher("listaProdutos.jsp").forward(request, response);
+            } else {
+                request.setAttribute("listaProdutos", produtos);
+                //encaminha o request para o jsp
+                request.getRequestDispatcher("listaProdutosFunc.jsp").forward(request, response);
+            }
             produtos = DAO.listarTodosProdutos();
         } catch (SQLException ex) {
             out.println(ex.getMessage());
         }
-        //add a lista no objeto request
-        request.setAttribute("listaProdutos", produtos);
-        //encaminha o request para o jsp
-        request.getRequestDispatcher("listaProdutos.jsp").forward(request, response);
+
     }
 }

@@ -40,14 +40,23 @@ public class Perfil {
     }
 
     public enum Nivel_Acesso {
-        
-        GERENTE  ("GERENTE"), BALCONISTA ("BALCONISTA"), PIZZAIOLO ("PIZZAIOLO"), CLIENTE ("CLIENTE");
-       
-        private String nome;
-        
-        private Nivel_Acesso(String nome){
+
+        GERENTE("GERENTE"), BALCONISTA("BALCONISTA"), PIZZAIOLO("PIZZAIOLO"), CLIENTE(" ");
+
+        private  String nome;
+
+        Nivel_Acesso(String nome) {
             this.nome = nome;
         }
- 
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        @Override
+        public String toString() {
+            return nome;
+        }
+
     }
 }
