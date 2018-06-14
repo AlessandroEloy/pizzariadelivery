@@ -1,79 +1,76 @@
 <%-- 
     Document   : Cadastro_Usuario
     Created on : 23/08/2017, 20:50:53
-    Author     : Alessandro
+    Author     : Carol
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!Doctype html>
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cadastro de usuário</title>
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<html>
-    <head>
-        <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
 
-        <script src="JS/valida_Usuario.js" type="text/javascript"></script>
-        <!-- Basics -->
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/flag-icon.min.css">
+    <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+    <link rel="stylesheet" href="assets/scss/style.css">
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-        <title>Cadastro de Cliente</title>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
-        <!-- CSS -->
-
-        <link rel="stylesheet" href="styles_cadastre-se.css">
-
-    </head>
-
-    <!-- Main HTML -->
-
-    <body> 
-        <section id="rectangle"><div class="css"> <img src="imagem/logo.png" class="imglogo" >  </div></section>
-        <!-- Begin Page Content -->
-
-        <div id="container">
-
-            <form action="Servlet_Usuario" method="post" onsubmit="return checkForm(this);"> 
-
-                <h3> CADASTRO</h3>
-                <!-- DADOS DE LOGIN -->
-                <fieldset>
-                    <legend>Dados de Login</legend>
-                    <table cellspacing="10">
-
-                        <tr>
-                            <td>
-                                <label for="login">Login de usuário: </label>
-                            </td>
-                            <td align="left">
-                                <input type="text" id="login" name="login" required>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="senha">Senha: </label>
-                            </td>
-                            <td align="left">
-                                <input type="password" name="senha" required>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label for="passconfirm">Confirme a senha: </label>
-                            </td>
-                            <td align="left">
-                                <input type="password" name="passconfirm" required>
-                            </td>
-                        </tr> 
-
-                    </table> <input type="submit" value="CADASTRAR">
-                </fieldset> 
-
-                <br />
+</head>
+<body class="bg-warning">
 
 
-                <!--JAVA SCRIPT -->
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+			
+            <div class="login-content">
+			
+                <div class="login-logo">
+                        <img class="align-content" src="images/logo.png" alt="">
+                </div>
+                <div class="login-form">
+					<div class="typo-headers">
+						<h5 class="pb-2 display-5 text-center">CADASTRAR USUÁRIO</h5>
+					</div>
+			
+			
+                    <form action="Servlet_Usuario" method="post" onsubmit="return checkForm(this);"> 
+                        <div class="form-group">
+                            <label>Usuário</label>
+                            <input type="text" name="login" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Senha</label>
+                            <input type="password" name="senha"  class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirme a senha</label>
+                            <input type="password" name="passconfirm"  class="form-control" required>
+                        </div>
+                       
+                        <button type="submit" class="btn btn-dark btn-flat m-b-30 m-t-30">Cadastrar</button>
+                       
+                        <div class="register-link m-t-15 text-center">
+                            <p>Já possui uma conta? <a href="Login_index.jsp"> Entre</a></p>
+                        </div>
+						<!--JAVA SCRIPT -->
                 <script>
                     function checkForm(form)
                     {
@@ -126,10 +123,18 @@
                         }
                     } //Fecha Function
                 </script>
-            </form>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        </div><!--/ container-->
 
-    </body>
-    <!-- End Page Content -->
+    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
+</body>
 </html>

@@ -57,7 +57,7 @@ public class PerfilFunc_DAO {
         Connection con = null;
         con = Conecta_Banco.getConexao();
         //cria comando SQL
-        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM categoria");
+        PreparedStatement pstmt = con.prepareStatement("SELECT * FROM perfilfunc");
         //executa
         ResultSet rs = pstmt.executeQuery();
 

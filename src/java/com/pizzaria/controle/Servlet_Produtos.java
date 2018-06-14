@@ -45,7 +45,7 @@ public class Servlet_Produtos extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(lista);
         } catch (SQLException ex) {
-            Logger.getLogger(Servlet_Produtos.class.getName()).log(Level.SEVERE, null, ex);
+            response.getWriter().println(ex);
         }
     }
 
