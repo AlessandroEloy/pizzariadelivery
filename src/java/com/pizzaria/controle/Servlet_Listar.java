@@ -45,11 +45,22 @@ public class Servlet_Listar extends HttpServlet {
 
         try {
             usuario = dao.buscar_perfil(usuario);
-            if (usuario.getPerfil() == 1) {
+            if (usuario.getPerfil().getId() == 1) {
                 //add a lista no objeto request
                 request.setAttribute("usuario", usuario);
                 //encaminha o request para o jsp
                 RequestDispatcher rd = request.getRequestDispatcher("Servlet_Atualizar");
+                rd.forward(request, response);
+            } else if(usuario.getPerfil().getId() == 2) {
+                //cria lista
+                Cliente_DAO cDAO = new Cliente_DAO();
+                //executa o método listar
+                ArrayList<Cliente> clientes = null;
+                clientes = cDAO.listar();
+                //add a lista no objeto request
+                request.setAttribute("listaCliente", clientes);
+                //encaminha o request para o jsp
+                RequestDispatcher rd = request.getRequestDispatcher("listaCliente.jsp");
                 rd.forward(request, response);
             } else {
                 //cria lista
@@ -60,7 +71,7 @@ public class Servlet_Listar extends HttpServlet {
                 //add a lista no objeto request
                 request.setAttribute("listaCliente", clientes);
                 //encaminha o request para o jsp
-                RequestDispatcher rd = request.getRequestDispatcher("listaCliente.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("listaClienteFunc.jsp");
                 rd.forward(request, response);
             }
 

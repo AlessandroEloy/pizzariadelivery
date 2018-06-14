@@ -8,6 +8,7 @@ package com.pizzaria.controle;
 import com.pizzaria.DAO.Cliente_DAO;
 import com.pizzaria.DAO.Usuario_DAO;
 import com.pizzaria.modelo.Cliente;
+import com.pizzaria.modelo.Perfil;
 import com.pizzaria.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,6 +42,7 @@ public class Servlet_Usuario extends HttpServlet {
 
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
+        String perfil = request.getParameter("perfil");
         
         PrintWriter out = response.getWriter();
         
@@ -51,8 +53,12 @@ public class Servlet_Usuario extends HttpServlet {
 
         usuario.setLogin(login);
         usuario.setSenha(senha);
-        usuario.setPerfil(1); // Usuario Cliente sempre recebe 1 no perfil
- 
+        Perfil perf = new Perfil();
+        int id = Integer.parseInt(perfil);
+        perf.setId(id);
+        usuario.setPerfil(perf); // Usuario Cliente sempre recebe 1 no perfil
+        usuario.setDisponivel(true);
+        
         try {
             
                 dao.cadastrarUsuario(usuario);

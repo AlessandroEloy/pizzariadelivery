@@ -145,10 +145,6 @@
         <servlet-class>com.pizzaria.controle.ServletListarPedidoStatus</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Servlet_Perfil_Func</servlet-name>
-        <servlet-class>com.pizzaria.controle.Servlet_Perfil_Func</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Servlet_Listar_Perfil</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Listar_Perfil</servlet-class>
     </servlet>
@@ -287,10 +283,6 @@
     <servlet-mapping>
         <servlet-name>ServletListarPedidoStatus</servlet-name>
         <url-pattern>/ServletListarPedidoStatus</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Servlet_Perfil_Func</servlet-name>
-        <url-pattern>/Servlet_Perfil_Func</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Servlet_Listar_Perfil</servlet-name>

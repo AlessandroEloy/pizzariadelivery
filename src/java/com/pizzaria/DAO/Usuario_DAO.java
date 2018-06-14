@@ -5,6 +5,7 @@
  */
 package com.pizzaria.DAO;
 
+import com.pizzaria.modelo.Perfil;
 import com.pizzaria.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,14 +28,15 @@ public class Usuario_DAO {
         stmt = con.prepareStatement(sql);
         stmt.setString(1, usuario.getLogin());
         stmt.setString(2, usuario.getSenha());
-        
                 
         ResultSet rs = stmt.executeQuery();
         
         while (rs.next()) {
             //existe = true;
             usuario.setId(rs.getInt("id"));
-            usuario.setPerfil(rs.getInt("perfil"));
+            Perfil perfil = new Perfil();
+            perfil.setId(rs.getInt("id"));
+            usuario.setPerfil(perfil);
     }
         rs.close();
         stmt.close();
@@ -45,7 +47,7 @@ public class Usuario_DAO {
     public void cadastrarUsuario(Usuario usuario) throws SQLException {
         Connection con = null;
 
-        String sql = "INSERT INTO Usuario (login, senha, perfil) VALUES (?,?,?) returning id";
+        String sql = "INSERT INTO Usuario (login, senha, perfil, disponivel) VALUES (?,?,?,?) returning id";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
@@ -53,7 +55,8 @@ public class Usuario_DAO {
 
         pstmt.setString(1, usuario.getLogin());
         pstmt.setString(2, usuario.getSenha());
-        pstmt.setInt(3, usuario.getPerfil());
+        pstmt.setInt(3, usuario.getPerfil().getId());
+        pstmt.setBoolean(4, usuario.isDisponivel());
         ResultSet rs = pstmt.executeQuery();
         
          if (rs.next()) {
@@ -78,7 +81,10 @@ public class Usuario_DAO {
             usuarioLog.setId(rs.getInt("id"));
             usuarioLog.setLogin(rs.getString("login"));
             usuarioLog.setSenha(rs.getNString("senha"));
-            usuarioLog.setPerfil(rs.getInt("perfil"));            
+            
+            Perfil perfil = new Perfil();
+            perfil.setId(rs.getInt("id"));
+            usuarioLog.setPerfil(perfil);            
         }
         con.close();
         rs.close();

@@ -4,6 +4,8 @@
     Author     : bruno nakamura
 --%>
 
+<%@page import="com.pizzaria.modelo.Perfil"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!doctype html>
@@ -289,99 +291,55 @@
                     </div>
                 </div>
 
-				
-				
-				 </form>
-
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
-
-
-    </div><!-- /#right-panel -->
-
-    <!-- Right Panel -->
-	
-    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/main.js"></script>
-
-
-    <script src="assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="assets/js/lib/data-table/pdfmake.min.js"></script>
-    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="assets/js/lib/data-table/datatables-init.js"></script>
-
-<!--JAVA SCRIPT -->
-                 <script>
-                    $(document).ready(function () {
-                $.get("Servlet_Func", function (responsejson) {
-                    console.log(responsejson);
-                    var $select = $("#funcao");
-                    $select.find("option").remove();
-                    $.each(responsejson, function (index, value) {
-                        $("<option value='" + value.id + "'>").appendTo($("#funcao"))
-                                .text(value.acesso);
-                    });
-                });
-            });
                     function checkForm(form)
                     {
-                        if (form.login.value == "") {
-                            alert("Erro: O nome do usuario deve ser preenchido!");
-                            form.login.focus();
-                            return false;
-                        }
+                    if (form.login.value == "") {
+                    alert("Erro: O nome do usuario deve ser preenchido!");
+                    form.login.focus();
+                    return false;
+                    }
 
-                        if (form.senha.value != "" && form.senha.value == form.passconfirm.value) {
-                            if (form.senha.value.length < 8) {
-                                alert("Erro: Sua Senha Deve ser maior que 8 caracteres!");
-                                form.senha.focus();
-                                return false;
-                            }
-                            if (form.senha.value == form.login.value) {
-                                alert("Erro: Sua senha deve ser diferente que o login!");
-                                form.senha.focus();
-                                return false;
-                            }
+                    if (form.senha.value != "" && form.senha.value == form.passconfirm.value) {
+                    if (form.senha.value.length < 8) {
+                    alert("Erro: Sua Senha Deve ser maior que 8 caracteres!");
+                    form.senha.focus();
+                    return false;
+                    }
+                    if (form.senha.value == form.login.value) {
+                    alert("Erro: Sua senha deve ser diferente que o login!");
+                    form.senha.focus();
+                    return false;
+                    }
 
-                            re = /[^\+&¨%$#@!*?]/;
-                            if (!re.test(form.senha.value)) {
-                                alert("Erro: Sua senha deve conter caracteres especiais (^\+&¨%$#@!*?)!");
-                                form.senha.focus();
-                                return false;
-                            }
-                            re = /[0-9]/;
-                            if (!re.test(form.senha.value)) {
-                                alert("Erro: Sua senha deve conter numeros (0-9)!");
-                                form.senha.focus();
-                                return false;
-                            }
-                            re = /[a-z]/;
-                            if (!re.test(form.senha.value)) {
-                                alert("Erro: Sua senha deve conter letras minusculas (a-z)!");
-                                form.senha.focus();
-                                return false;
-                            }
-                            re = /[A-Z]/;
-                            if (!re.test(form.senha.value)) {
-                                alert("Erro: sua senha deve conter letras maisculas (A-Z)!");
-                                form.senha.focus();
-                                return false;
-                            }
-                        } else {
-                            alert("Erro: Por Favor digite sua senha de novo no confirme a senha!");
-                            form.senha.focus();
-                            return false;
-                        }
+                    re = /[^\+&¨%$#@!*?]/;
+                    if (!re.test(form.senha.value)) {
+                    alert("Erro: Sua senha deve conter caracteres especiais (^\+&¨%$#@!*?)!");
+                    form.senha.focus();
+                    return false;
+                    }
+                    re = /[0-9]/;
+                    if (!re.test(form.senha.value)) {
+                    alert("Erro: Sua senha deve conter numeros (0-9)!");
+                    form.senha.focus();
+                    return false;
+                    }
+                    re = /[a-z]/;
+                    if (!re.test(form.senha.value)) {
+                    alert("Erro: Sua senha deve conter letras minusculas (a-z)!");
+                    form.senha.focus();
+                    return false;
+                    }
+                    re = /[A-Z]/;
+                    if (!re.test(form.senha.value)) {
+                    alert("Erro: sua senha deve conter letras maisculas (A-Z)!");
+                    form.senha.focus();
+                    return false;
+                    }
+                    } else {
+                    alert("Erro: Por Favor digite sua senha de novo no confirme a senha!");
+                    form.senha.focus();
+                    return false;
+                    }
                     }
                 </script>
 		

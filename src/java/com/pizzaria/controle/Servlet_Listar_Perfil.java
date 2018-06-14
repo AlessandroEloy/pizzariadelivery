@@ -6,8 +6,8 @@
 package com.pizzaria.controle;
 
 import com.google.gson.Gson;
-import com.pizzaria.DAO.PerfilFunc_DAO;
-import com.pizzaria.modelo.PerfilFunc;
+import com.pizzaria.DAO.Perfil_DAO;
+import com.pizzaria.modelo.Perfil;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -26,8 +26,8 @@ public class Servlet_Listar_Perfil extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ArrayList<PerfilFunc> listaPerfil = new ArrayList<>();
-        PerfilFunc_DAO dao = new PerfilFunc_DAO();
+        ArrayList<Perfil> listaPerfil = new ArrayList<>();
+        Perfil_DAO dao = new Perfil_DAO();
         try {
             listaPerfil = dao.Listar();
             Gson gson = new Gson();
