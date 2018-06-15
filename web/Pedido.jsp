@@ -137,7 +137,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Pizzaria Delivery</a></li>
-                            <li class="active">Cliente</li>
+                            <li class="active"><%out.print(usuarioLog.getLogin());%></li>
                         </ol>
                     </div>
                 </div>

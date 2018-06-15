@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -41,18 +42,22 @@ public class Servlet_Login extends HttpServlet {
         try {
             usuario = dao.logar(usuario);
           if (usuario.getPerfil().getId() == 1)  {
+              HttpSession session = request.getSession();
               request.getSession().setAttribute("usuarioLog", usuario);
               response.sendRedirect("Pedido.jsp");
           }
           else if (usuario.getPerfil().getId() ==2 ) {
+              HttpSession session = request.getSession();
               request.getSession().setAttribute("usuarioLog", usuario);
               response.sendRedirect("MenuGerente.jsp");
           }
           else if (usuario.getPerfil().getId() ==3) {
+              HttpSession session = request.getSession();
               request.getSession().setAttribute("usuarioLog", usuario);
               response.sendRedirect("MenuFuncionario.jsp");              
           }
           else if (usuario.getPerfil().getId() ==4){
+              HttpSession session = request.getSession();
               request.getSession().setAttribute("usuarioLog", usuario);
               response.sendRedirect("MenuFuncionario.jsp");
           }

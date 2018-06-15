@@ -4,6 +4,7 @@
     Author     : Carol
 --%>
 
+<%@page import="com.pizzaria.modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "m"%>
 
@@ -168,7 +169,10 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Pizzaria Delivery</a></li>
-                            <li class="active">Gerente</li>
+                            <%
+                                Usuario usuarioLog = (Usuario) session.getAttribute("usuarioLog");
+                            %>
+                            <li class="active"><%out.print(usuarioLog.getLogin());%></li>
                         </ol>
                     </div>
                 </div>

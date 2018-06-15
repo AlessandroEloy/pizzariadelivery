@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,13 +39,16 @@ public class Servlet_Listar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+        
+        
         Usuario usuario = new Usuario();
-        usuario.setLogin(request.getSession().getAttribute("usuarioLog").toString());
+        usuario = (Usuario) session.getAttribute("usuarioLog");
+                
         Usuario_DAO dao = new Usuario_DAO();
         PrintWriter out = response.getWriter();
 
         try {
-            usuario = dao.buscar_perfil(usuario);
             if (usuario.getPerfil().getId() == 1) {
                 //add a lista no objeto request
                 request.setAttribute("usuario", usuario);

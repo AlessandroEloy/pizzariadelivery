@@ -10,6 +10,7 @@ package com.pizzaria.modelo;
  * @author Alessandro
  */
 public class Usuario {
+
     private int id;
     private String login;
     private String senha;
@@ -24,8 +25,6 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    
-    
     public int getId() {
         return id;
     }
