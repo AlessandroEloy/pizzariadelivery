@@ -41,11 +41,9 @@ public class Servlet_Listar extends HttpServlet {
 
         HttpSession session = request.getSession();
         
-        
         Usuario usuario = new Usuario();
         usuario = (Usuario) session.getAttribute("usuarioLog");
                 
-        Usuario_DAO dao = new Usuario_DAO();
         PrintWriter out = response.getWriter();
 
         try {

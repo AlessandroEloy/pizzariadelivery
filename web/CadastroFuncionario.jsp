@@ -197,7 +197,14 @@
                             <div class="col-12 col-md-9">
                               <select name="funcao" id="funcao"  class="form-control">
                                 <option value=""></option>
-                               
+                               <% // //recupera o objeto resultado
+                                        
+                                        ArrayList<Perfil> listaPerfil = (ArrayList<Perfil>) request.getAttribute("listaPerfil");
+                                        for (Perfil perfil : listaPerfil) {
+                                    %>  
+                                    <option value="<%=perfil.getNivel_acesso().name() %>"> <%=perfil.getNivel_acesso().name() %> </option>
+                 
+                                    <%}%> 
                               </select>
 								</div>
 								</div>

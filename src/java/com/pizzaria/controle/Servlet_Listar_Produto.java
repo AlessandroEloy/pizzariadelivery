@@ -21,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,9 +48,9 @@ public class Servlet_Listar_Produto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
         Usuario usuario = new Usuario();
-        Usuario_DAO dao = new Usuario_DAO();
-        usuario.setLogin(request.getSession().getAttribute("usuarioLog").toString());
+        usuario = (Usuario) session.getAttribute("usuarioLog");
 
         //cria lista
         Produto_DAO DAO = new Produto_DAO();
@@ -57,7 +58,7 @@ public class Servlet_Listar_Produto extends HttpServlet {
         ArrayList<Produto> produtos = new ArrayList<>();
         PrintWriter out = response.getWriter();
         try {
-            usuario = dao.buscar_perfil(usuario);
+            produtos = DAO.listarTodosProdutos();
             if (usuario.getPerfil().getId() == 2) {
                 //add a lista no objeto request
                 request.setAttribute("listaProdutos", produtos);
@@ -68,7 +69,7 @@ public class Servlet_Listar_Produto extends HttpServlet {
                 //encaminha o request para o jsp
                 request.getRequestDispatcher("listaProdutosFunc.jsp").forward(request, response);
             }
-            produtos = DAO.listarTodosProdutos();
+            
         } catch (SQLException ex) {
             out.println(ex.getMessage());
         }

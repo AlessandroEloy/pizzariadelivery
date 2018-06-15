@@ -62,10 +62,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-shopping-cart"></i>Pedidos</a>
                         <ul class="sub-menu children dropdown-menu">
 						 
-                                <form name ="forml" action="Servlet_Listar_Pedidos" method="post"> 
                                     <li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'LISTAR'" value="Consultar Pedidos" id='func' value="CONSULTAR PEDIDOS"></li>
-                                </form>
-                        </ul>
+                                                        </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Clientes</a>

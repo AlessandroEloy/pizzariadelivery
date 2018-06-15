@@ -68,7 +68,7 @@ public class Pedido_DAO {
         pstmt = con.prepareStatement(sql);
 
         pstmt.setInt(1, pedido.getCod());
-        pstmt.setString(2,pedido.getStatus().toString()); ;
+        pstmt.setString(2, pedido.getStatus().toString());;
         pstmt.setInt(3, pedido.getFuncionario().getId());
         pstmt.setString(4, pedido.getObservacao());
         pstmt.setDouble(5, pedido.getDesconto());
@@ -140,7 +140,7 @@ public class Pedido_DAO {
             pedidos.setValorTotal(rs.getDouble("valortotal"));
             pedidos.setData(rs.getDate("data"));
             pedidos.setStatus(StatusPedido.valueOf(rs.getString("status")));
-                    
+
             listaPedidos.add(itempedidos);
         }
         return listaPedidos;
@@ -204,41 +204,39 @@ public class Pedido_DAO {
         }
         return listaPedido;
     }
-    
-    public List<Pedido> listarPedidoPorStatus(String status) throws Exception{
-        String sql = "SELECT p.*, c.*, e.* FROM pedido p, cliente c, endereco e WHERE p.idcli = c.id AND p.endereco = e.id AND status = ?";
+
+    public List<Pedido> listarPedidoPorStatus(String status) throws Exception {
         
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   List<Pedido> pedidos = new ArrayList<>();
         Connection con = Conecta_Banco.getConexao();
+        String sql = "SELECT p.*, c.*, e.* FROM pedido p, cliente c, endereco e WHERE p.idcli = c.id AND p.endereco = e.id AND status = ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
-        
+
         pstmt.setString(1, status);
-        
+
         ResultSet rs = pstmt.executeQuery();
-        
-        List<Pedido> pedidos = new ArrayList<>();
-        
-        while(rs.next()){
+
+        while (rs.next()) {
+
             Pedido pedido = new Pedido();
-            
             pedido.setCod(rs.getInt("cod"));
-            
+
             Cliente cliente = new Cliente();
             cliente.setId(rs.getInt("idcli"));
             cliente.setNome(rs.getString("nome"));
             pedido.setCliente(cliente);
-            
+
             Endereco endereco = new Endereco();
             endereco.setId(rs.getInt("endereco"));
             pedido.setEndereco(endereco);
-  
+
             pedido.setData(rs.getDate("data"));
             pedido.setValorTotal(rs.getDouble("valorTotal"));
             pedido.setDesconto(rs.getDouble("desconto"));
-            
-            
+
             pedidos.add(pedido);
         }
-        
+
         return pedidos;
     }
 }
