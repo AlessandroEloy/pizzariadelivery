@@ -206,19 +206,20 @@ public class Pedido_DAO {
     }
 
     public List<Pedido> listarPedidoPorStatus(String status) throws Exception {
-        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   List<Pedido> pedidos = new ArrayList<>();
-        Connection con = Conecta_Banco.getConexao();
         String sql = "SELECT p.*, c.*, e.* FROM pedido p, cliente c, endereco e WHERE p.idcli = c.id AND p.endereco = e.id AND status = ?";
+
+        Connection con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = con.prepareStatement(sql);
 
         pstmt.setString(1, status);
 
         ResultSet rs = pstmt.executeQuery();
 
-        while (rs.next()) {
+        List<Pedido> pedidos = new ArrayList<>();
 
+        while (rs.next()) {
             Pedido pedido = new Pedido();
+
             pedido.setCod(rs.getInt("cod"));
 
             Cliente cliente = new Cliente();
