@@ -8,7 +8,6 @@ package com.pizzaria.controle;
 import com.google.gson.Gson;
 import com.pizzaria.DAO.ItemPedido_DAO;
 import com.pizzaria.modelo.ItemPedido;
-import com.pizzaria.modelo.Produto;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

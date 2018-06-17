@@ -148,6 +148,10 @@
         <servlet-name>Servlet_Listar_Perfil</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Listar_Perfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Servlet_Listar_Pedido_Data</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Listar_Pedido_Data</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Servlet_Login</url-pattern>
@@ -288,9 +292,13 @@
         <servlet-name>Servlet_Listar_Perfil</servlet-name>
         <url-pattern>/Servlet_Listar_Perfil</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Listar_Pedido_Data</servlet-name>
+        <url-pattern>/Servlet_Listar_Pedido_Data</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            999999
+            30
         </session-timeout>
     </session-config>
     <welcome-file-list>

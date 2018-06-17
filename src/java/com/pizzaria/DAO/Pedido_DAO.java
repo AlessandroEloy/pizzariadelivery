@@ -240,4 +240,42 @@ public class Pedido_DAO {
 
         return pedidos;
     }
+    
+    public ArrayList<Pedido> listarPorData(Date data_inicio, Date data_fim) throws Exception {
+        Connection con = Conecta_Banco.getConexao();
+        String sql = "SELECT p.*, c.*, e.* FROM pedido p, cliente c, endereco e WHERE p.idcli = c.id AND p.endereco = e.id AND ( p.data BETWEEN ? AND ?)";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        
+        java.sql.Date data_inicial = new java.sql.Date(data_inicio.getTime());
+        java.sql.Date data_final = new java.sql.Date(data_fim.getTime());
+        pstmt.setDate(1, data_inicial);
+        pstmt.setDate(2, data_final);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        ArrayList<Pedido> pedidosData = new ArrayList<>();
+
+        while (rs.next()) {
+            Pedido pedido = new Pedido();
+
+            pedido.setCod(rs.getInt("cod"));
+
+            Cliente cliente = new Cliente();
+            cliente.setId(rs.getInt("idcli"));
+            cliente.setNome(rs.getString("nome"));
+            pedido.setCliente(cliente);
+
+            Endereco endereco = new Endereco();
+            endereco.setId(rs.getInt("endereco"));
+            pedido.setEndereco(endereco);
+
+            pedido.setData(rs.getDate("data"));
+            pedido.setValorTotal(rs.getDouble("valorTotal"));
+            pedido.setDesconto(rs.getDouble("desconto"));
+
+            pedidosData.add(pedido);
+        }
+
+        return pedidosData;
+    }
 }

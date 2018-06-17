@@ -61,8 +61,7 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-shopping-cart"></i>Pedidos</a>
                             <ul class="sub-menu children dropdown-menu">
-
-                                <li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'LISTAR'" value="Consultar Pedidos" id='func' value="CONSULTAR PEDIDOS"></li>
+                                <li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'ListaPedidosPorStatus.jsp'" value="Consultar Pedidos" id='func' value="CONSULTAR PEDIDOS"></li>
                             </ul>
                         </li>
                         <li class="menu-item-has-children dropdown">
@@ -104,7 +103,7 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-id-card-o"></i>Funcionários</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'CadastroFuncionario.jsp'" value="Cadastrar" id='func'></li>
+                                <li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'Servlet_Func'" value="Cadastrar" id='func'></li>
                                 <br>
                                 <form name ="forml" action="Servlet_Listar_Func" method="post"> 
                                     <li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'LISTAR'" value="Gerenciar" id='func'></li>

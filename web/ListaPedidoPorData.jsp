@@ -1,14 +1,13 @@
 <%-- 
-    Document   : listaFuncionario
-    Created on : 08/06/2017, 01:05:43
-    Author     : Carol
+    Document   : ListaPedidoPorData
+    Created on : 16/06/2018, 09:43:28
+    Author     : Alessandro Eloy
 --%>
 
+<%@page import="com.pizzaria.modelo.Pedido"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.pizzaria.modelo.Funcionario"%>
-<%@page import="com.pizzaria.DAO.Funcionario_DAO"%>
-<%@taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 
 
 <!doctype html>
@@ -169,7 +168,7 @@
                             <ol class="breadcrumb text-right">
                                 <li><a href="#">Pizzaria Delivery</a></li>
 
-                                <li class="active">Gerenciar Funcionários</li>
+                                <li class="active">Consultar Pedidos Por Data</li>
                             </ol>
                         </div>
                     </div>
@@ -183,85 +182,61 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong class="card-title">Lista de Funcionários</strong>
+                                    <strong class="card-title">Consultar Pedidos Por Data</strong>
                                 </div>
                                 <div class="card-body">
-                                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Função</th>
-                                                <th>Nome</th>
-                                                <th>Sexo</th>
-                                                <th>Nascimento</th>
-                                                <th>Telefone</th>
-                                                <th>RG</th>
-                                                <th>CPF</th>
-                                                <th>Excluir</th>
-                                                <th>Atualizar</th>
-                                            </tr>
-                                        </thead>
 
-                                        <tbody>
-                                            <% //recupera o objeto resultado
-                                                ArrayList<Funcionario> listaFuncionario = (ArrayList<Funcionario>) request.getAttribute("listaFuncionario");
-                                                for (Funcionario funcionario : listaFuncionario) {
-                                            %>  
-                                            <tr>
-                                                <td><%=funcionario.getFuncao()%></td>
-                                                <td><%=funcionario.getNome()%></td>
-                                                <td><%=funcionario.getSexo()%></td>
-                                                <td><%=funcionario.getNascimento()%></td>
-                                                <td><%=funcionario.getTelefone()%></td>
-                                                <td><%=funcionario.getRg()%></td>
-                                                <td><%=funcionario.getCpf()%></td>
-                                                <td><a href="Servlet_Excluir_Func?id=<%=funcionario.getId()%>"> X </a></td>
-                                                <td><a href="Servlet_Buscar_Func?id=<%=funcionario.getId()%>"> Atualizar </a></td>
-                                            </tr>
-                                            <%}%>
+                                    <div class="row form-group">
+                                        <div class="col col-md-2"><label for="select" class=" form-control-label">Consultar status</label></div>
+                                        <div class="col-12 col-md-6">
+                                            <form name ="forml" action="Servlet_Listar_Pedido_Data" method="post">
+                                                <input type="date" name="data_inicio">
+                                                <input type="date" name="data_final">
+                                                <button type="submit" name="enviarData"> Enviar </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div id="lista">
+                                    
+                                    </div>
 
-
-                                        </tbody>
-                                    </table>
                                 </div>
-                            </div>
-                        </div>
+
+                            </div><!-- .animated -->
+                        </div><!-- .content -->
 
 
-                    </div>
-                </div><!-- .animated -->
-            </div><!-- .content -->
+                    </div><!-- /#right-panel -->
+                    </body>
+                    <!-- Right Panel -->
+
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#bootstrap-data-table-export').DataTable();
+                        });
+                    </script>
+
+                    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+                    <script src="assets/js/popper.min.js"></script>
+                    <script src="assets/js/plugins.js"></script>
+                    <script src="assets/js/main.js"></script>
 
 
-        </div><!-- /#right-panel -->
-
-        <!-- Right Panel -->
-
-
-        <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
-
-
-        <script src="assets/js/lib/data-table/datatables.min.js"></script>
-        <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-        <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-        <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-        <script src="assets/js/lib/data-table/jszip.min.js"></script>
-        <script src="assets/js/lib/data-table/pdfmake.min.js"></script>
-        <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-        <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-        <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-        <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-        <script src="assets/js/lib/data-table/datatables-init.js"></script>
+                    <script src="assets/js/lib/data-table/datatables.min.js"></script>
+                    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+                    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+                    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+                    <script src="assets/js/lib/data-table/jszip.min.js"></script>
+                    <script src="assets/js/lib/data-table/pdfmake.min.js"></script>
+                    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+                    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+                    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+                    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+                    <script src="assets/js/lib/data-table/datatables-init.js"></script>
 
 
-        <script type="text/javascript">
-                                $(document).ready(function () {
-                                    $('#bootstrap-data-table-export').DataTable();
-                                });
-        </script>
 
 
-    </body>
-</html>
+
+
+                    </html>
