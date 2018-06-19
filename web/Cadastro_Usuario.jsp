@@ -64,7 +64,8 @@
                             <label>Confirme a senha</label>
                             <input type="password" name="passconfirm"  class="form-control" required>
                         </div>
-                       
+                        <input type="hidden" name="perfil" value="1">
+                        
                         <button type="submit" class="btn btn-dark btn-flat m-b-30 m-t-30">Cadastrar</button>
                        
                         <div class="register-link m-t-15 text-center">

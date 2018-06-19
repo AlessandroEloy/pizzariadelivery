@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Servlet_Listar_Pedido_Data extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         try {
@@ -47,7 +47,7 @@ public class Servlet_Listar_Pedido_Data extends HttpServlet {
             }
 
             request.setAttribute("pedidosData", pedidos);
-            request.getRequestDispatcher("ListaPedidoPorDatas.jsp").forward(request, response);
+            request.getRequestDispatcher("ListaPedidoPorData.jsp").forward(request, response);
 
         } catch (ParseException ex) {
             ex.getMessage();

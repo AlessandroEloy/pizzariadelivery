@@ -152,6 +152,14 @@
         <servlet-name>Servlet_Listar_Pedido_Data</servlet-name>
         <servlet-class>com.pizzaria.controle.Servlet_Listar_Pedido_Data</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Sair</servlet-name>
+        <servlet-class>com.pizzaria.controle.Sair</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servlet_Atualizar_Status</servlet-name>
+        <servlet-class>com.pizzaria.controle.Servlet_Atualizar_Status</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Login</servlet-name>
         <url-pattern>/Servlet_Login</url-pattern>
@@ -295,6 +303,14 @@
     <servlet-mapping>
         <servlet-name>Servlet_Listar_Pedido_Data</servlet-name>
         <url-pattern>/Servlet_Listar_Pedido_Data</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sair</servlet-name>
+        <url-pattern>/Sair</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servlet_Atualizar_Status</servlet-name>
+        <url-pattern>/Servlet_Atualizar_Status</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -30,13 +30,14 @@ public class Pedido_DAO {
     public Pedido cadastrarPedido(Pedido pedido) throws SQLException {
         Connection con = null;
         //o ultimo parametro da variavel SQL (valortotal) = 0;
-        String sql = "INSERT INTO pedido (observacao, idCli, valortotal, data, status) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO pedido (observacao, idCli, endereco, valortotal, data, status) VALUES (?,?,?,?,?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
         pstmt.setString(1, pedido.getObservacao());
         pstmt.setInt(2, pedido.getCliente().getId());
+        pstmt.setInt(3, pedido.getCliente().getEndereco().getId());
         pstmt.setDouble(3, pedido.getValorTotal());
         pstmt.setDate(4, new java.sql.Date(new Date().getTime()));
         pstmt.setString(5, pedido.getStatus().toString());
@@ -53,30 +54,19 @@ public class Pedido_DAO {
 
     }
 
-    public boolean atualizar(Pedido pedido) throws SQLException {
+    public boolean atualizarStatus(Pedido pedido) throws SQLException {
         Connection con = null;
 
-        String sql = "UPDATE pedido p SET p.cod = ?, p.status = ?, p.idFunc = ?, "
-                + "p.observacao = ?, p.desconto = ?, p.entrega = ?, p.entrega = ?, p.taxaEntrega = ?, "
-                + "p.troco = ?, p.endereco = ?, p.valortotal"
-                + "INNER JOIN itempedido ip "
-                + "ON p.cod = ip.idpedido "
-                + "WHERE p.cod = ?";
+        String sql = "UPDATE pedido SET status = ? WHERE COD = ? ";
 
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
 
-        pstmt.setInt(1, pedido.getCod());
-        pstmt.setString(2, pedido.getStatus().toString());;
-        pstmt.setInt(3, pedido.getFuncionario().getId());
-        pstmt.setString(4, pedido.getObservacao());
-        pstmt.setDouble(5, pedido.getDesconto());
-        pstmt.setBoolean(6, pedido.isEntrega());
-        pstmt.setDouble(7, pedido.getTaxaEntrega());
-        pstmt.setDouble(8, pedido.getTroco());
-        pstmt.setInt(9, pedido.getEndereco().getId());
-        pstmt.setDouble(10, pedido.getValorTotal());
+        
+        pstmt.setString(1, pedido.getStatus().toString());
+        pstmt.setInt(2, pedido.getCod());
+        
         pstmt.execute();
 
         return true;
@@ -146,23 +136,31 @@ public class Pedido_DAO {
         return listaPedidos;
     }
 
-    public Pedido buscar(int id) throws SQLException {
+    public Pedido buscar(int cod) throws SQLException {
         Pedido pedido = new Pedido();
 
         try (Connection con = Conecta_Banco.getConexao()) {
-            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM pedido p WHERE p.cod = ?");
-            pstmt.setInt(1, id);
+            PreparedStatement pstmt = con.prepareStatement("SELECT p.*, c.*, f.*, u.* FROM pedido p, cliente c, funcionario f, usuario u WHERE p.idcli = c.id AND c.id_user = u.id AND p.cod = ?");
+            pstmt.setInt(1, cod);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 //sets do pedido
-                pedido.setCod(id);
+                pedido.setCod(cod);
                 pedido.setData(rs.getDate("data"));
                 pedido.setObservacao(rs.getString("observacao"));
-                //pedido.setDesconto(rs.getDouble("desconto"));
-                //pedido.setTaxaEntrega(rs.getDouble("taxaEntrega"));
-                //pedido.setTroco(rs.getDouble("troco"));
+                pedido.setDesconto(rs.getDouble("desconto"));
+                pedido.setTaxaEntrega(rs.getDouble("taxaEntrega"));
+                pedido.setTroco(rs.getDouble("troco"));
                 pedido.setValorTotal(rs.getDouble("valortotal"));
+                
+                Cliente cliente = new Cliente();
+                Usuario usuario = new Usuario();
+                cliente.setUsuario(usuario);
+                cliente.getUsuario().setId(rs.getInt("id_user"));
+                pedido.setCliente(cliente);
+                
+                pedido.setStatus(StatusPedido.valueOf(rs.getString("status").trim()));
             }
             con.close();
         } catch (Exception e) {
@@ -272,6 +270,8 @@ public class Pedido_DAO {
             pedido.setData(rs.getDate("data"));
             pedido.setValorTotal(rs.getDouble("valorTotal"));
             pedido.setDesconto(rs.getDouble("desconto"));
+            
+            pedido.setStatus(StatusPedido.valueOf(rs.getString("status").trim()));
 
             pedidosData.add(pedido);
         }

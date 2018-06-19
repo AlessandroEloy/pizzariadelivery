@@ -194,11 +194,43 @@
                                                 <input type="date" name="data_final">
                                                 <button type="submit" name="enviarData"> Enviar </button>
                                             </form>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Codigo</th>
+                                                        <th>Data</th>
+                                                        <th>Cliente</th>
+                                                        <th>Desconto</th>
+                                                        <th>Status Pedido</th>
+                                                        <th>Valor Totoal</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% //recupera o objeto resultado
+                                                        ArrayList<Pedido> listaData = (ArrayList<Pedido>) request.getAttribute("pedidosData");
+                                                        if (listaData != null) {
+
+                                                            for (Pedido pedido : listaData) {
+
+
+                                                    %>  
+                                                    <tr>
+                                                        <td><%=pedido.getCod()%></td>
+                                                        <td><%=pedido.getData()%></td>
+                                                        <td><%=pedido.getCliente().getNome()%></td>
+                                                        <td><%=pedido.getDesconto()%></td>
+                                                        <td><%=pedido.getStatus()%></td>
+                                                        <td><%=pedido.getValorTotal()%></td>
+                                                    </tr>
+                                                    <%}
+                                                        }%> 
+
+
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                    <div id="lista">
-                                    
-                                    </div>
+
 
                                 </div>
 

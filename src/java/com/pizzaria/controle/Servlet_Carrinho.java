@@ -110,15 +110,11 @@ public class Servlet_Carrinho extends HttpServlet {
                         request.getRequestDispatcher("CadEndereco.jsp").forward(request, response);
                     }                
                 carrinho.setCliente(cliente);
-                
-                
-                
-                
+                carrinho.setEndereco(cliente.getEndereco());
+                               
                 String observacao = request.getParameter("observacao");
                 carrinho.setObservacao(observacao);
-                
-                
-                
+                                               
                 Pedido_DAO dao = new Pedido_DAO();
                 dao.cadastrarPedido(carrinho);     
                 
@@ -130,7 +126,9 @@ public class Servlet_Carrinho extends HttpServlet {
                 
          
                 //carrega a pagina do carrinho de compras
-                request.getRequestDispatcher("Pedido_Finalizado.jsp").forward(request, response); 
+                request.getRequestDispatcher("Pedido_Finalizado.jsp").forward(request, response);
+                
+                sessao.removeAttribute("carrinho");
                 
                 
             }

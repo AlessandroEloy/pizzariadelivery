@@ -1,4 +1,4 @@
-<%-- 
+f<%-- 
     Document   : Pedido
     Created on : 18/11/2017, 14:27:18
     Author     : alessandro
@@ -107,7 +107,7 @@
  
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right"> 
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'Login_index.jsp'">Sair</button></p>
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'Sair'">Sair</button></p>
                         
 								
                         
