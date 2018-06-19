@@ -51,27 +51,33 @@ public class Servlet_Atualizar_Status extends HttpServlet {
                     dao.atualizarStatus(pedidos);
                     request.getRequestDispatcher("Pedido.jsp").forward(request, response);
                 }
-            } else {
-                
-                
-                
-                
+            } else if (usuario.getPerfil().getId() == 3) {
+                if (pedidos.getStatus().equals(StatusPedido.APROVADO)) {
+                    pedidos.setStatus(StatusPedido.PREPARANDO);
+                    dao.atualizarStatus(pedidos);
+                    request.getRequestDispatcher("MenuPizzaiolo.jsp").forward(request, response);
+                }
+            } else if (usuario.getPerfil().getId() == 4) {
                 if (pedidos.equals(StatusPedido.APROVADO.toString())) {
-                    pedidos.setStatus(StatusPedido.CANCELADO);
-                }
-                if (pedidos.equals(StatusPedido.CANCELADO.toString())) {
-
-                } else if (pedidos.equals(StatusPedido.ENTREGUE.toString())) {
-
-                } else if (pedidos.equals(StatusPedido.ENVIANDO.toString())) {
-
+                    pedidos.setStatus(StatusPedido.PREPARANDO);
+                    dao.atualizarStatus(pedidos);
+                    request.getRequestDispatcher("MenuFuncionario.jsp").forward(request, response);
                 } else if (pedidos.equals(StatusPedido.PREPARANDO.toString())) {
+                    pedidos.setStatus(StatusPedido.ENVIANDO);
+                    dao.atualizarStatus(pedidos);
+                    request.getRequestDispatcher("MenuFuncionario.jsp").forward(request, response);
+                } else if (pedidos.equals(StatusPedido.ENVIANDO.toString())) {
+                    pedidos.setStatus(StatusPedido.ENTREGUE);
+                    dao.atualizarStatus(pedidos);
+                    request.getRequestDispatcher("MenuFuncionario.jsp").forward(request, response);
+                } else if (pedidos.equals(StatusPedido.ENTREGUE.toString())) {
+                    request.getRequestDispatcher("MenuFuncionario.jsp").forward(request, response);
 
-                } else {
-                    throw new Exception("Valor informado não existe !");
                 }
-            }
+            } else {
+                throw new Exception("Valor informado não existe !");
 
+            }
             response.getWriter().write(new Gson().toJson(pedidos));
         } catch (Exception e) {
             e.getMessage();
@@ -81,7 +87,7 @@ public class Servlet_Atualizar_Status extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
+        processRequest(request, response);
     }
 
     @Override
