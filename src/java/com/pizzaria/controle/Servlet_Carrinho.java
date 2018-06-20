@@ -100,7 +100,7 @@ public class Servlet_Carrinho extends HttpServlet {
                 //recupera um carrinho de produtos da sessão
                 Pedido carrinho = (Pedido) sessao.getAttribute("carrinho");
                 //muda o status do pedido
-                carrinho.setStatus(StatusPedido.APROVADO);
+                
               
                 //recupera um usuario da sessão
                 Usuario usuario = (Usuario) sessao.getAttribute("usuarioLog");
@@ -111,7 +111,7 @@ public class Servlet_Carrinho extends HttpServlet {
                     }                
                 carrinho.setCliente(cliente);
                 carrinho.setEndereco(cliente.getEndereco());
-                               
+                carrinho.setStatus(StatusPedido.APROVADO);               
                 String observacao = request.getParameter("observacao");
                 carrinho.setObservacao(observacao);
                                                

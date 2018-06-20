@@ -38,9 +38,9 @@ public class Pedido_DAO {
         pstmt.setString(1, pedido.getObservacao());
         pstmt.setInt(2, pedido.getCliente().getId());
         pstmt.setInt(3, pedido.getCliente().getEndereco().getId());
-        pstmt.setDouble(3, pedido.getValorTotal());
-        pstmt.setDate(4, new java.sql.Date(new Date().getTime()));
-        pstmt.setString(5, pedido.getStatus().toString());
+        pstmt.setDouble(4, pedido.getValorTotal());
+        pstmt.setDate(5, new java.sql.Date(new Date().getTime()));
+        pstmt.setString(6, pedido.getStatus().toString());
         pstmt.execute();
 
         ResultSet rsCodPedido = pstmt.getGeneratedKeys();
