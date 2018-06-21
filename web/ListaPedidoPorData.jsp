@@ -63,8 +63,9 @@
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-shopping-cart"></i>Pedidos</a>
                             <ul class="sub-menu children dropdown-menu">
-                                <li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'ListaPedidosPorStatus.jsp'" value="Consultar Pedidos" id='func' value="CONSULTAR PEDIDOS"></li>
-                            </ul>
+                                <li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'ListaPedidosPorStatus.jsp'" value="Consultar Pedidos" id='func' value="CONSULTAR PEDIDOS"></li> <br>
+								<li><input type="submit" class="btn btn-danger btn-sm" onclick="window.location.href = 'ListaPedidoPorData.jsp'" value="Consultar Pedidos Por Data" id='func' value="CONSULTAR PEDIDOS POR DATA"></li>
+							</ul>
                         </li>
                         <li class="menu-item-has-children dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Clientes</a>
@@ -192,17 +193,20 @@
                                             <form name ="forml" action="Servlet_Listar_Pedido_Data" method="post">
                                                 <input type="date" name="data_inicio">
                                                 <input type="date" name="data_final">
-                                                <button type="submit" name="enviarData"> Enviar </button>
-                                            </form>
-                                            <table>
-                                                <thead>
+                                                <button type="submit" name="enviarData" class="btn btn-danger"> Consultar </button>
+                                            </form><br><br>
+                                            </div>
+											  <div class="col-lg-12">
+											<table class="table">
+												<thead class="thead-dark">
+                                                
                                                     <tr>
                                                         <th>Codigo</th>
                                                         <th>Data</th>
                                                         <th>Cliente</th>
                                                         <th>Desconto</th>
                                                         <th>Status Pedido</th>
-                                                        <th>Valor Totoal</th>
+                                                        <th>Valor Total</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -230,7 +234,7 @@
                                             </table>
                                         </div>
                                     </div>
-
+								</div>
 
                                 </div>
 

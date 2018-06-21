@@ -7,7 +7,6 @@ package com.pizzaria.DAO;
 
 import com.pizzaria.modelo.Cliente;
 import com.pizzaria.modelo.Endereco;
-import com.pizzaria.modelo.Funcionario;
 import com.pizzaria.modelo.ItemPedido;
 import com.pizzaria.modelo.Pedido;
 import com.pizzaria.modelo.Produto;
@@ -87,50 +86,48 @@ public class Pedido_DAO {
         return true;
     }
 
-    public ArrayList<ItemPedido> listar() throws SQLException {
+    public ArrayList<ItemPedido> listarBalconista() throws SQLException {
         //criar uma array de obj Cliente
         ArrayList<ItemPedido> listaPedidos = new ArrayList<>();
         //Conexao
         Connection con = Conecta_Banco.getConexao();
         //cria comando SQL
-        String sql = "SELECT p.cod AS pcod, ip.cod AS ipcod, pr.cod AS prcod, ip.quantidade, ip.valoritem, "
-                + "c.nome AS cnome , pr.nome AS prnome, "
-                + "pr.valor, p.observacao, p.valortotal, p.* FROM pedido p INNER JOIN itempedido ip ON p.cod = ip.idpedido "
-                + "INNER JOIN produto pr ON pr.cod = ip.codproduto INNER JOIN cliente c ON p.idcli = c.id";
+        String sql = "SELECT p.cod AS pcod, ip.cod AS ipcod, pr.cod AS prcod, ip.quantidade, ip.valoritem, c.nome AS cnome , pr.nome AS prnome, pr.valor, p.observacao, p.valortotal, p.* "
+                + "FROM itempedido ip INNER JOIN pedido p ON ip.idpedido = p.cod INNER JOIN produto pr ON pr.cod = ip.codproduto INNER JOIN cliente c ON p.idcli = c.id";
         PreparedStatement pstmt = con.prepareStatement(sql);
         //executa
         ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()) {
             //a cada loop
+            ItemPedido itempedidos = new ItemPedido();
             Pedido pedidos = new Pedido();
             Cliente cliente = new Cliente();
-            ItemPedido itempedidos = new ItemPedido();
             Produto produto = new Produto();
 
             //seta os atributos do cliente com as informações do ResultSet
             itempedidos.setCod(rs.getInt("ipcod"));
             itempedidos.setQuantidade(rs.getInt("quantidade"));
             itempedidos.setValorItem(rs.getDouble("valoritem"));
-            itempedidos.setPedido(pedidos);
-            itempedidos.setProduto(produto);
-            itempedidos.getPedido().setCliente(cliente);
-
-            cliente.setNome(rs.getString("cnome"));
-
+           
             produto.setCod(rs.getInt("prcod"));
             produto.setNome(rs.getString("prnome"));
             produto.setValor(rs.getDouble("valor"));
-
+            itempedidos.setProduto(produto);
+            
             pedidos.setCod(rs.getInt("pcod"));
+            pedidos.setCliente(cliente);
+            cliente.setNome(rs.getString("cnome"));
+            pedidos.setCliente(cliente);
             pedidos.setObservacao(rs.getString("observacao"));
-            //pedidos.setDesconto(rs.getDouble("desconto"));
-            //pedidos.setTaxaEntrega(rs.getDouble("taxaEntrega"));
-            //pedidos.setTroco(rs.getDouble("troco"));
+            pedidos.setDesconto(rs.getDouble("desconto"));
+            pedidos.setTaxaEntrega(rs.getDouble("taxaEntrega"));
+            pedidos.setTroco(rs.getDouble("troco"));
             pedidos.setValorTotal(rs.getDouble("valortotal"));
             pedidos.setData(rs.getDate("data"));
             pedidos.setStatus(StatusPedido.valueOf(rs.getString("status")));
-
+            itempedidos.setPedido(pedidos);
+            
             listaPedidos.add(itempedidos);
         }
         return listaPedidos;
@@ -277,5 +274,51 @@ public class Pedido_DAO {
         }
 
         return pedidosData;
+    }
+    public ArrayList<ItemPedido> listar() throws SQLException {
+        //criar uma array de obj Cliente
+        ArrayList<ItemPedido> listaPedidos = new ArrayList<>();
+        //Conexao
+        Connection con = Conecta_Banco.getConexao();
+        //cria comando SQL
+        String sql = "SELECT p.cod AS pcod, ip.cod AS ipcod, pr.cod AS prcod, ip.quantidade, ip.valoritem, c.nome AS cnome , pr.nome AS prnome, pr.valor, p.observacao, p.valortotal, p.* "
+                + "FROM itempedido ip INNER JOIN pedido p ON ip.idpedido = p.cod INNER JOIN produto pr ON pr.cod = ip.codproduto INNER JOIN cliente c ON p.idcli = c.id WHERE p.status = 'APROVADO'";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        //executa
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            //a cada loop
+            ItemPedido itempedidos = new ItemPedido();
+            Pedido pedidos = new Pedido();
+            Cliente cliente = new Cliente();
+            Produto produto = new Produto();
+
+            //seta os atributos do cliente com as informações do ResultSet
+            itempedidos.setCod(rs.getInt("ipcod"));
+            itempedidos.setQuantidade(rs.getInt("quantidade"));
+            itempedidos.setValorItem(rs.getDouble("valoritem"));
+           
+            produto.setCod(rs.getInt("prcod"));
+            produto.setNome(rs.getString("prnome"));
+            produto.setValor(rs.getDouble("valor"));
+            itempedidos.setProduto(produto);
+            
+            pedidos.setCod(rs.getInt("pcod"));
+            pedidos.setCliente(cliente);
+            cliente.setNome(rs.getString("cnome"));
+            pedidos.setCliente(cliente);
+            pedidos.setObservacao(rs.getString("observacao"));
+            pedidos.setDesconto(rs.getDouble("desconto"));
+            pedidos.setTaxaEntrega(rs.getDouble("taxaEntrega"));
+            pedidos.setTroco(rs.getDouble("troco"));
+            pedidos.setValorTotal(rs.getDouble("valortotal"));
+            pedidos.setData(rs.getDate("data"));
+            pedidos.setStatus(StatusPedido.valueOf(rs.getString("status")));
+            itempedidos.setPedido(pedidos);
+            
+            listaPedidos.add(itempedidos);
+        }
+        return listaPedidos;
     }
 }

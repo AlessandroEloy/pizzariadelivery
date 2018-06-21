@@ -49,29 +49,35 @@ public class Servlet_Atualizar_Status extends HttpServlet {
                 if (pedidos.getStatus().equals(StatusPedido.APROVADO)) {
                     pedidos.setStatus(StatusPedido.CANCELADO);
                     dao.atualizarStatus(pedidos);
-                    request.getRequestDispatcher("Pedido.jsp").forward(request, response);
+                    request.getRequestDispatcher("listaPedido.jsp").forward(request, response);
+                } else {
+                    String mensagem = "Pedido Cancelado";
+                    request.setAttribute("mensagem", mensagem);
+                    request.getRequestDispatcher("listaPedido.jsp").forward(request, response);
+                }
+            } else if (usuario.getPerfil().getId() == 4) {
+                if (pedidos.getStatus().equals(StatusPedido.APROVADO)) {
+                    pedidos.setStatus(StatusPedido.PREPARANDO);
+                    dao.atualizarStatus(pedidos);
+                    request.getRequestDispatcher("Servlet_Listar_Pedidos").forward(request, response);
                 }
             } else if (usuario.getPerfil().getId() == 3) {
                 if (pedidos.getStatus().equals(StatusPedido.APROVADO)) {
                     pedidos.setStatus(StatusPedido.PREPARANDO);
                     dao.atualizarStatus(pedidos);
-                    request.getRequestDispatcher("MenuPizzaiolo.jsp").forward(request, response);
-                }
-            } else if (usuario.getPerfil().getId() == 4) {
-                if (pedidos.equals(StatusPedido.APROVADO.toString())) {
-                    pedidos.setStatus(StatusPedido.PREPARANDO);
-                    dao.atualizarStatus(pedidos);
-                    request.getRequestDispatcher("MenuFuncionario.jsp").forward(request, response);
-                } else if (pedidos.equals(StatusPedido.PREPARANDO.toString())) {
+                    request.getRequestDispatcher("Servlet_Listar_Pedidos").forward(request, response);
+                } else if (pedidos.getStatus().equals(StatusPedido.PREPARANDO)) {
                     pedidos.setStatus(StatusPedido.ENVIANDO);
                     dao.atualizarStatus(pedidos);
-                    request.getRequestDispatcher("MenuFuncionario.jsp").forward(request, response);
-                } else if (pedidos.equals(StatusPedido.ENVIANDO.toString())) {
+                    request.getRequestDispatcher("Servlet_Listar_Pedidos").forward(request, response);
+                } else if (pedidos.getStatus().equals(StatusPedido.ENVIANDO)) {
                     pedidos.setStatus(StatusPedido.ENTREGUE);
                     dao.atualizarStatus(pedidos);
-                    request.getRequestDispatcher("MenuFuncionario.jsp").forward(request, response);
-                } else if (pedidos.equals(StatusPedido.ENTREGUE.toString())) {
-                    request.getRequestDispatcher("MenuFuncionario.jsp").forward(request, response);
+                    request.getRequestDispatcher("Servlet_Listar_Pedidos").forward(request, response);
+                } else if (pedidos.getStatus().equals(StatusPedido.ENTREGUE)) {
+                    String mensagem = "Pedido Já Entregue";
+                    request.setAttribute("mensagem", mensagem);
+                    request.getRequestDispatcher("Servlet_Listar_Pedidos").forward(request, response);
 
                 }
             } else {

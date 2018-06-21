@@ -59,7 +59,7 @@ public class Servlet_Login extends HttpServlet {
           else if (usuario.getPerfil().getId() ==4){
               HttpSession session = request.getSession();
               request.getSession().setAttribute("usuarioLog", usuario);
-              response.sendRedirect("MenuFuncionario.jsp");
+              response.sendRedirect("Servlet_Listar_Pedidos");
           }
            else   {
                 String mensagem = "Usuário ou Senha incorretos, Tente Novamente...";

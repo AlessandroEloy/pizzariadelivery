@@ -16,7 +16,7 @@ public enum StatusPedido {
     ENVIANDO {
         @Override
         public String toString(){
-          return "ENVIADO";  
+          return "ENVIANDO";  
         }
     },
     CANCELADO {
