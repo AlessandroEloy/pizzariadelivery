@@ -66,7 +66,7 @@ public class Servlet_Cliente extends HttpServlet {
         Endereco endereco = new Endereco();
         endereco.setId(Integer.parseInt(request.getParameter("idendereco")));
         cliente.setEndereco(endereco);
-
+        cliente.setDisponivel(true);
         try {
 
             dao.cadastrarCliente(cliente);

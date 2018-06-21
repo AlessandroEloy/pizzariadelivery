@@ -196,13 +196,13 @@
                                                         <option value=""></option>
                                                         <% // //recupera o objeto resultado
 
-                                                            ArrayList<Perfil> listaPerfil = (ArrayList<Perfil>) request.getAttribute("listaPerfil");
-                                                            for (Perfil perfil : listaPerfil) {
+                                                            ArrayList<Perfil> listaperfil = (ArrayList<Perfil>) request.getAttribute("listaPerfil");
+                                                            for (Perfil perfil : listaperfil) {
                                                         %>  
-                                                        <option value="<%=perfil.getNivel_acesso().name()%>"> <%=perfil.getNivel_acesso().name()%> </option>
-
-                                                        <%}%> 
-                                                    </select>
+                                                        <option value="<%=perfil.getId() %>"> <%=perfil.getNivel_acesso().toString() %> </option>
+                                                        <%}%>
+                                                    </select> 
+                                                  
                                                 </div>
                                             </div>
 
@@ -271,7 +271,6 @@
                                                 <div class="col col-md-2"><label for="hf-nome" class=" form-control-label">Senha</label></div>
                                                 <div class="col-12 col-md-9"><input type="password" name="senha" size="100" maxlength="100" class="form-control" required></div>
                                             </div>
-                                            <input type="hidden" name="perfil" value="2">
 
                                             <div class="row form-group">
                                                 <div class="col col-md-2"><label for="hf-nome" class=" form-control-label">Confirme a senha</label></div>
@@ -294,57 +293,57 @@
                                     </div>
                                 </div>
                             </div>
+                            <script>
+                                function checkForm(form)
+                                {
+                                    if (form.login.value == "") {
+                                        alert("Erro: O nome do usuario deve ser preenchido!");
+                                        form.login.focus();
+                                        return false;
+                                    }
 
-                            function checkForm(form)
-                            {
-                            if (form.login.value == "") {
-                            alert("Erro: O nome do usuario deve ser preenchido!");
-                            form.login.focus();
-                            return false;
-                            }
+                                    if (form.senha.value != "" && form.senha.value == form.passconfirm.value) {
+                                        if (form.senha.value.length < 8) {
+                                            alert("Erro: Sua Senha Deve ser maior que 8 caracteres!");
+                                            form.senha.focus();
+                                            return false;
+                                        }
+                                        if (form.senha.value == form.login.value) {
+                                            alert("Erro: Sua senha deve ser diferente que o login!");
+                                            form.senha.focus();
+                                            return false;
+                                        }
 
-                            if (form.senha.value != "" && form.senha.value == form.passconfirm.value) {
-                            if (form.senha.value.length < 8) {
-                            alert("Erro: Sua Senha Deve ser maior que 8 caracteres!");
-                            form.senha.focus();
-                            return false;
-                            }
-                            if (form.senha.value == form.login.value) {
-                            alert("Erro: Sua senha deve ser diferente que o login!");
-                            form.senha.focus();
-                            return false;
-                            }
-
-                            re = /[^\+&¨%$#@!*?]/;
-                            if (!re.test(form.senha.value)) {
-                            alert("Erro: Sua senha deve conter caracteres especiais (^\+&¨%$#@!*?)!");
-                            form.senha.focus();
-                            return false;
-                            }
-                            re = /[0-9]/;
-                            if (!re.test(form.senha.value)) {
-                            alert("Erro: Sua senha deve conter numeros (0-9)!");
-                            form.senha.focus();
-                            return false;
-                            }
-                            re = /[a-z]/;
-                            if (!re.test(form.senha.value)) {
-                            alert("Erro: Sua senha deve conter letras minusculas (a-z)!");
-                            form.senha.focus();
-                            return false;
-                            }
-                            re = /[A-Z]/;
-                            if (!re.test(form.senha.value)) {
-                            alert("Erro: sua senha deve conter letras maisculas (A-Z)!");
-                            form.senha.focus();
-                            return false;
-                            }
-                            } else {
-                            alert("Erro: Por Favor digite sua senha de novo no confirme a senha!");
-                            form.senha.focus();
-                            return false;
-                            }
-                            }
+                                        re = /[^\+&¨%$#@!*?]/;
+                                        if (!re.test(form.senha.value)) {
+                                            alert("Erro: Sua senha deve conter caracteres especiais (^\+&¨%$#@!*?)!");
+                                            form.senha.focus();
+                                            return false;
+                                        }
+                                        re = /[0-9]/;
+                                        if (!re.test(form.senha.value)) {
+                                            alert("Erro: Sua senha deve conter numeros (0-9)!");
+                                            form.senha.focus();
+                                            return false;
+                                        }
+                                        re = /[a-z]/;
+                                        if (!re.test(form.senha.value)) {
+                                            alert("Erro: Sua senha deve conter letras minusculas (a-z)!");
+                                            form.senha.focus();
+                                            return false;
+                                        }
+                                        re = /[A-Z]/;
+                                        if (!re.test(form.senha.value)) {
+                                            alert("Erro: sua senha deve conter letras maisculas (A-Z)!");
+                                            form.senha.focus();
+                                            return false;
+                                        }
+                                    } else {
+                                        alert("Erro: Por Favor digite sua senha de novo no confirme a senha!");
+                                        form.senha.focus();
+                                        return false;
+                                    }
+                                }
                             </script>
 
                             <script type="text/javascript">

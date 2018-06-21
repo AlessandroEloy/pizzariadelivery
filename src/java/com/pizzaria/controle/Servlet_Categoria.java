@@ -35,7 +35,7 @@ public class Servlet_Categoria extends HttpServlet {
         
 
         cat.setCategoria(categoria);
-
+        cat.setDisponivel(true);
 
         try {
 

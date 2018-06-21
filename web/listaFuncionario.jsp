@@ -207,7 +207,7 @@
                                                 for (Funcionario funcionario : listaFuncionario) {
                                             %>  
                                             <tr>
-                                                <td><%=funcionario.getFuncao()%></td>
+                                                <td><%=funcionario.getPerfil().getNivel_acesso().name() %></td>
                                                 <td><%=funcionario.getNome()%></td>
                                                 <td><%=funcionario.getSexo()%></td>
                                                 <td><%=funcionario.getNascimento()%></td>

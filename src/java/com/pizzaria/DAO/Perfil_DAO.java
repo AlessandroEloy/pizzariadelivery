@@ -68,7 +68,7 @@ public class Perfil_DAO {
             //seta os atributos do cliente com as informações do ResultSet
             perfil.setId(rs.getInt("id"));
             perfil.setAcesso(rs.getString("acesso"));
-            perfil.setNivel_acesso(Nivel_Acesso.valueOf(rs.getString("nivel_acesso"))); ;
+            perfil.setNivel_acesso(Nivel_Acesso.valueOf(rs.getString("nivel_acesso")));
             //add na lista
             listaPerfil.add(perfil);
         }

@@ -234,7 +234,9 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
+                                                                <div class="alert alert-light" role="alert">
+                                                                   ${mensagem}
+                                                                </div>
                                                                 <!-- Right Panel -->
 
 

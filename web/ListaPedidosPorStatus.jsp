@@ -189,11 +189,11 @@
                                         <div class="col-12 col-md-6">
                                             <select name="status" id="status" onchange="buscar()" class="form-control">
                                                 <option value="          ">       </option>
-                                                <option value="APROVADO">aprovado</option>
-                                                <option value="CANCELADO">cancelado</option>
-                                                <option value="PREPARANDO">preparando</option>
-                                                <option value="ENVIADO">enviado</option>
-                                                <option value="ENTREGUE">entregue</option>
+                                                <option value="APROVADO">Aprovado</option>
+                                                <option value="CANCELADO">Cancelado</option>
+                                                <option value="PREPARANDO">Preparando</option>
+                                                <option value="ENVIANDO">Enviando</option>
+                                                <option value="ENTREGUE">Entregue</option>
                                             </select>
                                         </div>
                                     </div>

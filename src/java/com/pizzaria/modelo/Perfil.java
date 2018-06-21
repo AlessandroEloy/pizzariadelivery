@@ -41,7 +41,7 @@ public class Perfil {
 
     public enum Nivel_Acesso {
 
-        GERENTE("GERENTE"), BALCONISTA("BALCONISTA"), PIZZAIOLO("PIZZAIOLO"), CLIENTE(" ");
+       CLIENTE(" "), GERENTE("GERENTE"), BALCONISTA("BALCONISTA"), PIZZAIOLO("PIZZAIOLO");
 
         private  String nome;
 

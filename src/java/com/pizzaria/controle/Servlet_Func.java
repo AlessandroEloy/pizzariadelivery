@@ -54,7 +54,7 @@ public class Servlet_Func extends HttpServlet {
             throws ServletException, IOException {
 
         String funcao = request.getParameter("funcao");
-        String perfil = request.getParameter("perfil");
+        String perfil = request.getParameter("funcao");
         String nome = request.getParameter("nome");
         String sexo = request.getParameter("sexo");
         String nascimento = request.getParameter("nascimento");
@@ -85,21 +85,21 @@ public class Servlet_Func extends HttpServlet {
         int id = Integer.parseInt(perfil);
         perfilf.setId(id);
         funcionario.setPerfil(perfilf);
-        funcionario.setDisponivel(true);
 
         if (funcionario.getPerfil().getId() == 2) {
-                funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
+                funcionario.setFuncao(String.valueOf(perfilf.getId()));
                 usu.setPerfil(perfilf);
             
         } else if (funcionario.getPerfil().getId() == 3) {
-            funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
+            funcionario.setFuncao(String.valueOf(perfilf.getId()));
                 usu.setPerfil(perfilf);
         } else if (funcionario.getPerfil().getId() == 4) {
-            funcionario.setFuncao(String.valueOf(perfilf.getNivel_acesso()));
+            funcionario.setFuncao(String.valueOf(perfilf.getId()));
                 usu.setPerfil(perfilf);
         }
         try {
             usudao.cadastrarUsuario(usu);
+            funcionario.setDisponivel(true);
             dao.cadastrarFunc(funcionario);
             String mensagem = "Cadastro Realizado Com Sucesso";
             request.setAttribute("mensagem", mensagem);

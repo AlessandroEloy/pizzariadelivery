@@ -49,11 +49,7 @@ public class Servlet_Atualizar_Status extends HttpServlet {
                 if (pedidos.getStatus().equals(StatusPedido.APROVADO)) {
                     pedidos.setStatus(StatusPedido.CANCELADO);
                     dao.atualizarStatus(pedidos);
-                    request.getRequestDispatcher("listaPedido.jsp").forward(request, response);
-                } else {
-                    String mensagem = "Pedido Cancelado";
-                    request.setAttribute("mensagem", mensagem);
-                    request.getRequestDispatcher("listaPedido.jsp").forward(request, response);
+                    request.getRequestDispatcher("Pedido.jsp").forward(request, response);
                 }
             } else if (usuario.getPerfil().getId() == 4) {
                 if (pedidos.getStatus().equals(StatusPedido.APROVADO)) {

@@ -6,6 +6,8 @@ package com.pizzaria.DAO;
  * and open the template in the editor.
  */
 import com.pizzaria.modelo.Funcionario;
+import com.pizzaria.modelo.Perfil;
+import com.pizzaria.modelo.Perfil.Nivel_Acesso;
 import com.pizzaria.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -83,15 +85,20 @@ public class Funcionario_DAO {
         Connection con = null;
         con = Conecta_Banco.getConexao();
 
-        PreparedStatement pstmt = con.prepareStatement("SELECT id, funcao, nome, sexo, nascimento, telefone, rg, cpf, disponivel from funcionario");
+        PreparedStatement pstmt = con.prepareStatement("SELECT funcionario.*, perfil.* FROM funcionario, perfil WHERE perfil = perfil.id");
 
         ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()) {
-
+            
             Funcionario funcionarios = new Funcionario();
 
             funcionarios.setId(rs.getInt("id"));
+            Perfil perfil = new Perfil();
+            perfil.setId(rs.getInt("id"));
+            perfil.setAcesso(rs.getString("acesso"));
+            perfil.setNivel_acesso(Nivel_Acesso.valueOf(rs.getString("nivel_acesso")));
+            funcionarios.setPerfil(perfil);
             funcionarios.setFuncao(rs.getString("funcao"));
             funcionarios.setNome(rs.getString("nome"));
             funcionarios.setSexo(rs.getString("sexo"));

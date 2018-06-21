@@ -22,12 +22,13 @@ public class Categoria_DAO extends HttpServlet {
     public void cadastrarCategoria(Categoria categoria) throws SQLException {
         Connection con = null;
 
-        String sql = "INSERT INTO categoria (categoria) VALUES (?)";
+        String sql = "INSERT INTO categoria (categoria, disponivel) VALUES (?,?)";
         con = Conecta_Banco.getConexao();
         PreparedStatement pstmt = null;
         pstmt = con.prepareStatement(sql);
 
         pstmt.setString(1, categoria.getCategoria());
+        pstmt.setBoolean(2, categoria.isDisponivel());
 
         pstmt.execute();
 
